@@ -1,0 +1,82 @@
+---
+permalink: upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.html 
+sidebar: sidebar 
+keywords: upgrade, linux, rpm, deb, 
+summary: Si des nœuds StorageGRID sont déployés sur des hôtes Linux, installez un module RPM ou DEB supplémentaire sur chacun de ces hôtes avant de démarrer la mise à niveau. 
+---
+= Linux : téléchargez et installez le progiciel RPM ou DEB sur tous les hôtes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si des nœuds StorageGRID sont déployés sur des hôtes Linux, téléchargez et installez un package RPM ou DEB supplémentaire sur chacun de ces hôtes avant de démarrer la mise à niveau.
+
+
+
+== Téléchargez les fichiers de mise à niveau, Linux et de correctif
+
+Lorsque vous effectuez une mise à niveau StorageGRID à partir du Gestionnaire de grille, vous êtes invité à télécharger l'archive de mise à niveau et tout correctif requis dans la première étape. Cependant, si vous devez télécharger des fichiers pour mettre à niveau les hôtes Linux, vous pouvez gagner du temps en téléchargeant à l'avance tous les fichiers requis.
+
+.Étapes
+. Accédez à https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Téléchargement NetApp : StorageGRID"^].
+. Sélectionnez le bouton pour télécharger la dernière version ou sélectionnez une autre version dans le menu déroulant et sélectionnez *Go*.
++
+Les versions du logiciel StorageGRID ont le format suivant : 11._x.y_. Les correctifs StorageGRID ont le format suivant : 11._x.y.z_.
+
+. Connectez-vous avec le nom d'utilisateur et le mot de passe de votre compte NetApp.
+. Si un avertissement attention/MustRead apparaît, notez le numéro du correctif et cochez la case.
+. Lisez le contrat de licence de l'utilisateur final, cochez la case, puis sélectionnez *accepter et continuer*.
++
+La page des téléchargements de la version sélectionnée s'affiche. La page contient trois colonnes.
+
+. A partir de la deuxième colonne (*Upgrade StorageGRID*), téléchargez deux fichiers :
++
+** L'archive de mise à niveau pour la dernière version (il s'agit du fichier dans la section intitulée *VMware, SG1000 ou SG100 Primary Admin Node*). Ce fichier n'est pas nécessaire tant que vous n'avez pas effectué la mise à niveau, mais le téléchargement de ce fichier permet de gagner du temps.
+** Une archive RPM ou DEB dans l'une ou l'autre `.tgz` ou `.zip` format. Sélectionner `.zip` Fichier si vous exécutez Windows sur l'ordinateur portable de service.
++
+*** Red Hat Enterprise Linux +
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` +
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz`
+*** Ubuntu ou Debian +
+`StorageGRID-Webscale-_version_-DEB-_uniqueID_.zip` +
+`StorageGRID-Webscale-_version_-DEB-_uniqueID_.tgz`
+
+
+
+
+. Si vous devez accepter un avis attention/MustRead en raison d'un correctif requis, téléchargez le correctif :
++
+.. Revenir à https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Téléchargement NetApp : StorageGRID"^].
+.. Sélectionnez le numéro de correctif dans la liste déroulante.
+.. Acceptez à nouveau la mise en garde et le CLUF.
+.. Téléchargez et enregistrez le correctif et son fichier README.
++
+Vous serez invité à télécharger le fichier de correctif sur la page mise à niveau StorageGRID lorsque vous démarrez la mise à niveau.
+
+
+
+
+
+
+
+== Installez l'archive sur tous les hôtes Linux
+
+Procédez comme suit avant de mettre à niveau le logiciel StorageGRID.
+
+.Étapes
+. Extrayez les packages RPM ou DEB du fichier d'installation.
+. Installez les packages RPM ou DEB sur tous les hôtes Linux.
++
+Reportez-vous aux étapes d'installation des services d'hôte StorageGRID dans les instructions d'installation :
+
++
+** link:../rhel/installing-storagegrid-webscale-host-service.html["Red Hat Enterprise Linux : installez les services hôtes StorageGRID"]
+** link:../ubuntu/installing-storagegrid-webscale-host-services.html["Ubuntu ou Debian : installez les services hôtes StorageGRID"]
+
+
++
+Les nouveaux packages sont installés en tant que modules supplémentaires. Ne supprimez pas les packages existants.
+
+

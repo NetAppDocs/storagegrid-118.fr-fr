@@ -1,0 +1,107 @@
+---
+permalink: swift/supported-swift-api-endpoints.html 
+sidebar: sidebar 
+keywords: swift api endpoint support 
+summary: 'StorageGRID prend en charge les points de terminaison de l"API Swift suivants : l"URL info, l"URL d"authentification et l"URL de stockage.' 
+---
+= Terminaux API Swift pris en charge
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID prend en charge les points de terminaison de l'API Swift suivants : l'URL info, l'URL d'authentification et l'URL de stockage.
+
+
+
+== URL info
+
+Vous pouvez déterminer les capacités et les limites de l'implémentation de StorageGRID Swift en émettant une demande GET à l'URL de base Swift avec le chemin /info.
+
+`https://_FQDN_ | _Node IP:Swift Port_/info/`
+
+Dans la demande :
+
+* `_FQDN_` est le nom de domaine complet.
+* `_Node IP_` Est l'adresse IP du nœud de stockage ou du nœud de passerelle sur le réseau StorageGRID.
+* `_Swift Port_` Est le numéro de port utilisé pour les connexions API Swift sur le nœud de stockage ou le nœud de passerelle.
+
+
+Par exemple, l'URL d'information suivante demande des informations à un noeud de stockage avec l'adresse IP 10.99.106.103 et le port 18083.
+
+`\https://10.99.106.103:18083/info/`
+
+La réponse inclut les fonctionnalités de l'implémentation Swift sous forme de dictionnaire JSON. Un outil client peut analyser la réponse JSON pour déterminer les fonctionnalités de l'implémentation et les utiliser comme contraintes pour les opérations de stockage ultérieures.
+
+La mise en œuvre de StorageGRID de Swift permet un accès non authentifié à l'URL info.
+
+
+
+== URL d'authentification
+
+Un client peut utiliser l'URL d'authentification Swift pour s'authentifier en tant qu'utilisateur de compte de locataire.
+
+`https://_FQDN_ | _Node IP:Swift Port_/auth/v1.0/`
+
+Vous devez fournir l'ID de compte de tenant, le nom d'utilisateur et le mot de passe comme paramètres dans le `X-Auth-User` et `X-Auth-Key` en-têtes de demande, comme suit :
+
+`X-Auth-User: _Tenant_Account_ID:Username_`
+
+`X-Auth-Key: _Password_`
+
+Dans les en-têtes de demande :
+
+* `_Tenant_Account_ID_` Est l'ID de compte attribué par StorageGRID lors de la création du locataire Swift. Il s'agit du même ID de compte de locataire que celui utilisé sur la page de connexion du Gestionnaire de locataires.
+* `_Username_` Est le nom d'un utilisateur locataire qui a été créé dans le Gestionnaire de tenant. Cet utilisateur doit appartenir à un groupe disposant de l'autorisation Administrateur Swift. L'utilisateur root du locataire ne peut pas être configuré pour utiliser l'API REST Swift.
++
+Si la fédération des identités est activée pour le compte de tenant, indiquez le nom d'utilisateur et le mot de passe de l'utilisateur fédéré à partir du serveur LDAP. Vous pouvez également indiquer le nom de domaine de l'utilisateur LDAP. Par exemple :
+
++
+`X-Auth-User: _Tenant_Account_ID:Username@Domain_Name_`
+
+* `_Password_` est le mot de passe de l'utilisateur tenant. Les mots de passe utilisateur sont créés et gérés dans le Gestionnaire de locataires.
+
+
+La réponse à une demande d'authentification réussie renvoie une URL de stockage et un jeton d'authentification, comme suit :
+
+`X-Storage-Url: https://_FQDN_ | _Node_IP:Swift_Port_/v1/_Tenant_Account_ID_`
+
+`X-Auth-Token: _token_`
+
+`X-Storage-Token: _token_`
+
+Par défaut, le jeton est valide pendant 24 heures à compter de l'heure de génération.
+
+Des jetons sont générés pour un compte de locataire spécifique. Un jeton valide pour un compte n'autorise pas un utilisateur à accéder à un autre compte.
+
+
+
+== URL du stockage
+
+Une application client peut émettre des appels de l'API REST Swift pour exécuter des opérations de compte, conteneur et objet prises en charge sur un nœud de passerelle ou un nœud de stockage. Les demandes de stockage sont adressées à l'URL de stockage renvoyée dans la réponse d'authentification. La demande doit également inclure l'en-tête X-Auth-Token et la valeur renvoyée par la demande d'autorisation.
+
+`\https://FQDN | _IP:Swift_Port_/v1/_Tenant_Account_ID_`
+
+`[_/container_][_/object_]`
+
+`X-Auth-Token: _token_`
+
+Certains en-têtes de réponse de stockage contenant des statistiques d'utilisation peuvent ne pas refléter les chiffres précis des objets récemment modifiés. L'affichage des nombres précis dans ces en-têtes peut prendre quelques minutes.
+
+Les en-têtes de réponse suivants pour les opérations de compte et de conteneur sont des exemples de ceux qui contiennent des statistiques d'utilisation :
+
+* `X-Account-Bytes-Used`
+* `X-Account-Object-Count`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+
+
+.Informations associées
+link:configuring-tenant-accounts-and-connections.html["Configurez les comptes et les connexions des locataires"]
+
+link:account-operations.html["Opérations sur le compte"]
+
+link:container-operations.html["Opérations sur les conteneurs"]
+
+link:object-operations.html["Opérations sur l'objet"]

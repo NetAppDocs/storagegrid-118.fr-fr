@@ -1,0 +1,95 @@
+---
+permalink: swift/history-of-swift-api-support-in-storagegrid.html 
+sidebar: sidebar 
+keywords: swift api support history 
+summary: Vous devez connaître les modifications apportées à la prise en charge du système StorageGRID pour l’API REST Swift. 
+---
+= Historique de la prise en charge de l'API Swift dans StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Notez que des modifications ont été apportées à la prise en charge du système StorageGRID pour l'API REST Swift.
+
+[cols="1a,3a"]
+|===
+| Relâchez | Commentaires 
+
+
+ a| 
+11.8
+ a| 
+
+
+
+ a| 
+11.7
+ a| 
+La prise en charge des applications du client Swift a été obsolète et sera supprimée dans une prochaine version.
+
+
+
+ a| 
+11.6
+ a| 
+Modifications éditoriales mineures.
+
+
+
+ a| 
+11.5
+ a| 
+Suppression de la cohérence faible. La cohérence disponible sera utilisée à la place.
+
+
+
+ a| 
+11.4
+ a| 
+Ajout de la prise en charge de TLS 1.3. Ajout d'une description des relations entre ILM et cohérence.
+
+
+
+ a| 
+11.3
+ a| 
+Les opérations PUT mises à jour décrivent l'impact des règles ILM qui utilisent le placement synchrone à l'ingestion (options équilibrées et strictes pour le comportement d'ingestion). Ajout d'une description des connexions client qui utilisent des noeuds finaux d'équilibreur de charge ou des groupes de haute disponibilité. Les chiffrements TLS 1.1 ne sont plus pris en charge.
+
+
+
+ a| 
+11.2
+ a| 
+Modifications rédactionnelles mineures apportées au document
+
+
+
+ a| 
+11.1
+ a| 
+Ajout de la prise en charge de l'utilisation des connexions client HTTP pour Swift aux nœuds de la grille. Mise à jour des définitions des valeurs de cohérence.
+
+
+
+ a| 
+11.0
+ a| 
+Ajout de la prise en charge de 1,000 conteneurs pour chaque compte locataire.
+
+
+
+ a| 
+10.3
+ a| 
+Mises à jour administratives et corrections du document. Suppression des sections pour la configuration des certificats de serveur personnalisés.
+
+
+
+ a| 
+10.2
+ a| 
+Prise en charge initiale de l'API Swift par le système StorageGRID. La version actuellement prise en charge est l'API de stockage objet OpenStack Swift v1.
+
+|===

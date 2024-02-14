@@ -1,0 +1,95 @@
+---
+permalink: maintain/recovering-storage-node-that-has-been-down-more-than-15-days.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage node failure 
+summary: 'Si un seul nœud de stockage a été hors ligne et n"est pas connecté aux autres nœuds de stockage depuis plus de 15 jours, vous devez reconstruire Cassandra sur le nœud.' 
+---
+= Panne d'un nœud de stockage de plus de 15 jours
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si un seul nœud de stockage a été hors ligne et n'est pas connecté aux autres nœuds de stockage depuis plus de 15 jours, vous devez reconstruire Cassandra sur le nœud.
+
+.Avant de commencer
+* Vous avez vérifié qu'une mise hors service du nœud de stockage n'est pas en cours ou que vous avez interrompu la procédure de mise hors service du nœud. (Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *désaffectation*.)
+* Vous avez vérifié qu'une extension n'est pas en cours. (Dans le Gestionnaire de grille, sélectionnez *MAINTENANCE* > *tâches* > *expansion*.)
+
+
+.Description de la tâche
+Les nœuds de stockage disposent d'une base de données Cassandra qui inclut les métadonnées d'objet. Si un nœud de stockage n'a pas pu communiquer avec d'autres nœuds de stockage depuis plus de 15 jours, StorageGRID suppose que la base de données Cassandra du nœud est obsolète. Le nœud de stockage ne peut pas rejoindre la grille tant que Cassandra n'a pas été reconstruite à l'aide d'informations provenant d'autres nœuds de stockage.
+
+Utilisez cette procédure pour reconstruire Cassandra uniquement si un seul nœud de stockage est défaillant. Contactez le support technique si des nœuds de stockage supplémentaires sont hors ligne ou si Cassandra a été reconstruite sur un autre nœud de stockage au cours des 15 derniers jours. Par exemple, Cassandra a peut-être été reconstruite dans le cadre des procédures de restauration des volumes de stockage défaillants ou de restauration d'un nœud de stockage défaillant.
+
+
+CAUTION: Si plusieurs nœuds de stockage ont échoué (ou sont hors ligne), contactez le support technique. N'effectuez pas la procédure de récupération suivante. Des données peuvent être perdues.
+
+
+CAUTION: S'il s'agit de la défaillance du deuxième nœud de stockage dans les 15 jours qui suivent la défaillance ou la restauration d'un nœud de stockage, contactez le support technique. N'effectuez pas la procédure de récupération suivante. Des données peuvent être perdues.
+
+
+NOTE: Si plusieurs nœuds de stockage d'un site ont échoué, une procédure de restauration de site peut être nécessaire. Voir link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"].
+
+.Étapes
+. Si nécessaire, mettez le nœud de stockage sous tension qui doit être restauré.
+. Connectez-vous au nœud grid :
++
+.. Saisissez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour passer à la racine : `su -`
+.. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.+
+
++
+
+NOTE: Si vous ne parvenez pas à vous connecter au nœud de la grille, il est possible que le disque système ne soit pas intact. Passer à la procédure pour  link:recovering-from-system-drive-failure.html["restauration en cas de panne du lecteur système"].
+
+
+
+. Effectuez les vérifications suivantes sur le nœud de stockage :
++
+.. Exécutez cette commande : `nodetool status`
++
+La sortie doit être de `Connection refused`
+
+.. Dans le Gestionnaire de grille, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_site_* > *nœud de stockage* > *SSM* > *Services*. Vérifiez que le service Cassandra s'affiche `Not Running`.
+.. Sélectionnez *nœud de stockage* > *SSM* > *Ressources*. Vérifiez qu'il n'y a pas d'état d'erreur dans la section volumes.
+.. Exécutez cette commande : `grep -i Cassandra /var/local/log/servermanager.log`
++
+Le message suivant doit s'afficher dans la sortie :
+
++
+[listing]
+----
+Cassandra not started because it has been offline for more than 15 day grace period - rebuild Cassandra
+----
+
+
+. Exécutez cette commande et surveillez la sortie du script : `check-cassandra-rebuild`
++
+** Si le service Cassandra, selon le volume 0, est en cours d'exécution, vous serez invité à l'arrêter. Saisissez : *y*
++
+
+NOTE: Si le service Cassandra est déjà arrêté, vous n'êtes pas invité à le faire. Le service Cassandra est arrêté uniquement pour le volume 0.
+
+** Vérifiez les avertissements dans le script. Si aucune d'entre elles ne s'applique, confirmez que vous souhaitez reconstruire Cassandra. Saisissez : *y*
++
+
+NOTE: Certaines procédures de restauration StorageGRID utilisent Reaper pour traiter les réparations Cassandra. Les réparations sont effectuées automatiquement dès que les services connexes ou requis ont commencé. Vous remarquerez peut-être une sortie de script mentionnant « Reaper » ou « Cassandra repair ». Si un message d'erreur s'affiche, indiquant que la réparation a échoué, exécutez la commande indiquée dans le message d'erreur.
+
+
+
+. Une fois la reconstruction terminée, effectuez les vérifications suivantes :
++
+.. Dans le Gestionnaire de grille, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Sélectionnez *_site_* > *nœud de stockage récupéré* > *SSM* > *Services*.
+.. Vérifiez que tous les services sont en cours d'exécution.
+.. Sélectionnez *DDS* > *Data Store*.
+.. Vérifiez que l'état *Data Store Status* est « Up » et que l'état *Data Store State* est « Normal ».
+
+
+

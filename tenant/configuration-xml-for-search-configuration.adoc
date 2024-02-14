@@ -1,0 +1,193 @@
+---
+permalink: tenant/configuration-xml-for-search-configuration.html 
+sidebar: sidebar 
+keywords: search integration, configuration xml, metadata notification, container tag, urn 
+summary: 'Le service d"intégration de recherche est configuré à l"aide d"un ensemble de règles contenues dans <MetadaNotificationConfiguration\> et </MetadaNotificationConfiguration\> tags. Chaque règle spécifie les objets auxquels la règle s"applique, ainsi que la destination à laquelle StorageGRID doit envoyer les métadonnées de ces objets.' 
+---
+= XML de configuration pour l'intégration de la recherche
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le service d'intégration de recherche est configuré à l'aide d'un ensemble de règles contenues dans `<MetadataNotificationConfiguration>` et `</MetadataNotificationConfiguration>` balises. Chaque règle spécifie les objets auxquels la règle s'applique, et la destination vers laquelle StorageGRID doit envoyer les métadonnées de ces objets.
+
+Les objets peuvent être filtrés sur le préfixe du nom de l'objet. Par exemple, vous pouvez envoyer les métadonnées pour les objets avec le préfixe `images` à une destination et aux métadonnées pour les objets avec le préfixe `videos` à un autre. Les configurations avec des préfixes qui se chevauchent ne sont pas valides et sont rejetées lorsqu'elles sont soumises. Par exemple, une configuration qui inclut une règle pour les objets avec le préfixe `test` et une seconde règle pour les objets avec le préfixe `test2` n'est pas autorisé.
+
+Les destinations doivent être spécifiées à l'aide de l'URN d'un terminal StorageGRID créé pour le service d'intégration de la recherche. Ces terminaux font référence à un index et à un type définis dans un cluster Elasticsearch.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+Le tableau décrit les éléments du XML de configuration de notification des métadonnées.
+
+[cols="2a,3a,1a"]
+|===
+| Nom | Description | Obligatoire 
+
+
+ a| 
+Configuration de la MetadaNotificationConfiguration
+ a| 
+Balise de conteneur pour les règles utilisées pour spécifier les objets et la destination des notifications de métadonnées.
+
+Contient un ou plusieurs éléments de règle.
+ a| 
+Oui.
+
+
+
+ a| 
+Règle
+ a| 
+Balise de conteneur d'une règle qui identifie les objets dont les métadonnées doivent être ajoutées à un index spécifié.
+
+Les règles avec des préfixes qui se chevauchent sont rejetées.
+
+Inclus dans l'élément MetadaNotificationConfiguration.
+ a| 
+Oui.
+
+
+
+ a| 
+ID
+ a| 
+Identifiant unique de la règle.
+
+Inclus dans l'élément règle.
+ a| 
+Non
+
+
+
+ a| 
+État
+ a| 
+L'état peut être « activé » ou « désactivé ». Aucune action n'est prise pour les règles désactivées.
+
+Inclus dans l'élément règle.
+ a| 
+Oui.
+
+
+
+ a| 
+Préfixe
+ a| 
+Les objets qui correspondent au préfixe sont affectés par la règle et leurs métadonnées sont envoyées à la destination spécifiée.
+
+Pour faire correspondre tous les objets, spécifiez un préfixe vide.
+
+Inclus dans l'élément règle.
+ a| 
+Oui.
+
+
+
+ a| 
+Destination
+ a| 
+Balise de conteneur pour la destination d'une règle.
+
+Inclus dans l'élément règle.
+ a| 
+Oui.
+
+
+
+ a| 
+Urne
+ a| 
+URN de la destination où les métadonnées d'objet sont envoyées. Doit être l'URN d'un terminal StorageGRID avec les propriétés suivantes :
+
+* `es` doit être le troisième élément.
+* L'URN doit se terminer par l'index et le type où les métadonnées sont stockées, sous la forme `domain-name/myindex/mytype`.
+
+
+Les terminaux sont configurés à l'aide du Gestionnaire de locataires ou de l'API de gestion des locataires. Ils se présentent sous la forme suivante :
+
+* `arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+Le noeud final doit être configuré avant la soumission du XML de configuration, ou la configuration échouera avec une erreur 404.
+
+L'URNE est incluse dans l'élément destination.
+ a| 
+Oui.
+
+|===
+Utilisez l'exemple de XML de configuration de notification de métadonnées pour apprendre à construire votre propre XML.
+
+
+
+== Configuration de notification des métadonnées qui s'applique à tous les objets
+
+Dans cet exemple, les métadonnées d'objet de tous les objets sont envoyées vers la même destination.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix></Prefix>
+        <Destination>
+           <Urn>urn:myes:es:::sgws-notifications/test1/all</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== Configuration des notifications de métadonnées avec deux règles
+
+Dans cet exemple, les métadonnées d'objet pour les objets qui correspondent au préfixe `/images` est envoyée à une destination, tandis que les métadonnées d'objet correspondent au préfixe `/videos` est envoyé à une seconde destination.
+
+[listing]
+----
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Images-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/images</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/es-domain/graphics/imagetype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Videos-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/videos</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-west-1:22222222:domain/es-domain/graphics/videotype</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+.Informations associées
+link:../s3/index.html["UTILISEZ L'API REST S3"]
+
+link:object-metadata-included-in-metadata-notifications.html["Métadonnées d'objet incluses dans les notifications de métadonnées"]
+
+link:json-generated-by-search-integration-service.html["JSON généré par le service d'intégration de la recherche"]
+
+link:configuring-search-integration-service.html["Configurez le service d'intégration de la recherche"]

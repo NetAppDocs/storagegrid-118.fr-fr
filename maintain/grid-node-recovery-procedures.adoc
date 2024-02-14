@@ -1,0 +1,23 @@
+---
+permalink: maintain/grid-node-recovery-procedures.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery 
+summary: 'En cas de défaillance d"un nœud de grille, vous pouvez le restaurer en remplaçant le serveur physique ou virtuel défaillant, en réinstallant le logiciel StorageGRID et en restaurant les données récupérables.' 
+---
+= Procédures de restauration de nœud de grid : présentation
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En cas de défaillance d'un nœud de grille, vous pouvez le restaurer en remplaçant le serveur physique ou virtuel défaillant, en réinstallant le logiciel StorageGRID et en restaurant les données récupérables.
+
+Les nœuds du grid peuvent tomber en panne si une panne matérielle, de virtualisation, de système d'exploitation ou logicielle rend le nœud inutilisable ou peu fiable. Il existe de nombreux types de défaillance pouvant déclencher la restauration d'un nœud grid.
+
+Les étapes de restauration d'un nœud de grid varient en fonction de la plateforme sur laquelle le nœud de grid est hébergé et du type de nœud de grid. Chaque type de nœud de la grille dispose d'une procédure de restauration spécifique, que vous devez suivre exactement.
+
+En général, vous essayez de préserver les données du nœud de grille défaillant dans la mesure du possible, réparez ou remplacez le nœud défaillant, utilisez Grid Manager pour configurer le nœud de remplacement et restaurer les données du nœud.
+
+
+NOTE: En cas de défaillance de l'ensemble du site StorageGRID, contactez le support technique. Le support technique vous accompagne pour développer et mettre en œuvre un plan de reprise sur site qui optimise la quantité des données récupérées et répond aux objectifs de l'entreprise. Voir link:how-site-recovery-is-performed-by-technical-support.html["Comment le support technique récupère un site"].

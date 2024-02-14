@@ -1,0 +1,37 @@
+---
+permalink: ubuntu/configuring-docker-storage-volume.html 
+sidebar: sidebar 
+keywords: how to configure Docker storage volume 
+summary: 'Avant d"installer Docker, il se peut que vous deviez formater le volume de stockage Docker et le monter sur /var/lib/docker.' 
+---
+= Configurer le volume de stockage Docker
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'installer Docker, il se peut que vous deviez formater le volume de stockage Docker et le monter sur `/var/lib/docker`.
+
+.Description de la tâche
+Vous pouvez ignorer ces étapes si vous prévoyez d'utiliser le stockage local pour le volume de stockage Docker et disposer d'un espace suffisant sur la partition hôte contenant `/var/lib`.
+
+.Étapes
+. Créez un système de fichiers sur le volume de stockage Docker :
++
+[listing]
+----
+sudo mkfs.ext4 docker-storage-volume-device
+----
+. Montez le volume de stockage Docker :
++
+[listing]
+----
+sudo mkdir -p /var/lib/docker
+sudo mount docker-storage-volume-device /var/lib/docker
+----
+. Ajoutez une entrée pour docker-Storage-volume-device au fichier /etc/fstab.
++
+Cette étape permet de s'assurer que le volume de stockage se réajuste automatiquement après le redémarrage de l'hôte.
+
+

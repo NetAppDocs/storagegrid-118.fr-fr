@@ -1,0 +1,188 @@
+---
+permalink: monitor/logs-files-reference.html 
+sidebar: sidebar 
+keywords: log, logs, log files 
+summary: 'StorageGRID fournit des journaux utilisés pour capturer les événements, les messages de diagnostic et les conditions d"erreur. Il se peut que vous soyez invité à collecter les fichiers journaux et à les transférer au support technique pour faciliter le dépannage.' 
+---
+= Référence des fichiers journaux : présentation
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID fournit des journaux utilisés pour capturer les événements, les messages de diagnostic et les conditions d'erreur. Il se peut que vous soyez invité à collecter les fichiers journaux et à les transférer au support technique pour faciliter le dépannage.
+
+Les journaux sont classés comme suit :
+
+* link:storagegrid-software-logs.html["Journaux du logiciel StorageGRID"]
+* link:deployment-and-maintenance-logs.html["Journaux de déploiement et de maintenance"]
+* link:logs-for-third-party-software.html["Journaux de logiciels tiers"]
+* link:about-bycast-log.html["Sur le bycast.log"]
+
+
+
+NOTE: Les détails fournis pour chaque type de journal sont fournis à titre de référence uniquement. Les journaux sont destinés au dépannage avancé par le support technique. Les techniques avancées qui impliquent la reconstruction de l'historique des problèmes à l'aide des journaux d'audit et des fichiers journaux de l'application sont hors de portée de ces instructions.
+
+
+
+== Accéder aux journaux
+
+Pour accéder aux journaux, vous pouvez link:collecting-log-files-and-system-data.html["collectez les fichiers journaux et les données système"] à partir d'un ou plusieurs nœuds sous forme d'archive de fichier journal unique. Si le nœud d'administration principal n'est pas disponible ou ne parvient pas à atteindre un nœud spécifique, vous pouvez accéder à des fichiers journaux individuels pour chaque nœud de la grille comme suit :
+
+. Saisissez la commande suivante : `ssh admin@grid_node_IP`
+. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+. Entrez la commande suivante pour passer à la racine : `su -`
+. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+
+
+== Catégories de fichiers journaux
+
+L'archive du fichier journal StorageGRID contient les journaux décrits pour chaque catégorie et les fichiers supplémentaires contenant des mesures et la sortie de la commande debug.
+
+[cols="1a,3a"]
+|===
+| Emplacement d'archivage | Description 
+
+
+| audit  a| 
+Messages d'audit générés pendant le fonctionnement normal du système.
+
+
+
+| base-os-logs  a| 
+Informations sur le système d'exploitation de base, notamment les versions d'images StorageGRID.
+
+
+
+| packs  a| 
+Informations de configuration globale (bundles).
+
+
+
+| cassandra  a| 
+Informations sur la base de données Cassandra et journaux de réparation de couches.
+
+
+
+| d'europe  a| 
+Informations VCS sur le nœud actuel et les informations de groupe EC par ID de profil.
+
+
+
+| grille  a| 
+Journaux de grille généraux, y compris le débogage (`bycast.log`) et `servermanager` journaux.
+
+
+
+| grid.xml  a| 
+Le fichier de configuration du grid est partagé sur tous les nœuds.
+
+
+
+| hagroups  a| 
+Metrics et journaux pour les groupes de haute disponibilité.
+
+
+
+| installer  a| 
+`Gdu-server` et installer les journaux.
+
+
+
+| lumberjack.log  a| 
+Messages de débogage liés à la collecte de journaux.
+
+
+
+| Lambda-arbitre  a| 
+Journaux associés à la demande de proxy S3 Select.
+
+
+
+| Métriques  a| 
+Journaux de service pour Grafana, Jaeger, node exportateur et Prometheus.
+
+
+
+| etcd  a| 
+Journaux d'accès divers et d'erreurs.
+
+
+
+| mysql  a| 
+La configuration de la base de données MariaDB et les journaux associés.
+
+
+
+| nette  a| 
+Journaux générés par des scripts de mise en réseau et le service Dynap.
+
+
+
+| nginx  a| 
+Fichiers et journaux de configuration de l'équilibreur de charge et de la fédération du grid. Inclut également les journaux de trafic Grid Manager et tenant Manager.
+
+
+
+| nginx-gw  a| 
+Fichiers et journaux de configuration de l'équilibreur de charge et de la fédération du grid.
+
+
+
+| ntp  a| 
+Fichier de configuration et journaux NTP.
+
+
+
+| os  a| 
+Fichier d'état du nœud et du grid incluant les services `pid`.
+
+
+
+| autre  a| 
+Fichiers journaux sous `/var/local/log` qui ne sont pas collectés dans d'autres dossiers.
+
+
+
+| diminution des  a| 
+Informations de performances pour le CPU, la mise en réseau et les E/S de disque
+
+
+
+| données prometheus  a| 
+Metrics Prometheus actuels si la collecte des journaux inclut des données Prometheus.
+
+
+
+| provisionnement  a| 
+Journaux relatifs au processus de provisionnement de la grille.
+
+
+
+| radeau  a| 
+Journaux de grappe raft utilisés dans les services de plate-forme.
+
+
+
+| ssh  a| 
+Journaux liés à la configuration et au service SSH.
+
+
+
+| snmp  a| 
+Configuration de l'agent SNMP et listes d'autorisation/refus d'alarme utilisées pour envoyer des notifications SNMP.
+
+
+
+| sockets-données  a| 
+Données des sockets pour le débogage réseau.
+
+
+
+| system-commands.txt  a| 
+Résultat des commandes du conteneur StorageGRID. Contient des informations sur le système, telles que la mise en réseau et l'utilisation du disque.
+
+|===

@@ -1,0 +1,40 @@
+---
+permalink: admin/modifying-connection-settings-for-s3-api.html 
+sidebar: sidebar 
+keywords: archive node, cloud tiering 
+summary: 'Une fois que le nœud d"archivage est configuré pour se connecter à un système de stockage d"archives externe via l"API S3, vous pouvez modifier certains paramètres en cas de modification de la connexion.' 
+---
+= Modifiez les paramètres de connexion de l'API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois que le nœud d'archivage est configuré pour se connecter à un système de stockage d'archives externe via l'API S3, vous pouvez modifier certains paramètres en cas de modification de la connexion.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Si vous modifiez le compte Cloud Tiering (S3), vous devez vous assurer que les identifiants d'accès utilisateur ont un accès en lecture/écriture au compartiment, y compris tous les objets précédemment ingérées par le nœud d'archivage vers le compartiment.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *cible*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/archive_node_s3_middleware.gif[Modifiez la page Configuration d'un nœud d'archivage]
+
+. Modifiez les informations de compte si nécessaire.
++
+Si vous modifiez la classe de stockage, les nouvelles données d'objet sont stockées avec la nouvelle classe de stockage. Un objet existant reste stocké sous la classe de stockage définie lors de l'ingestion.
+
++
+
+NOTE: Le nom de compartiment, la région et le terminal, utilisent des valeurs AWS et ne peuvent pas être modifiés.
+
+. Sélectionnez *appliquer les modifications*.
+

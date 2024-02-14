@@ -1,0 +1,48 @@
+---
+permalink: swift/swift-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: swift options request 
+summary: 'Toutes les opérations réussies DE SUPPRESSION, D"OBTENTION, DE TÊTE, DE POST et DE PUT du stockage sont consignées dans le journal d"audit de StorageGRID. Les échecs et les demandes d"informations, d"authentification ou D"OPTIONS ne sont pas consignés.' 
+---
+= Les opérations Swift sont suivies dans les journaux d'audit
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Toutes les opérations réussies DE SUPPRESSION, D'OBTENTION, DE TÊTE, DE POST et DE PUT du stockage sont consignées dans le journal d'audit de StorageGRID. Les échecs et les demandes d'informations, d'authentification ou D'OPTIONS ne sont pas consignés.
+
+
+
+== Opérations sur le compte
+
+* link:account-operations.html["OBTENIR un compte"]
+* link:account-operations.html["Compte PRINCIPAL"]
+
+
+
+
+== Opérations sur les conteneurs
+
+* link:container-operations.html["SUPPRIMER le conteneur"]
+* link:container-operations.html["CONTENEUR"]
+* link:container-operations.html["Conteneur DE TÊTE"]
+* link:container-operations.html["PLACER le conteneur"]
+
+
+
+
+== Opérations sur l'objet
+
+* link:object-operations.html["SUPPRIMER l'objet"]
+* link:object-operations.html["OBJET GET"]
+* link:object-operations.html["Objet TÊTE"]
+* link:object-operations.html["PLACER l'objet"]
+
+
+.Informations associées
+* link:../audit/accessing-audit-log-file.html["Accéder au fichier journal d'audit"]
+* link:../audit/client-write-audit-messages.html["Écrire des messages d'audit client"]
+* link:../audit/client-read-audit-messages.html["Messages d'audit de lecture du client"]
+

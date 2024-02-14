@@ -1,0 +1,84 @@
+---
+permalink: swift/account-operations.html 
+sidebar: sidebar 
+keywords: swift account operations 
+summary: 'Les opérations de l"API Swift suivantes sont effectuées sur les comptes.' 
+---
+= Opérations sur le compte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les opérations de l'API Swift suivantes sont effectuées sur les comptes.
+
+
+
+== OBTENIR un compte
+
+Cette opération récupère la liste de conteneurs associée aux statistiques d'utilisation du compte et du compte.
+
+Le paramètre de demande suivant est requis :
+
+* `Account`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Les paramètres de requête pris en charge suivants sont facultatifs :
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Prefix`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse « HTTP/1.1 204 pas de contenu » si le compte est trouvé et n'a pas de conteneurs ou si la liste de conteneurs est vide ; ou une réponse « HTTP/1.1 200 OK » si le compte est trouvé et si la liste de conteneurs n'est pas vide :
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== Compte PRINCIPAL
+
+Cette opération récupère les informations et les statistiques du compte à partir d'un compte Swift.
+
+Le paramètre de demande suivant est requis :
+
+* `Account`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse "HTTP/1.1 204 No Content" :
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+.Informations associées
+link:swift-operations-tracked-in-audit-logs.html["Les opérations Swift sont suivies dans les journaux d'audit"]

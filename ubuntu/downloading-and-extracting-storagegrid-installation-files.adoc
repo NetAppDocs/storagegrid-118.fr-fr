@@ -1,0 +1,123 @@
+---
+permalink: ubuntu/downloading-and-extracting-storagegrid-installation-files.html 
+sidebar: sidebar 
+keywords: how to download ubuntu or debian installation files 
+summary: 'Vous devez télécharger l"archive d"installation de StorageGRID et extraire les fichiers requis.' 
+---
+= Téléchargez et extrayez les fichiers d'installation de StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez télécharger l'archive d'installation de StorageGRID et extraire les fichiers requis.
+
+.Étapes
+. Accédez au https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Page de téléchargements NetApp pour StorageGRID"^].
+. Sélectionnez le bouton pour télécharger la dernière version ou sélectionnez une autre version dans le menu déroulant et sélectionnez *Go*.
+. Connectez-vous avec le nom d'utilisateur et le mot de passe de votre compte NetApp.
+. Si une instruction attention/MustRead apparaît, lisez-la et cochez la case.
++
+
+CAUTION: Après l'installation de la version StorageGRID, vous devez appliquer les correctifs requis. Pour plus d'informations, reportez-vous à la section link:../maintain/storagegrid-hotfix-procedure.html["procédure de correctif dans les instructions de récupération et de maintenance"]
+
+. Lisez le contrat de licence de l'utilisateur final, cochez la case, puis sélectionnez *accepter et continuer*.
++
+La page des téléchargements de la version sélectionnée s'affiche. La page contient trois colonnes :
+
+. Dans la colonne *Install StorageGRID*, sélectionnez le fichier .tgz ou .zip pour Ubuntu ou Debian.
++
+
+NOTE: Sélectionner `.zip` Fichier si vous exécutez Windows sur l'ordinateur portable de service.
+
+. Enregistrez et extrayez le fichier d'archive.
+. Choisissez les fichiers dont vous avez besoin dans la liste suivante.
++
+L'ensemble de fichiers dont vous avez besoin dépend de votre topologie de grille planifiée et de la manière dont vous allez déployer votre grille StorageGRID.
+
++
+
+NOTE: Les chemins répertoriés dans la table sont relatifs au répertoire de niveau supérieur installé par l'archive d'installation extraite.
+
+
+
+[cols="1a,1a"]
+|===
+| Chemin d'accès et nom de fichier | Description 
+
+
+| ./bps/README  a| 
+Fichier texte qui décrit tous les fichiers contenus dans le fichier de téléchargement StorageGRID.
+
+
+
+| ./Debian/NLF000000.txt  a| 
+Un fichier de licence NetApp hors production que vous pouvez utiliser pour tester et réaliser des démonstrations de faisabilité.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb  a| 
+DEB paquet pour installer les images de noeud StorageGRID sur des hôtes Ubuntu ou Debian.
+
+
+
+| ./Debian/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+Somme de contrôle MD5 pour le fichier `/debs/storagegrid-webscale-images-version-SHA.deb`.
+
+
+
+| ./Debian/storagegrid-webscale-service-version-SHA.deb  a| 
+Paquet DEB pour l'installation du service hôte StorageGRID sur des hôtes Ubuntu ou Debian.
+
+
+
+| Outil de script de déploiement | Description 
+
+
+| ./debian/configure-storagegrid.py  a| 
+Script Python utilisé pour automatiser la configuration d'un système StorageGRID.
+
+
+
+| ./debian/configure-sga.py  a| 
+Script Python utilisé pour automatiser la configuration des appliances StorageGRID.
+
+
+
+| ./debian/storagegrid-ssoauth.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API Grid Management lorsque l'authentification unique est activée. Vous pouvez également utiliser ce script pour le Federate Ping.
+
+
+
+| ./deps/configure-storagegrid.sample.json  a| 
+Exemple de fichier de configuration à utiliser avec `configure-storagegrid.py` script.
+
+
+
+| ./deps/configure-storagegrid.blank.json  a| 
+Un fichier de configuration vierge à utiliser avec le `configure-storagegrid.py` script.
+
+
+
+| ./deps/extras/ansible  a| 
+Exemple de rôle et de manuel de vente Ansible pour la configuration des hôtes Ubuntu ou Debian pour le déploiement de conteneurs StorageGRID. Vous pouvez personnaliser le rôle ou le PlayBook selon vos besoins.
+
+
+
+| ./debs/storagegrid-ssoauth-azure.py  a| 
+Exemple de script Python que vous pouvez utiliser pour vous connecter à l'API de gestion de grille lorsque l'authentification unique (SSO) est activée à l'aide d'Active Directory ou de Ping Federate.
+
+
+
+| ./debs/storagegrid-ssoauth-azure.js  a| 
+Script d'aide appelé par le compagnon `storagegrid-ssoauth-azure.py` Script Python pour effectuer des interactions SSO avec Azure.
+
+
+
+| ./débits/extras/schémas-api  a| 
+Schémas API pour StorageGRID.
+
+*Remarque* : avant d'effectuer une mise à niveau, vous pouvez utiliser ces schémas pour confirmer que tout code que vous avez écrit pour utiliser les API de gestion StorageGRID sera compatible avec la nouvelle version de StorageGRID si vous ne disposez pas d'un environnement StorageGRID non productif pour le test de compatibilité de mise à niveau.
+
+|===

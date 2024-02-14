@@ -1,0 +1,23 @@
+---
+permalink: admin/configuration-best-practices.html 
+sidebar: sidebar 
+keywords: tsm configuration, tivoli storage manager, archive to tape 
+summary: 'Lorsque vous dimensionnez et configurez votre serveur TSM, il existe les meilleures pratiques que vous devez appliquer pour l"optimiser afin qu"il fonctionne avec le nœud d"archivage.' 
+---
+= Bonnes pratiques pour la configuration
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous dimensionnez et configurez votre serveur TSM, il existe les meilleures pratiques que vous devez appliquer pour l'optimiser afin qu'il fonctionne avec le nœud d'archivage.
+
+Lors du dimensionnement et de la configuration du serveur TSM, il est important de prendre en compte les facteurs suivants :
+
+* Comme le nœud d'archivage ne agrège pas les objets avant de les enregistrer sur le serveur TSM, la base de données TSM doit être dimensionnée pour contenir les références à tous les objets qui seront écrits sur le nœud d'archivage.
+* Le logiciel de nœud d'archivage ne peut pas tolérer la latence liée à l'écriture d'objets directement sur bande ou sur un autre support amovible. Par conséquent, le serveur TSM doit être configuré avec un pool de stockage sur disque pour le stockage initial des données sauvegardées par le nœud d'archivage chaque fois que des supports amovibles sont utilisés.
+* Vous devez configurer les règles de conservation TSM pour utiliser la conservation basée sur les événements. Le nœud d'archivage ne prend pas en charge les politiques de conservation TSM basées sur la création. Utilisez les paramètres recommandés suivants de retmin=0 et retver=0 dans la stratégie de rétention (ce qui indique que la rétention commence lorsque le noeud d'archivage déclenche un événement de rétention et est conservé pendant 0 jours après cela). Toutefois, ces valeurs pour le retmin et le retver sont facultatives.
+
+
+Le pool de disques doit être configuré pour migrer les données vers le pool de bandes (c'est-à-dire que le pool de bandes doit être le NXTSTGPOOL du pool de disques). Le pool de bandes ne doit pas être configuré en tant que pool de copies du pool de disques avec une écriture simultanée sur les deux pools (le pool de bandes ne peut pas être un COPYSTGPOOL pour le pool de disques). Pour créer des copies hors ligne des bandes contenant les données du nœud d'archivage, configurez le serveur TSM avec un deuxième pool de bandes qui est un pool de copies du pool de bandes utilisé pour les données du nœud d'archivage.

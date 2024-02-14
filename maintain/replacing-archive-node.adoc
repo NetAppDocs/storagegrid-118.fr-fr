@@ -1,0 +1,42 @@
+---
+permalink: maintain/replacing-archive-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, archive node 
+summary: 'Pour restaurer un noeud d"archivage, vous devez d"abord remplacer le noeud.' 
+---
+= Remplacer le nœud d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour restaurer un noeud d'archivage, vous devez d'abord remplacer le noeud.
+
+Vous devez sélectionner la procédure de remplacement de nœuds pour votre plate-forme. Les étapes à suivre pour remplacer un nœud sont les mêmes pour tous les types de nœuds de la grille.
+
+[cols="1a,2a"]
+|===
+| Plateforme | Procédure 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["Remplacement d'un noeud VMware"]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Remplacer un noeud Linux"]
+
+
+
+ a| 
+OpenStack
+ a| 
+Les fichiers et scripts de disques de machine virtuelle fournis par NetApp pour OpenStack ne sont plus pris en charge pour les opérations de restauration. Si vous devez restaurer un nœud exécuté dans un déploiement OpenStack, téléchargez les fichiers du système d'exploitation Linux. Suivre ensuite la procédure pour link:all-node-types-replacing-linux-node.html["Remplacement d'un nœud Linux"].
+
+|===

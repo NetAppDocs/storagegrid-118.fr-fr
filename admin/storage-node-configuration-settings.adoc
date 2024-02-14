@@ -1,0 +1,269 @@
+---
+permalink: admin/storage-node-configuration-settings.html 
+sidebar: sidebar 
+keywords: storage node, configuration settings, counters 
+summary: 'Chaque nœud de stockage utilise plusieurs paramètres de configuration et compteurs. Vous devrez peut-être afficher les paramètres actuels ou réinitialiser les compteurs pour effacer les alarmes \(système hérité\).' 
+---
+= Paramètres de configuration du nœud de stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Chaque nœud de stockage utilise plusieurs paramètres de configuration et compteurs. Vous devrez peut-être afficher les paramètres actuels ou réinitialiser les compteurs pour effacer les alarmes (système hérité).
+
+
+CAUTION: Sauf en cas d'instruction spécifique dans la documentation, consultez le support technique avant de modifier les paramètres de configuration des nœuds de stockage. Si nécessaire, vous pouvez réinitialiser les compteurs d'événements pour effacer les alarmes héritées.
+
+Procédez comme suit pour accéder aux paramètres de configuration et aux compteurs d'un nœud de stockage.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_site_* > *_Storage Node_*.
+. Développez le nœud de stockage et sélectionnez le service ou le composant.
+. Sélectionnez l'onglet *Configuration*.
+
+
+Les tableaux suivants résument les paramètres de configuration du nœud de stockage.
+
+
+
+== LDR
+
+[cols="2a,1a,3a"]
+|===
+| Nom d'attribut | Code | Description 
+
+
+ a| 
+État HTTP
+ a| 
+HSTE
+ a| 
+État actuel du protocole HTTP pour S3, Swift et tout autre trafic StorageGRID interne :
+
+* Hors ligne : aucune opération n'est autorisée et toute application client qui tente d'ouvrir une session HTTP au service LDR reçoit un message d'erreur. Les sessions actives sont normalement fermées.
+* En ligne : le fonctionnement se poursuit normalement
+
+
+
+
+ a| 
+Démarrage automatique HTTP
+ a| 
+HTA
+ a| 
+* Si cette option est sélectionnée, l'état du système au redémarrage dépend de l'état du composant *LDR* > *Storage*. Si le composant *LDR* > *Storage* est en lecture seule au redémarrage, l'interface HTTP est également en lecture seule. Si le composant *LDR* > *Storage* est en ligne, HTTP est également en ligne. Dans le cas contraire, l'interface HTTP reste à l'état hors ligne.
+* Si elle n'est pas sélectionnée, l'interface HTTP reste hors ligne jusqu'à ce qu'elle soit explicitement activée.
+
+
+|===
+
+
+== LDR > datastore
+
+[cols="2a,1a,3a"]
+|===
+| Nom d'attribut | Code | Description 
+
+
+ a| 
+Réinitialiser le nombre d'objets perdus
+ a| 
+RCOR
+ a| 
+Réinitialisez le compteur du nombre d'objets perdus sur ce service.
+
+|===
+
+
+== LDR > stockage
+
+[cols="2a,1a,3a"]
+|===
+| Nom d'attribut | Code | Description 
+
+
+ a| 
+État de stockage -- souhaité
+ a| 
+SSD
+ a| 
+Paramètre configurable par l'utilisateur pour l'état souhaité du composant de stockage. Le service LDR lit cette valeur et tente de faire correspondre l'état indiqué par cet attribut. La valeur est persistante entre les redémarrages.
+
+Par exemple, vous pouvez utiliser ce paramètre pour forcer le stockage à devenir en lecture seule, même en présence d'un espace de stockage disponible suffisant. Ceci peut être utile pour le dépannage.
+
+L'attribut peut prendre l'une des valeurs suivantes :
+
+* Hors ligne : lorsque l'état souhaité est hors ligne, le service LDR met le composant *LDR* > *Storage* hors ligne.
+* Lecture seule : lorsque l'état souhaité est lecture seule, le service LDR déplace l'état de stockage en lecture seule et arrête d'accepter le nouveau contenu. Toutefois, le service LDR continue d'accepter les demandes de suppression et de suppression basées sur S3 ou ILM. Notez que le contenu peut continuer à être enregistré sur le nœud de stockage pendant une courte période jusqu'à la fermeture des sessions ouvertes.
+* En ligne : conservez la valeur sur Online pendant le fonctionnement normal du système. L'état de stockage -- le courant du composant de stockage sera défini de manière dynamique par le service en fonction de l'état du service LDR, comme le volume de l'espace de stockage objet disponible. Si l'espace est faible, le composant devient lecture seule.
+
+
+
+
+ a| 
+Délai de vérification de l'état dépassé
+ a| 
+SHCT
+ a| 
+La limite de temps en secondes pendant laquelle un test de vérification de l'état doit s'effectuer pour que le volume de stockage soit considéré comme sain. Ne modifiez cette valeur que si vous y êtes invité par le support.
+
+|===
+
+
+== LDR > Vérification
+
+[cols="2a,1a,3a"]
+|===
+| Nom d'attribut | Code | Description 
+
+
+ a| 
+Réinitialiser le nombre d'objets manquants
+ a| 
+VCMI
+ a| 
+Réinitialise le nombre d'objets manquants détectés (OMIS). Utiliser uniquement une fois la vérification de l'existence d'objet terminée. Les données d'objet répliqué manquantes sont restaurées automatiquement par le système StorageGRID.
+
+
+
+ a| 
+Taux de vérification
+ a| 
+VPRI
+ a| 
+Définissez la vitesse à laquelle la vérification des antécédents a lieu. Voir les informations sur la configuration du taux de vérification en arrière-plan.
+
+
+
+ a| 
+Réinitialiser le nombre d'objets corrompus
+ a| 
+VCCR
+ a| 
+Réinitialisez le compteur pour les données d'objet répliqué corrompues trouvées lors de la vérification en arrière-plan. Cette option peut être utilisée pour effacer la condition d'alarme des objets corrompus détectés (OCOR).
+
+
+
+ a| 
+Supprimer des objets en quarantaine
+ a| 
+OQRT
+ a| 
+Supprimez des objets corrompus du répertoire de quarantaine, réinitialisez le nombre d'objets mis en quarantaine et effacez l'alarme OQRT (Quarquarantaine Objects détectés). Cette option est utilisée après la restauration automatique par le système StorageGRID d'objets corrompus.
+
+Si une alarme objets perdus est déclenchée, le support technique peut vouloir accéder aux objets mis en quarantaine. Dans certains cas, les objets mis en quarantaine peuvent être utiles pour la récupération des données ou pour le débogage des problèmes sous-jacents à l'origine des copies d'objet corrompues.
+
+|===
+
+
+== LDR > codage d'effacement
+
+[cols="2a,1a,3a"]
+|===
+| Nom d'attribut | Code | Description 
+
+
+ a| 
+Réinitialiser le nombre d'échecs d'écriture
+ a| 
+RSWF
+ a| 
+Réinitialisez le compteur pour les échecs d'écriture des données d'objet avec code d'effacement sur le nœud de stockage.
+
+
+
+ a| 
+Réinitialiser le nombre d'échecs de lecture
+ a| 
+RSRF
+ a| 
+Réinitialisez le compteur pour les échecs de lecture des données d'objet avec code d'effacement à partir du nœud de stockage.
+
+
+
+ a| 
+Réinitialiser supprime le nombre d'échecs
+ a| 
+RSDF
+ a| 
+Réinitialisez le compteur pour les échecs de suppression des données d'objet avec code d'effacement du nœud de stockage.
+
+
+
+ a| 
+Réinitialiser le nombre de copies corrompues détectées
+ a| 
+RSCC
+ a| 
+Réinitialisez le compteur du nombre de copies corrompues de données d'objet avec code d'effacement sur le nœud de stockage.
+
+
+
+ a| 
+Réinitialiser le nombre de fragments corrompus détectés
+ a| 
+RSCD
+ a| 
+Réinitialisez le compteur en cas de fragments endommagés de données d'objet avec code d'effacement sur le nœud de stockage.
+
+
+
+ a| 
+Réinitialiser le nombre de fragments manquants détectés
+ a| 
+RSMD
+ a| 
+Réinitialisez le compteur en cas de fragments manquants de données d'objet avec code d'effacement sur le nœud de stockage. Utiliser uniquement une fois la vérification de l'existence d'objet terminée.
+
+|===
+
+
+== LDR > réplication
+
+[cols="2a,1a,3a"]
+|===
+| Nom d'attribut | Code | Description 
+
+
+ a| 
+Réinitialiser le nombre d'échecs de réplication entrante
+ a| 
+RICR
+ a| 
+Réinitialisez le compteur pour les échecs de réplication entrants. Il peut être utilisé pour effacer l'alarme RIRF (réplication entrante -- échouée).
+
+
+
+ a| 
+Réinitialiser le nombre d'échecs de réplication sortante
+ a| 
+ROCR
+ a| 
+Réinitialisez le compteur pour les échecs de réplication sortants. Cette fonction permet d'effacer l'alarme RORF (réplications sortantes -- en échec).
+
+
+
+ a| 
+Désactiver la réplication entrante
+ a| 
+DSIR
+ a| 
+Sélectionnez cette option pour désactiver la réplication entrante dans le cadre d'une procédure de maintenance ou de test. Laisser non vérifié pendant le fonctionnement normal.
+
+Lorsque la réplication entrante est désactivée, les objets peuvent être extraits du nœud de stockage pour être copiés vers d'autres emplacements du système StorageGRID, mais les objets ne peuvent pas être copiés sur ce nœud de stockage à partir d'autres emplacements : le service LDR est en lecture seule.
+
+
+
+ a| 
+Désactiver la réplication sortante
+ a| 
+DSOR
+ a| 
+Sélectionnez cette option pour désactiver la réplication sortante (y compris les demandes de contenu pour les récupérations HTTP) dans le cadre d'une procédure de maintenance ou de test. Laisser non vérifié pendant le fonctionnement normal.
+
+Lorsque la réplication sortante est désactivée, les objets peuvent être copiés vers ce nœud de stockage, mais les objets ne peuvent pas être récupérés depuis le nœud de stockage pour être copiés vers d'autres emplacements du système StorageGRID. Le service LDR est en écriture seule.
+
+|===

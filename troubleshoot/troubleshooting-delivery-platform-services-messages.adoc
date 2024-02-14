@@ -1,0 +1,35 @@
+---
+permalink: troubleshoot/troubleshooting-delivery-platform-services-messages.html 
+sidebar: sidebar 
+keywords: how to troubleshoot delivery of platform services message, how to troubleshoot smtt alarm 
+summary: 'L"alarme Total Events \(SMTT\) est déclenchée dans le Gestionnaire de grille si un message de service de plate-forme est transmis à une destination qui ne peut pas accepter les données.' 
+---
+= Résolution des problèmes de transmission des messages des services de plate-forme (alarme SMTT)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'alarme Total Events (SMTT) est déclenchée dans Grid Manager si un message de service de plate-forme est envoyé à une destination qui ne peut pas accepter les données.
+
+.Description de la tâche
+Par exemple, un téléchargement partitionné S3 peut réussir même si la réplication ou le message de notification associé ne peut pas être remis au terminal configuré. Ou bien, un message pour la réplication CloudMirror peut ne pas être livré si les métadonnées sont trop longues.
+
+L'alarme SMTT contient un message du dernier événement qui indique : `Failed to publish notifications for _bucket-name object key_` pour le dernier objet dont la notification a échoué.
+
+Les messages d'événement sont également répertoriés dans le `/var/local/log/bycast-err.log` fichier journal. Voir la link:../monitor/logs-files-reference.html["Référence des fichiers journaux"].
+
+Pour plus d'informations, reportez-vous au link:../admin/troubleshooting-platform-services.html["Résoudre les problèmes liés aux services de plateforme"]. Vous devrez peut-être le faire link:../tenant/signing-in-to-tenant-manager.html["Accédez au locataire à partir du gestionnaire de locataires"] pour déboguer une erreur de service de plate-forme.
+
+.Étapes
+. Pour afficher l'alarme, sélectionnez *NOEUDS* > *_site_* > *_grid node_* > *Events*.
+. Afficher le dernier événement en haut du tableau.
++
+Les messages d'événement sont également répertoriés dans le `/var/local/log/bycast-err.log`.
+
+. Suivez les instructions fournies dans le contenu de l'alarme SMTT pour corriger le problème.
+. Sélectionnez *Réinitialiser le nombre d'événements*.
+. Notifier le locataire des objets dont les messages de services de plate-forme n'ont pas été livrés.
+. Demandez au locataire de déclencher l'échec de la réplication ou de la notification en mettant à jour les métadonnées ou balises de l'objet.
+

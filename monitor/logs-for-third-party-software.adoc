@@ -1,0 +1,69 @@
+---
+permalink: monitor/logs-for-third-party-software.html 
+sidebar: sidebar 
+keywords: troubleshooting, logs 
+summary: Vous pouvez utiliser les journaux de logiciels tiers pour résoudre les problèmes. 
+---
+= Journaux de logiciels tiers
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser les journaux de logiciels tiers pour résoudre les problèmes.
+
+[cols="1a,2a,3a,1a"]
+|===
+| Catégorie | Nom du fichier | Remarques | Ci-après 
+
+
+ a| 
+Archivage
+| /var/local/log/dsierror.log  a| 
+Informations d'erreur pour les API client TSM.
+ a| 
+Nœuds d'archivage
+
+
+
+ a| 
+MySQL
+| /var/local/log/mysql.err
+
+/var/local/log/mysql-slow.log  a| 
+Fichiers journaux générés par MySQL.
+
+`mysql.err` capture les erreurs de base de données et les événements tels que les démarrages et arrêts de service.
+
+`mysql-slow.log` (Le journal de requête lent) capture les instructions SQL qui ont pris plus de 10 secondes à exécuter.
+ a| 
+Nœuds d'administration
+
+
+
+ a| 
+Système d'exploitation
+| /var/local/log/messages  a| 
+Ce répertoire contient les fichiers journaux du système d'exploitation. Les erreurs contenues dans ces journaux s'affichent également dans Grid Manager. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *Topology* > *_site_* > *_Node_* > *SSM* > *Events*.
+ a| 
+Tous les nœuds
+
+
+
+ a| 
+NTP
+| /var/local/log/ntp.log
+
+/var/lib/ntp/var/log/ntpstats/  a| 
+`/var/local/log/ntp.log` Contient le fichier journal des messages d'erreur NTP.
+
+`/var/lib/ntp/var/log/ntpstats/` Le répertoire contient les statistiques de synchronisation NTP.
+
+`loopstats` enregistre les informations statistiques de filtre en boucle.
+
+`peerstats` enregistre les statistiques homologues.
+ a| 
+Tous les nœuds
+
+|===

@@ -1,0 +1,140 @@
+---
+permalink: tenant/creating-s3-bucket.html 
+sidebar: sidebar 
+keywords: how to create S3 bucket 
+summary: 'Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiments S3 pour les données d"objet.' 
+---
+= Créer un compartiment S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez utiliser le Gestionnaire des locataires pour créer des compartiments S3 pour les données d'objet.
+
+.Avant de commencer
+* Vous êtes connecté au Gestionnaire de locataires à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous appartenez à un groupe d'utilisateurs disposant de l'accès racine ou de la fonction gérer tous les compartiments link:tenant-management-permissions.html["permission"]. Ces autorisations remplacent les paramètres d'autorisations des stratégies de groupes ou de compartiments.
++
+
+NOTE: Les autorisations de définir ou de modifier les propriétés de verrouillage d'objet S3 des compartiments ou des objets peuvent être accordées par link:../s3/bucket-and-group-access-policies.html["politique de compartiment ou règle de groupe"].
+
+* Si vous prévoyez d'activer le verrouillage objet S3 pour un compartiment, un administrateur du grid a activé le paramètre de verrouillage objet S3 global pour le système StorageGRID. Vous avez également passé en revue les exigences relatives aux compartiments et aux objets S3 Object Lock. Voir link:using-s3-object-lock.html["Utilisez le verrouillage d'objet S3 pour conserver les objets"].
+
+
+
+
+== Accéder à l'assistant
+
+.Étapes
+. Sélectionnez *Afficher les compartiments* dans le tableau de bord ou sélectionnez *STOCKAGE (S3)* > *compartiments*.
+. Sélectionnez *Créer un compartiment*.
+
+
+
+
+== Entrez les détails
+
+.Étapes
+. Entrez les détails du compartiment.
++
+[cols="1a,3a"]
+|===
+| Champ | Description 
+
+
+ a| 
+Nom du compartiment
+ a| 
+Nom du compartiment conforme aux règles suivantes :
+
+** Il doit être unique sur chaque système StorageGRID (et pas seulement au sein du compte du locataire).
+** Doit être conforme DNS.
+** Doit contenir au moins 3 caractères et pas plus de 63 caractères.
+** Chaque étiquette doit commencer et se terminer par une lettre ou un chiffre en minuscules et ne peut utiliser que des lettres minuscules, des chiffres et des tirets.
+** Ne doit pas utiliser de périodes dans des demandes de type hébergement virtuel. Les périodes provoquera des problèmes avec la vérification du certificat générique du serveur.
+
+
+Pour plus d'informations, reportez-vous à la section https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html["Documentation Amazon Web Services (AWS) sur les règles d'attribution de nom de compartiment"^].
+
+*Remarque* : vous ne pouvez pas modifier le nom du compartiment après avoir créé le compartiment.
+
+
+
+ a| 
+Région
+ a| 
+La région du godet.
+
+L'administrateur StorageGRID gère les régions disponibles. Ce compartiment peut affecter la règle de protection des données appliquée aux objets. Par défaut, tous les compartiments sont créés dans le `us-east-1` région.
+
+*Remarque* : vous ne pouvez pas modifier la région après avoir créé le compartiment.
+
+|===
+. Sélectionnez *Continuer*.
+
+
+
+
+== Gestion des paramètres d'objet
+
+.Étapes
+. Activez éventuellement le contrôle de version d'objet pour le compartiment.
++
+Activez la gestion des versions d'objet si vous souhaitez stocker chaque version de chaque objet dans ce compartiment. Vous pouvez ensuite récupérer les versions précédentes d'un objet si nécessaire. Vous devez activer la gestion des versions d'objet si le compartiment est utilisé pour la réplication entre plusieurs grilles.
+
+. Si le paramètre global S3 Object Lock est activé, activez éventuellement S3 Object Lock pour que le compartiment stocke des objets à l'aide d'un modèle WORM (Write-once-read-many).
++
+Activez le verrouillage des objets S3 pour un compartiment uniquement si vous devez conserver les objets pendant une durée fixe, par exemple, pour répondre à certaines exigences réglementaires. Le verrouillage objet S3 est un paramètre permanent qui vous permet d'empêcher la suppression ou l'écrasement d'objets pendant une durée fixe ou indéfiniment.
+
++
+
+CAUTION: Une fois le paramètre S3 Object Lock activé pour un compartiment, il ne peut pas être désactivé. Toute personne disposant des autorisations appropriées peut ajouter à ce compartiment des objets qui ne peuvent pas être modifiés. Il se peut que vous ne puissiez pas supprimer ces objets ou le compartiment lui-même.
+
++
+Si vous activez le verrouillage des objets S3 pour un compartiment, le contrôle de version des compartiments est automatiquement activé.
+
+. Si vous avez sélectionné *Activer le verrouillage d'objet S3*, vous pouvez activer *rétention par défaut* pour ce compartiment.
++
+Lorsque *Default Retention* est activé, les nouveaux objets ajoutés au compartiment sont automatiquement protégés contre la suppression ou l'écrasement. Le paramètre *rétention par défaut* ne s'applique pas aux objets qui ont leurs propres périodes de rétention.
+
++
+.. Si *Default Retention* est activé, spécifiez un *mode de rétention par défaut* pour le compartiment.
++
+[cols="1a,2a"]
+|===
+| Mode de rétention par défaut | Description 
+
+
+ a| 
+La conformité
+ a| 
+*** L'objet ne peut pas être supprimé tant que sa date de conservation jusqu'à n'est pas atteinte.
+*** La date de conservation de l'objet peut être augmentée, mais elle ne peut pas être réduite.
+*** La date de conservation de l'objet jusqu'à ne peut pas être supprimée tant que cette date n'est pas atteinte.
+
+
+
+
+ a| 
+La gouvernance
+ a| 
+*** Utilisateurs avec le `s3:BypassGovernanceRetention` l'autorisation peut utiliser le `x-amz-bypass-governance-retention: true` demander à l'en-tête de contourner les paramètres de rétention.
+*** Ces utilisateurs peuvent supprimer une version d'objet avant d'atteindre sa date de conservation jusqu'à.
+*** Ces utilisateurs peuvent augmenter, diminuer ou supprimer la date de conservation d'un objet.
+
+
+|===
+.. Si *Default Retention* est activé, spécifiez la *période de rétention par défaut* pour le compartiment.
++
+La *période de conservation par défaut* indique la durée pendant laquelle les nouveaux objets ajoutés à ce compartiment doivent être conservés, à partir du moment où ils sont ingérés. Spécifiez une valeur comprise entre 1 et 36,500 jours ou entre 1 et 100 ans.
+
+
+
+. Sélectionnez *Créer un compartiment*.
++
+Le godet est créé et ajouté au tableau sur la page godets.
+
+. Si vous le souhaitez, sélectionnez *aller à la page des détails du compartiment* à link:viewing-s3-bucket-details.html["afficher les détails du compartiment"] et effectuer une configuration supplémentaire.
+

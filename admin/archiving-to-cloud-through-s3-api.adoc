@@ -1,0 +1,24 @@
+---
+permalink: admin/archiving-to-cloud-through-s3-api.html 
+sidebar: sidebar 
+keywords: archive node to AWS, Amazon Web Services 
+summary: 'Vous pouvez configurer un nœud d"archivage pour qu"il se connecte directement à Amazon Web Services \(AWS\) ou à tout autre système capable d"entrer en interface avec le système StorageGRID via l"API S3.' 
+---
+= Archivez vos données dans le cloud via l'API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer un nœud d'archivage pour qu'il se connecte directement à Amazon Web Services (AWS) ou à tout autre système capable de s'interfacer avec le système StorageGRID via l'API S3.
+
+[CAUTION]
+====
+La prise en charge des nœuds d'archivage est obsolète et sera supprimée dans une version ultérieure. Le déplacement d'objets d'un nœud d'archivage vers un système de stockage d'archivage externe via l'API S3 a été remplacé par les pools de stockage cloud ILM, offrant ainsi plus de fonctionnalités.
+
+L'option Cloud Tiering - simple Storage Service (S3) est également obsolète. Si vous utilisez actuellement un nœud d'archivage avec cette option, link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrez vos objets vers un pool de stockage cloud"] à la place.
+
+En outre, vous devez supprimer les nœuds d'archivage de la règle ILM active dans StorageGRID 11.7 ou version antérieure. La suppression des données d'objet stockées sur les nœuds d'archivage simplifie les mises à niveau futures. Voir link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Utilisation des règles ILM et des règles ILM"].
+
+====

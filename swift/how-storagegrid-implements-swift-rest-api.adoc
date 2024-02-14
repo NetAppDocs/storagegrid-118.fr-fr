@@ -1,0 +1,36 @@
+---
+permalink: swift/how-storagegrid-implements-swift-rest-api.html 
+sidebar: sidebar 
+keywords: implement swift rest api 
+summary: 'Une application client peut utiliser les appels de l"API REST Swift pour se connecter aux nœuds de stockage et aux nœuds de passerelle afin de créer des conteneurs et de stocker et récupérer des objets. Les applications orientées services développées pour OpenStack Swift peuvent ainsi se connecter au stockage objet sur site fourni par le système StorageGRID.' 
+---
+= Comment StorageGRID implémente l'API REST Swift
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une application client peut utiliser les appels de l'API REST Swift pour se connecter aux nœuds de stockage et aux nœuds de passerelle afin de créer des conteneurs et de stocker et récupérer des objets. Les applications orientées services développées pour OpenStack Swift peuvent ainsi se connecter au stockage objet sur site fourni par le système StorageGRID.
+
+
+
+== Gestion des objets Swift
+
+Une fois les objets Swift ingérés dans le système StorageGRID, ils sont gérés par les règles de gestion du cycle de vie des informations (ILM) des politiques ILM actives. link:../ilm/what-ilm-rule-is.html["Règles ILM"] et link:../ilm/creating-ilm-policy.html["Règles ILM"] Création et distribution de copies des données d'objet par StorageGRID et gestion de ces copies au fil du temps Par exemple, une règle ILM peut s'appliquer aux objets de conteneurs Swift spécifiques et peut spécifier que plusieurs copies d'objets seront enregistrées dans plusieurs data centers pendant un certain nombre d'années.
+
+Contactez votre consultant en services professionnels NetApp ou votre administrateur StorageGRID si vous avez besoin de comprendre en quoi les règles et règles ILM de la grille affecteront les objets de votre compte de locataire Swift.
+
+
+
+== Requêtes des clients en conflit
+
+Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». Le moment auquel l'évaluation « derniers-victoires » est basé sur la date à laquelle le système StorageGRID remplit une demande donnée et non sur la date à laquelle les clients Swift entament une opération.
+
+
+
+== Garanties et contrôles de cohérence
+
+Par défaut, StorageGRID fournit une cohérence de lecture après écriture pour les objets nouvellement créés et une cohérence éventuelle pour les mises à jour et les OPÉRATIONS HEAD d'objet. Toutes link:get-container-consistency-request.html["OBTENEZ"] suite à une exécution réussie link:put-container-consistency-request.html["EN"] pourra lire les données nouvellement écrites. Les écrasements d'objets existants, les mises à jour de métadonnées et les suppressions sont cohérents. La propagation des écrasements ne prend généralement que quelques secondes ou minutes, mais peut prendre jusqu'à 15 jours.
+
+StorageGRID vous permet également de contrôler la cohérence par conteneur. Les valeurs de cohérence assurent un équilibre entre la disponibilité des objets et la cohérence de ces objets sur différents nœuds et sites de stockage, selon les besoins de votre application.

@@ -1,0 +1,28 @@
+---
+permalink: maintain/recovering-from-archive-node-failures.html 
+sidebar: sidebar 
+keywords: recover, archive node failure, workflow 
+summary: 'Vous devez effectuer une séquence de tâches pour pouvoir effectuer une restauration suite à un échec de nœud d"archivage.' 
+---
+= Échec de la restauration à partir du nœud d'archivage : workflow
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez effectuer une séquence de tâches pour pouvoir effectuer une restauration suite à un échec de nœud d'archivage.
+
+image::../media/overview_archive_node_recovery.gif[Organigramme général de la restauration du nœud d'archivage]
+
+La restauration du nœud d'archivage est affectée par les problèmes suivants :
+
+* Si la règle ILM est configurée pour répliquer une seule copie.
++
+Dans un système StorageGRID configuré pour créer une seule copie des objets, une défaillance de nœud d'archivage peut entraîner une perte irrécupérable de données. En cas de défaillance, tous ces objets sont perdus. Toutefois, vous devez toujours effectuer des procédures de récupération pour « nettoyer » votre système StorageGRID et supprimer les informations d'objet perdues de la base de données.
+
+* En cas de défaillance d'un nœud d'archivage lors de la restauration du nœud de stockage.
++
+Si le nœud d'archivage échoue lors du traitement des récupérations en bloc dans le cadre d'une restauration de nœud de stockage, Vous devez répéter la procédure pour récupérer des copies de données d'objet sur le nœud de stockage depuis le début pour vous assurer que toutes les données d'objet extraites du nœud d'archivage sont restaurées sur le nœud de stockage.
+
+

@@ -1,0 +1,50 @@
+---
+permalink: admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: 'Si vous utilisez actuellement la fonctionnalité NetApp Cloud Tiering - simple Storage Service pour hiérarchiser les données d"objet dans un compartiment S3, vous devez migrer vos objets vers un pool de stockage cloud. Les pools de stockage cloud offrent une approche évolutive qui tire parti de tous les nœuds de stockage dans votre système StorageGRID.' 
+---
+= Migrer des objets depuis Cloud Tiering - S3 vers un pool de stockage cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous utilisez actuellement la fonctionnalité *Cloud Tiering - simple Storage Service (S3)* pour hiérarchiser les données d'objet vers un compartiment S3, vous devez migrer vos objets vers un pool de stockage cloud. Les pools de stockage cloud offrent une approche évolutive qui tire parti de tous les nœuds de stockage dans votre système StorageGRID.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Des objets sont déjà stockés dans le compartiment S3 configuré pour le Tiering dans le cloud.
+
+
+
+NOTE: Avant de migrer les données d'objet, contactez votre ingénieur commercial NetApp pour comprendre et gérer les coûts éventuels associés.
+
+.Description de la tâche
+Le pool de stockage cloud est similaire à celui d'un pool de stockage du point de vue ILM. Toutefois, si les pools de stockage sont constitués de nœuds de stockage ou de nœuds d'archivage dans le système StorageGRID, un pool de stockage cloud est constitué d'un compartiment S3 externe.
+
+Avant de migrer les objets depuis Cloud Tiering - S3 vers un pool de stockage cloud, vous devez d'abord créer un compartiment S3, puis créer le pool de stockage cloud dans StorageGRID. Vous pouvez ensuite créer une nouvelle règle ILM et remplacer la règle ILM utilisée pour stocker les objets dans le compartiment Cloud Tiering par une règle ILM clonée qui stocke les mêmes objets dans le pool de stockage cloud.
+
+
+NOTE: Lorsque des objets sont stockés dans un pool de stockage cloud, des copies de ces objets ne peuvent pas non plus être stockées dans StorageGRID. Si la règle ILM que vous utilisez actuellement pour Cloud Tiering est configurée pour stocker les objets en même temps, déterminez si vous souhaitez toujours effectuer cette migration facultative, car elle sera perdue. Si vous continuez cette migration, vous devez créer de nouvelles règles au lieu de cloner les règles existantes.
+
+.Étapes
+. Création d'un pool de stockage cloud.
++
+Utilisez un nouveau compartiment S3 pour le pool de stockage cloud afin de garantir que celui-ci contient uniquement les données gérées par le pool de stockage cloud.
+
+. Recherchez toutes les règles ILM dans les politiques ILM actives qui entraînent le stockage d'objets dans le compartiment Cloud Tiering.
+. Clonez chacune de ces règles.
+. Dans les règles clonées, modifiez l'emplacement de placement dans le nouveau pool de stockage cloud.
+. Enregistrez les règles clonées.
+. Création d'une nouvelle règle qui utilise les nouvelles règles
+. Simuler et activer la nouvelle règle.
++
+Lorsque la nouvelle règle est activée et que l'évaluation ILM est effectuée, les objets sont déplacés du compartiment S3 configuré pour NetApp Cloud Tiering vers le compartiment S3 configuré pour le pool de stockage cloud. L'espace utilisable sur la grille n'est pas affecté. Une fois les objets déplacés vers le pool de stockage cloud, ils sont supprimés du compartiment de NetApp Cloud Tiering.
+
+
+
+.Informations associées
+link:../ilm/index.html["Gestion des objets avec ILM"]

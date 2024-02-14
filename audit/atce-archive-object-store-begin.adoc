@@ -1,0 +1,54 @@
+---
+permalink: audit/atce-archive-object-store-begin.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ATCE, Archive Object Store Begin 
+summary: 'Ce message indique que l"écriture d"un bloc de contenu sur un système de stockage d"archivage externe a démarré.' 
+---
+= ATCE : début du magasin d'objets d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message indique que l'écriture d'un bloc de contenu sur un système de stockage d'archivage externe a démarré.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+ID du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu à archiver.
+
+
+
+ a| 
+VLID
+ a| 
+Identifiant du volume
+ a| 
+L'identifiant unique du volume sur lequel le bloc de contenu est écrit. Si l'opération échoue, un ID de volume 0 est renvoyé.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Indique le résultat du transfert du bloc de contenu. Les valeurs actuellement définies sont :
+
+* SUC : succès (le bloc de contenu a été enregistré avec succès)
+* EXIS : ignoré (le bloc de contenu était déjà stocké)
+* ISFD : échec (espace disque insuffisant)
+* STER : échec (erreur lors du stockage du CBID)
+* OFFL : échec (archivage hors ligne)
+* GERR : échec (erreur générale)
+
+
+|===

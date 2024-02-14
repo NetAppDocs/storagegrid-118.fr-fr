@@ -1,0 +1,64 @@
+---
+permalink: maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission admin node, gateway node, archive node 
+summary: 'Consultez les considérations relatives à la désaffectation d"un nœud d"administration, d"un nœud de passerelle ou d"un nœud d"archivage.' 
+---
+= Considérations relatives à la désaffectation des nœuds d'administration, de passerelle ou d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Consultez les considérations relatives à la désaffectation d'un nœud d'administration, d'un nœud de passerelle ou d'un nœud d'archivage.
+
+
+
+== Considérations relatives au nœud d'administration
+
+* Vous ne pouvez pas désaffecter le nœud d'administration principal.
+* Vous ne pouvez pas désaffecter un nœud d'administration si l'une de ses interfaces réseau fait partie d'un groupe haute disponibilité (HA). Vous devez d'abord supprimer les interfaces réseau du groupe haute disponibilité. Reportez-vous aux instructions pour link:../admin/managing-high-availability-groups.html["La gestion des groupes de haute disponibilité"].
+* Si nécessaire, vous pouvez modifier les règles ILM en toute sécurité lors de la désaffectation d'un nœud d'administration.
+* Si vous désaffectez un nœud d'administration et que l'authentification unique (SSO) est activée pour votre système StorageGRID, n'oubliez pas de supprimer la confiance de l'interlocuteur du nœud de Active Directory Federation Services (AD FS).
+* Si vous utilisez link:../admin/grid-federation-overview.html["fédération des grilles"], Assurez-vous que l'adresse IP du nœud que vous désaffecterez n'a pas été spécifiée pour une connexion de fédération de grille.
+* Lorsque vous désaffectez un nœud d'administration déconnecté, vous perdrez les journaux d'audit de ce nœud. Cependant, ces journaux doivent également exister sur le nœud d'administration principal.
+
+
+
+
+== Considérations relatives au nœud de passerelle
+
+* Vous ne pouvez pas désaffecter un nœud de passerelle si l'une de ses interfaces réseau fait partie d'un groupe haute disponibilité (HA). Vous devez d'abord supprimer les interfaces réseau du groupe haute disponibilité. Reportez-vous aux instructions pour link:../admin/managing-high-availability-groups.html["La gestion des groupes de haute disponibilité"].
+* Vous pouvez modifier les règles ILM en toute sécurité lors de la désaffectation d'un nœud de passerelle.
+* Si vous utilisez link:../admin/grid-federation-overview.html["fédération des grilles"], Assurez-vous que l'adresse IP du nœud que vous désaffecterez n'a pas été spécifiée pour une connexion de fédération de grille.
+* Vous pouvez désactiver un nœud de passerelle en toute sécurité lorsqu'il est déconnecté.
+
+
+
+
+== [[Considerations-for-archive-node]]considérations relatives au nœud d'archivage
+
+
+NOTE: La prise en charge des nœuds d'archivage et de l'option Cloud Tiering - simple Storage Service (S3) est obsolète. La prise en charge du nœud d'archivage sera entièrement supprimée dans une prochaine version.
+
+* Vous ne pouvez pas désaffecter un nœud d'archivage s'il est toujours connecté à la grille. Pour supprimer un nœud d'archivage, confirmez que le nœud n'est plus utilisé, que les données ont été migrées vers un autre emplacement et que le nœud est hors tension. Ensuite, utilisez la procédure de mise hors service pour les nœuds déconnectés.
+* Si le nœud d'archivage est toujours utilisé, assurez-vous que votre planification dispose de suffisamment de temps pour transférer les données existantes vers des nœuds de stockage ou un pool de stockage cloud. Le déplacement des données à partir d'un nœud d'archivage peut prendre plusieurs jours, voire plusieurs semaines.
+
+
+.Étapes
+. Si vous utilisez actuellement un nœud d'archivage avec l'option Cloud Tiering - simple Storage Service (S3), link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrez vos objets vers un pool de stockage cloud"].
+. Vérifiez que le nœud d'archivage n'est plus utilisé par les règles ILM des politiques ILM actives.
++
+.. Accédez à la page *ILM* > *Storage pools*.
+.. Dans la liste des pools de stockage, sélectionnez les pools de stockage qui ne contiennent que des nœuds d'archivage.
+.. Sélectionnez l'onglet *ILM usage*.
+.. Si des règles ILM sont répertoriées, consultez la colonne *used in active policy* pour déterminer si le pool de stockage du nœud d'archivage est utilisé dans une stratégie active.
+.. Si le pool de stockage est utilisé, link:../ilm/creating-ilm-policy.html["Création d'une règle ILM"] Qui n'utilise plus le nœud d'archivage.
+.. Activer la nouvelle règle.
+.. Attendez que tous les objets soient déplacés du pool de stockage du nœud d'archivage. Cette opération peut prendre plusieurs jours ou semaines.
+
+
+. Après avoir été certain que tous les objets ont été déplacés du nœud d'archivage, mettez le nœud hors tension.
+. Exécutez le link:decommissioning-disconnected-grid-nodes.html["procédure de mise hors service des nœuds déconnectés"].
+

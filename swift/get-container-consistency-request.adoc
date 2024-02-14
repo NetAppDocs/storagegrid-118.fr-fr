@@ -1,0 +1,105 @@
+---
+permalink: swift/get-container-consistency-request.html 
+sidebar: sidebar 
+keywords: get container consistency request 
+summary: Les valeurs de cohérence assurent un équilibre entre la disponibilité des objets et la cohérence de ces objets sur différents nœuds et sites de stockage. La demande de cohérence GET Container vous permet de déterminer la cohérence appliquée à un conteneur particulier. 
+---
+= DEMANDE DE cohérence du conteneur
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les valeurs de cohérence assurent un équilibre entre la disponibilité des objets et la cohérence de ces objets sur différents nœuds et sites de stockage. La demande de cohérence GET Container vous permet de déterminer la cohérence appliquée à un conteneur particulier.
+
+
+
+== Demande
+
+[cols="2a,4a"]
+|===
+| En-tête HTTP de demande | Description 
+
+
+| X-Auth-Token  a| 
+Spécifie le jeton d'authentification Swift pour le compte à utiliser pour la demande.
+
+
+
+| x-ntap-sg-cohérence  a| 
+Spécifie le type de demande, où `true` = COHÉRENCE GARANTIE entre les conteneurs, et `false` = CONTENEUR GET.
+
+
+
+| Hôte  a| 
+Nom d'hôte auquel la demande est dirigée.
+
+|===
+
+
+== Exemple de demande
+
+[listing]
+----
+GET /v1/28544923908243208806/Swift container
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: true
+Host: test.com
+----
+
+
+== Réponse
+
+[cols="2a,4a"]
+|===
+| En-tête HTTP de réponse | Description 
+
+
+| Date  a| 
+La date et l'heure de la réponse.
+
+
+
+| Connexion  a| 
+Indique si la connexion au serveur est ouverte ou fermée.
+
+
+
+| X-Trans-ID  a| 
+Identifiant de transaction unique pour la demande.
+
+
+
+| Longueur-contenu  a| 
+Longueur du corps de réponse.
+
+
+
+| x-ntap-sg-cohérence  a| 
+Cohérence appliquée au conteneur. Les valeurs suivantes sont prises en charge :
+
+*All* : tous les nœuds reçoivent immédiatement les données ou la demande échoue.
+
+*Strong-global* : garantit la cohérence lecture après écriture pour toutes les demandes client sur tous les sites.
+
+*Strong-site* : garantit la cohérence lecture après écriture pour toutes les demandes client au sein d'un site.
+
+*Read-After-New-write*: (Par défaut) fournit une cohérence lecture-après-écriture pour les nouveaux objets et une cohérence éventuelle pour les mises à jour d'objets. Offre une haute disponibilité et une protection des données garanties. Recommandé dans la plupart des cas.
+
+*Disponible* : assure la cohérence finale pour les nouveaux objets et les mises à jour d'objets. Pour les compartiments S3, utilisez uniquement si nécessaire (par exemple, pour un compartiment qui contient des valeurs de journal rarement lues ou pour les opérations HEAD ou GET sur des clés qui n'existent pas). Non pris en charge pour les compartiments FabricPool S3.
+
+|===
+
+
+== Exemple de réponse
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+x-ntap-sg-consistency: strong-site
+----

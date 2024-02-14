@@ -1,0 +1,33 @@
+---
+permalink: admin/resetting-store-failure-count-for-s3-api-connection.html 
+sidebar: sidebar 
+keywords: archive node, store failure count 
+summary: 'Si votre nœud d"archivage se connecte à un système de stockage d"archives via l"API S3, vous pouvez réinitialiser le nombre d"échecs de stockage, qui peut être utilisé pour effacer l"alarme ARVF \(échecs de stockage\).' 
+---
+= Réinitialisez le nombre d'échecs de stockage pour la connexion API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre nœud d'archivage se connecte à un système de stockage d'archives via l'API S3, vous pouvez réinitialiser le nombre d'échecs de stockage, qui peut être utilisé pour effacer l'alarme ARVF (échecs de stockage).
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *Store*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/archive_store_s3.gif[Configurez les paramètres de stockage pour la connexion à l'API S3]
+
+. Sélectionnez *Réinitialiser le nombre d'échecs de stockage*.
+. Sélectionnez *appliquer les modifications*.
++
+L'attribut Store Failures se réinitialise sur zéro.
+
+

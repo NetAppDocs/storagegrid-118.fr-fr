@@ -1,0 +1,137 @@
+---
+permalink: swift/container-operations.html 
+sidebar: sidebar 
+keywords: swift container operations 
+summary: 'StorageGRID prend en charge un maximum de 1,000 conteneurs par compte Swift. Les opérations d"API Swift suivantes sont effectuées sur les conteneurs.' 
+---
+= Opérations sur les conteneurs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID prend en charge un maximum de 1,000 conteneurs par compte Swift. Les opérations d'API Swift suivantes sont effectuées sur les conteneurs.
+
+
+
+== SUPPRIMER le conteneur
+
+Cette opération supprime un conteneur vide d'un compte Swift dans un système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse "HTTP/1.1 204 No Content" :
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+
+
+== CONTENEUR
+
+Cette opération récupère la liste d'objets associée au conteneur, ainsi que les statistiques et métadonnées de conteneur dans un système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Les paramètres de requête pris en charge suivants sont facultatifs :
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Path`
+* `Prefix`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse « HTTP/1.1 200 Success » ou « HTTP/1.1 204 No Content » :
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== Conteneur DE TÊTE
+
+Cette opération récupère les statistiques du conteneur et les métadonnées d'un système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse "HTTP/1.1 204 No Content" :
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== PLACER le conteneur
+
+Cette opération crée un conteneur pour un compte dans un système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse « HTTP/1.1 201 created » ou « HTTP/1.1 202 Accepted » (si le conteneur existe déjà sous ce compte) :
+
+* `Content-Length`
+* `Date`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+Un nom de conteneur doit être unique dans le namespace StorageGRID. Si le conteneur existe sous un autre compte, l'en-tête suivant est renvoyé : « HTTP/1.1 409 Conflict ».
+
+.Informations associées
+link:monitoring-and-auditing-operations.html["Surveiller et auditer les opérations"]

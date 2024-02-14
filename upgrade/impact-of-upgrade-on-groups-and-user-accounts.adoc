@@ -1,0 +1,35 @@
+---
+permalink: upgrade/impact-of-upgrade-on-groups-and-user-accounts.html 
+sidebar: sidebar 
+keywords: upgrade, permissions 
+summary: 'Une fois la mise à niveau terminée, vous devrez peut-être mettre à jour les groupes et les comptes d"utilisateur de manière appropriée.' 
+---
+= Impact d'une mise à niveau sur les groupes et les comptes d'utilisateurs
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois la mise à niveau terminée, vous devrez peut-être mettre à jour les groupes et les comptes d'utilisateur de manière appropriée.
+
+
+
+== Modification des autorisations et des options de groupe
+
+Après la mise à niveau vers StorageGRID 11.8, vous pouvez éventuellement attribuer les nouvelles autorisations suivantes aux groupes d'utilisateurs locataires.
+
+[cols="1a,2a,2a"]
+|===
+| Autorisations | Description | Détails 
+
+
+ a| 
+Afficher tous les compartiments
+ a| 
+Permet aux utilisateurs d'afficher toutes les configurations de compartiments et de compartiments.
+ a| 
+L'autorisation gérer tous les compartiments remplace l'autorisation Afficher tous les compartiments.
+
+|===
+Voir link:../tenant/tenant-management-permissions.html["Autorisations de gestion des locataires"].

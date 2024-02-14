@@ -1,0 +1,61 @@
+---
+indexpage:
+  tiles:
+  - title: Commencez
+    links:
+    - title: Connectez-vous au Grid Manager
+      url: "../admin/signing-in-to-grid-manager.html"
+    - title: Configurez AutoSupport
+      url: "../admin/configure-autosupport-grid-manager.html"
+    - title: Utilisez l'API de gestion du grid
+      url: "../admin/using-grid-management-api.html"
+  - title: Gestion des groupes et utilisateurs d'administration
+    links:
+    - title: Utiliser la fédération des identités
+      url: "../admin/using-identity-federation.html"
+    - title: Gérez les groupes d'administration
+      url: "../admin/managing-admin-groups.html"
+    - title: Autorisations de groupe d'administration
+      url: "../admin/admin-group-permissions.html"
+    - title: Configurer l'authentification unique
+      url: "../admin/configuring-sso.html"
+  - title: Utiliser la fédération de grille
+    links:
+    - title: Qu'est-ce que la fédération de grille ?
+      url: "../admin/grid-federation-overview.html"
+    - title: Comparez la réplication entre les grilles et CloudMirror
+      url: "../admin/grid-federation-compare-cgr-to-cloudmirror.html"
+    - title: Créer des connexions de fédération de grille
+      url: "../admin/grid-federation-create-connection.html"
+    - title: Gérer les locataires autorisés
+      url: "../admin/grid-federation-manage-tenants.html"
+  - title: Gérez les connexions client et les locataires
+    links:
+    - title: Configuration des noms de domaine de terminaux S3
+      url: "../admin/configuring-s3-api-endpoint-domain-names.html"
+    - title: Utilisation de l'assistant d'installation S3
+      url: "../admin/use-s3-setup-wizard.html"
+    - title: Utilisez l'assistant d'installation FabricPool
+      url: "../fabricpool/use-fabricpool-setup-wizard.html"
+    - title: Création de locataires
+      url: "../admin/creating-tenant-account.html"
+  - title: Utilisation de la gestion du cycle de vie des informations (ILM)
+    links:
+    - title: En savoir plus sur le cycle de vie ILM
+      url: "../ilm/how-ilm-operates-throughout-objects-life.html"
+    - title: Gestion des règles ILM
+      url: "../ilm/what-ilm-rule-is.html"
+    - title: Gestion des règles ILM
+      url: "../ilm/creating-ilm-policy.html"
+    - title: Exemples de règles ILM
+      url: "../ilm/example-1-ilm-rules-and-policy-for-object-storage.html"
+  - title: Sécurisez votre système
+    links:
+    - title: Pourquoi le renforcement du système est-il essentiel
+      url: "../harden/index.html"
+    - title: Consultez les méthodes de cryptage
+      url: "../admin/reviewing-storagegrid-encryption-methods.html"
+    - title: Gérer les certificats de sécurité
+      url: "../admin/using-storagegrid-security-certificates.html"
+    - title: Gestion des règles TLS et SSH
+      url: "../admin/manage-tls-ssh-policy.html"

@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-use/index.html 
+summary: Une fois la configuration initiale terminée, les comptes de locataires StorageGRID peuvent créer des compartiments et utiliser les applications client S3 pour ingérer, récupérer et supprimer des objets. 
+---
+= Utilisez les locataires et clients StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

@@ -1,0 +1,111 @@
+---
+permalink: swift/error-responses-to-swift-api-operations.html 
+sidebar: sidebar 
+keywords: swift api error responses 
+summary: 'La compréhension des réponses d"erreur possibles peut vous aider à résoudre les problèmes.' 
+---
+= Réponse aux erreurs des opérations de l'API Swift
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La compréhension des réponses d'erreur possibles peut vous aider à résoudre les problèmes.
+
+Les codes d'état HTTP suivants peuvent être renvoyés lorsque des erreurs se produisent au cours d'une opération :
+
+|===
+| Nom de l'erreur Swift | Statut HTTP 
+
+
+ a| 
+AccountNameToolong, ContainerNameToolong, HeaderTooBig, InvalidContainerName, InvalidRequest, InvalidURI, MetadaNameToolong, MetadaValueTooBig, MissingSecurityHeader, ObjectNameToolong, TooManyContainers, TooManyMetadaItems, TotalMetadaTooLarge
+ a| 
+400 demande erronée
+
+
+
+ a| 
+AccessDenied
+ a| 
+403 interdit
+
+
+
+ a| 
+ContainerNotEmpty, ContainerAlreadyExists
+ a| 
+409 conflit
+
+
+
+ a| 
+Erreur interne
+ a| 
+500 erreur interne du serveur
+
+
+
+ a| 
+InvalidRange
+ a| 
+416 Plage demandée non satisfiable
+
+
+
+ a| 
+MethodNotAlldue
+ a| 
+405 méthode non autorisée
+
+
+
+ a| 
+MissingContentLength
+ a| 
+411 longueur requise
+
+
+
+ a| 
+NOTFOUND
+ a| 
+404 introuvable
+
+
+
+ a| 
+Note d'implémentation
+ a| 
+501 non mis en œuvre
+
+
+
+ a| 
+Pré-conditionFailed
+ a| 
+412 Echec de la condition préalable
+
+
+
+ a| 
+ResourceNotFound
+ a| 
+404 introuvable
+
+
+
+ a| 
+Non autorisé
+ a| 
+401 non autorisé
+
+
+
+ a| 
+Entité intraitableEntity
+ a| 
+422 entité impossible à traiter
+
+|===

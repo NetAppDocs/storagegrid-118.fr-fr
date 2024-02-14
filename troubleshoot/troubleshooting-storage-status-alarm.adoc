@@ -1,0 +1,71 @@
+---
+permalink: troubleshoot/troubleshooting-storage-status-alarm.html 
+sidebar: sidebar 
+keywords: how to troubleshoot storage status alarm, how to troubleshoot ssts alarm 
+summary: 'L"alarme Storage Status (SSTS) (État du stockage) est déclenchée si un nœud de stockage ne dispose pas d"espace disponible suffisant pour le stockage d"objets.' 
+---
+= Dépanner l'alarme Storage Status (SSTS)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'alarme Storage Status (SSTS) (État du stockage) est déclenchée si un nœud de stockage ne dispose pas d'espace disponible suffisant pour le stockage d'objets.
+
+.Avant de commencer
+* Vous devez être connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:../admin/admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+L'alarme SSTS (État de stockage) est déclenchée au niveau Avertissement lorsque la quantité d'espace libre sur chaque volume d'un nœud de stockage est inférieure à la valeur du filigrane Storage Volume Soft Read Only (*CONFIGURATION* > *système* > *Options de stockage*).
+
+image::../media/storage_watermarks.png[Présentation des options de stockage]
+
+Par exemple, supposons que le filigrane de volume de stockage en lecture seule soit défini sur 10 Go, ce qui est sa valeur par défaut. L'alarme SSTS est déclenchée si moins de 10 Go d'espace utilisable reste sur chaque volume de stockage du nœud de stockage. Si l'un des volumes dispose d'au moins 10 Go d'espace disponible, l'alarme n'est pas déclenchée.
+
+Si une alarme SSTS a été déclenchée, vous pouvez suivre ces étapes pour mieux comprendre le problème.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *alarmes (hérité)* > *alarmes actuelles*.
+. Dans la colonne Service, sélectionnez le centre de données, le nœud et le service associés à l'alarme SSTS.
++
+La page topologie de la grille s'affiche. L'onglet alarmes affiche les alarmes actives pour le nœud et le service que vous avez sélectionnés.
+
++
+image::../media/ssts_alarm.png[Nœud de stockage > LDR > stockage > onglet alarmes]
+
++
+Dans cet exemple, les alarmes SSTS (Storage Status) et SAVP (Total Usable Space (pourcentage)) ont été déclenchées au niveau Avis.
+
++
+
+NOTE: En général, l'alarme SSTS et l'alarme SAVP sont déclenchées à peu près à la même heure ; cependant, si les deux alarmes sont déclenchées dépend du paramètre de filigrane en GB et du paramètre d'alarme SAVP en pourcentage.
+
+. Pour déterminer la quantité d'espace utilisable réellement disponible, sélectionnez *LDR* > *Storage* > *Overview* et recherchez l'attribut Total Usable (STAS).
++
+image::../media/storage_node_total_usable_space.png[Espace utilisable total]
+
++
+Dans cet exemple, seuls 19.6 Go d'espace de 164 Go sur ce nœud de stockage restent disponibles. Notez que la valeur totale est la somme des valeurs *disponibles* pour les trois volumes du magasin d'objets. L'alarme SSTS a été déclenchée car chacun des trois volumes de stockage avait moins de 10 Go d'espace disponible.
+
+. Pour comprendre comment le stockage a été utilisé au fil du temps, sélectionnez l'onglet *Rapports* et tracez l'espace utilisable total au cours des dernières heures.
++
+Dans cet exemple, l'espace utilisable total est passé d'environ 155 Go à 12:00 à 20 Go à 12:35, ce qui correspond à l'heure à laquelle l'alarme SSTS a été déclenchée.
+
++
+image::../media/total_usable_space_chart.png[Espace utilisable total - graphique]
+
+. Pour comprendre comment le stockage est utilisé en pourcentage du total, tracez l'espace utilisable total (pourcentage) au cours des dernières heures.
++
+Dans cet exemple, l'espace utilisable total a chuté de 95 % à un peu plus de 10 % environ au même moment.
+
++
+image::../media/total_usable_storage_percent_chart.png[Espace utilisable total (en pourcentage) : graphique]
+
+. Selon les besoins, link:../expand/guidelines-for-adding-object-capacity.html["ajouter de la capacité de stockage"].
++
+Voir aussi link:../admin/managing-full-storage-nodes.html["Gérer des nœuds de stockage complets"].
+
+

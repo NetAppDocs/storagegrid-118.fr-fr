@@ -1,0 +1,76 @@
+---
+permalink: audit/asce-archive-object-store-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ASCE, Archive Object Store End 
+summary: 'Ce message indique que l"écriture d"un bloc de contenu sur un système de stockage d"archives externe est terminée.' 
+---
+= ASCE : fin du magasin d'objets d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message indique que l'écriture d'un bloc de contenu sur un système de stockage d'archives externe est terminée.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+Identificateur du bloc de contenu
+ a| 
+Identifiant du bloc de contenu stocké sur le système de stockage d'archives externe.
+
+
+
+ a| 
+VLID
+ a| 
+Identifiant du volume
+ a| 
+Identifiant unique du volume d'archivage sur lequel les données de l'objet sont écrites.
+
+
+
+ a| 
+VREN
+ a| 
+Vérification activée
+ a| 
+Indique si la vérification est effectuée pour les blocs de contenu. Les valeurs actuellement définies sont :
+
+* VENA : la vérification est activée
+* VDSA : la vérification est désactivée
+
+
+
+
+ a| 
+CLM
+ a| 
+Classe de gestion
+ a| 
+Chaîne identifiant la classe de gestion TSM à laquelle le bloc de contenu est affecté, le cas échéant.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+Indique le résultat du processus d'archivage. Les valeurs actuellement définies sont :
+
+* SUCS : succès (processus d'archivage réussi)
+* OFFL : échec (archivage hors ligne)
+* VRFL : échec (échec de la vérification de l'objet)
+* ARUN : échec (système de stockage d'archivage externe indisponible)
+* GERR : échec (erreur générale)
+
+
+|===
+Ce message d'audit signifie que le bloc de contenu spécifié a été écrit sur le système de stockage d'archivage externe. Si l'écriture échoue, le résultat fournit des informations de dépannage de base sur l'emplacement de la défaillance. Pour obtenir des informations plus détaillées sur les échecs d'archivage, consultez les attributs du nœud d'archivage dans le système StorageGRID.

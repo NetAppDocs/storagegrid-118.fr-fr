@@ -1,0 +1,44 @@
+---
+permalink: admin/configuring-archive-store-for-tsm-middleware-connection.html 
+sidebar: sidebar 
+keywords: archive node, tsm server, tivoli storage manager, archive store 
+summary: 'Si votre nœud d’archivage se connecte à un serveur middleware TSM, vous pouvez configurer l’état du magasin d’archives d’un nœud d’archivage sur en ligne ou hors ligne. Vous pouvez également désactiver le magasin d"archives lors du premier démarrage du nœud d"archivage ou réinitialiser le nombre d"échecs en cours de suivi pour l"alarme associée.' 
+---
+= Configurer l'état d'archivage et les compteurs pour TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si votre nœud d'archivage se connecte à un serveur middleware TSM, vous pouvez configurer l'état du magasin d'archives d'un nœud d'archivage sur en ligne ou hors ligne. Vous pouvez également désactiver le magasin d'archives lors du premier démarrage du nœud d'archivage ou réinitialiser le nombre d'échecs en cours de suivi pour l'alarme associée.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *Store*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/archive_store_tsm.gif[Configurez le magasin d'archives pour la connexion au middleware TSM]
+
+. Modifiez les paramètres suivants, si nécessaire :
++
+** État du stockage : définissez l'état du composant sur :
++
+*** En ligne : le nœud d'archivage est disponible pour traiter les données d'objet pour le stockage vers le système de stockage d'archivage.
+*** Hors ligne : le nœud d'archivage n'est pas disponible pour traiter les données d'objet pour le stockage vers le système de stockage d'archives.
+
+
+** Magasin d'archives désactivé au démarrage : lorsque cette option est sélectionnée, le composant stockage d'archives reste en lecture seule lors du redémarrage. Utilisé pour désactiver de manière persistante le stockage vers le système cible de stockage d'archives. Utile lorsque le système de stockage d'archives ciblé ne peut pas accepter de contenu.
+** Réinitialiser le nombre d'échecs du magasin : réinitialisez le compteur pour les échecs du magasin. Il peut être utilisé pour effacer l'alarme ARVF (Store Failure).
+
+
+. Sélectionnez *appliquer les modifications*.
+
+
+.Informations associées
+link:managing-archive-node-when-tsm-server-reaches-capacity.html["Gérer un nœud d'archivage lorsque le serveur TSM atteint sa capacité"]

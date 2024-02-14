@@ -1,0 +1,48 @@
+---
+permalink: primer/what-archive-node-is.html 
+sidebar: sidebar 
+keywords: archive node 
+summary: 'La prise en charge des nœuds d"archivage est obsolète et sera supprimée dans une version ultérieure.' 
+---
+= Qu'est-ce qu'un nœud d'archivage ?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La prise en charge des nœuds d'archivage est obsolète et sera supprimée dans une version ultérieure.
+
+[CAUTION]
+====
+La prise en charge des nœuds d'archivage est obsolète et sera supprimée dans une version ultérieure. Le déplacement d'objets d'un nœud d'archivage vers un système de stockage d'archivage externe via l'API S3 a été remplacé par les pools de stockage cloud ILM, offrant ainsi plus de fonctionnalités.
+
+L'option Cloud Tiering - simple Storage Service (S3) est également obsolète. Si vous utilisez actuellement un nœud d'archivage avec cette option, link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrez vos objets vers un pool de stockage cloud"] à la place.
+
+En outre, vous devez supprimer les nœuds d'archivage des règles ILM actives dans StorageGRID 11.7 ou version antérieure. La suppression des données d'objet stockées sur les nœuds d'archivage simplifie les mises à niveau futures. Voir link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Utilisation des règles ILM et des règles ILM"].
+
+====
+
+
+== Services primaires pour les nœuds d'archivage
+
+Le tableau ci-dessous présente les services principaux pour les nœuds d'archivage ; cependant, ce tableau ne répertorie pas tous les services de nœud.
+
+[cols="1a,2a"]
+|===
+| Service | Fonction de touche 
+
+
+ a| 
+Archivage (ARC)
+ a| 
+Communique avec un système de stockage sur bande externe Tivoli Storage Manager (TSM).
+
+
+
+ a| 
+Moniteur d'état du serveur (SSM)
+ a| 
+Surveille le système d'exploitation et le matériel sous-jacent.
+
+|===

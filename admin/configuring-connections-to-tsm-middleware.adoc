@@ -1,0 +1,59 @@
+---
+permalink: admin/configuring-connections-to-tsm-middleware.html 
+sidebar: sidebar 
+keywords: archive node connection to tsm, tivoli storage manager 
+summary: 'Avant que le nœud d"archivage puisse communiquer avec le middleware \(TSM\) de Tivoli Storage Manager, vous devez configurer plusieurs paramètres.' 
+---
+= Configurer les connexions au middleware TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant que le nœud d'archivage puisse communiquer avec le middleware Tivoli Storage Manager (TSM), vous devez configurer plusieurs paramètres.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Tant que ces paramètres ne sont pas configurés, le service ARC reste dans un état d'alarme majeur car il ne peut pas communiquer avec Tivoli Storage Manager.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *cible*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/configuring_tsm_middleware.gif[Compte TSM de Target]
+
+. Dans la liste déroulante *Type cible*, sélectionnez *Tivoli Storage Manager (TSM)*.
+. Pour l'état *Tivoli Storage Manager*, sélectionnez *Offline* pour empêcher les récupérations du serveur middleware TSM.
++
+Par défaut, l'état Tivoli Storage Manager est défini sur en ligne, ce qui signifie que le noeud d'archivage peut récupérer des données d'objet à partir du serveur middleware TSM.
+
+. Complétez les informations suivantes :
++
+** *IP ou Nom d'hôte du serveur* : spécifiez l'adresse IP ou le nom de domaine complet du serveur middleware TSM utilisé par le service ARC. L'adresse IP par défaut est 127.0.0.1.
+** *Port serveur* : spécifiez le numéro de port sur le serveur middleware TSM auquel le service ARC se connectera. La valeur par défaut est 1500.
+** *Nom du noeud* : spécifiez le nom du noeud d'archive. Vous devez entrer le nom (utilisateur d'arc) que vous avez enregistré sur le serveur middleware TSM.
+** *Nom d'utilisateur* : spécifiez le nom d'utilisateur utilisé par le service ARC pour se connecter au serveur TSM. Entrez le nom d'utilisateur par défaut (utilisateur d'arc) ou l'utilisateur administratif spécifié pour le noeud d'archivage.
+** *Mot de passe* : Indiquez le mot de passe utilisé par le service ARC pour se connecter au serveur TSM.
+** *Classe de gestion* : spécifiez la classe de gestion par défaut à utiliser si une classe de gestion n'est pas spécifiée lors de l'enregistrement de l'objet sur le système StorageGRID ou si la classe de gestion spécifiée n'est pas définie sur le serveur middleware TSM.
+** *Nombre de sessions* : spécifiez le nombre de lecteurs de bande sur le serveur middleware TSM dédié au nœud d'archivage. Le nœud d'archivage crée simultanément un maximum d'une session par point de montage et un petit nombre de sessions supplémentaires (moins de cinq).
++
+Vous devez modifier cette valeur pour qu'elle soit identique à la valeur définie pour MAXNUMMP (nombre maximal de points de montage) lorsque le nœud d'archivage a été enregistré ou mis à jour. (Dans la commande REGISTER, la valeur par défaut de MAXNUMMP utilisée est 1, si aucune valeur n'est définie.)
+
++
+Vous devez également modifier la valeur de MAXSESSIONS pour le serveur TSM à un nombre au moins aussi important que le nombre de sessions défini pour le service ARC. La valeur par défaut de MAXSESSIONS sur le serveur TSM est 25.
+
+** *Nombre maximal de sessions de récupération* : spécifiez le nombre maximal de sessions que le service ARC peut ouvrir sur le serveur middleware TSM pour les opérations de récupération. Dans la plupart des cas, la valeur appropriée est le nombre de sessions moins le nombre maximal de sessions en magasin. Si vous devez partager un lecteur de bande pour le stockage et la récupération, spécifiez une valeur égale au nombre de sessions.
+** *Nombre maximal de sessions de stockage* : spécifiez le nombre maximal de sessions simultanées que le service ARC peut ouvrir sur le serveur middleware TSM pour les opérations d'archivage.
++
+Cette valeur doit être définie sur une seule, sauf lorsque le système de stockage d'archives ciblé est plein et que seules les récupérations peuvent être effectuées. Définissez cette valeur sur zéro pour utiliser toutes les sessions pour les récupérations.
+
+
+
+. Sélectionnez *appliquer les modifications*.
+

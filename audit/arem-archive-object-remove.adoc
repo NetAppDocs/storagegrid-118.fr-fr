@@ -1,0 +1,51 @@
+---
+permalink: audit/arem-archive-object-remove.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, AREM, Archive Object Remove 
+summary: 'Le message d"audit de suppression d"objet d"archive indique qu"un bloc de contenu a été supprimé avec succès ou sans succès d"un nœud d"archive. Si le résultat est réussi, le nœud d"archivage a bien informé le système de stockage d"archives externe qu"StorageGRID a libéré un emplacement d"objet. La suppression de l"objet du système de stockage d"archives externe dépend du type de système et de sa configuration.' 
+---
+= AREM : suppression de l'objet d'archive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le message d'audit de suppression d'objet d'archive indique qu'un bloc de contenu a été supprimé avec succès ou sans succès d'un nœud d'archive. Si le résultat est réussi, le nœud d'archivage a bien informé le système de stockage d'archives externe qu'StorageGRID a libéré un emplacement d'objet. La suppression de l'objet du système de stockage d'archives externe dépend du type de système et de sa configuration.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+ID du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu à extraire du système de supports d'archivage externe.
+
+
+
+ a| 
+VLID
+ a| 
+Identifiant du volume
+ a| 
+Identificateur du volume sur lequel les données de l'objet ont été archivées.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat
+ a| 
+L'état d'achèvement du processus de suppression d'archive :
+
+* CMC : réussi
+* ARUN : échec (système de stockage d'archivage externe indisponible)
+* GERR : échec (erreur générale)
+
+
+|===

@@ -1,0 +1,26 @@
+---
+permalink: admin/archive-node-configuration-and-operation.html 
+sidebar: sidebar 
+keywords: archive node configuration 
+summary: 'Votre système StorageGRID gère le nœud d"archivage comme un emplacement dans lequel les objets sont stockés indéfiniment et sont toujours accessibles.' 
+---
+= Configuration et fonctionnement du nœud d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Votre système StorageGRID gère le nœud d'archivage comme un emplacement dans lequel les objets sont stockés indéfiniment et sont toujours accessibles.
+
+À l'ingestion d'un objet, des copies sont effectuées dans tous les emplacements requis, y compris les nœuds d'archivage, en fonction des règles de gestion du cycle de vie des informations (ILM) définies pour votre système StorageGRID. Le nœud d'archivage agit comme un client sur un serveur TSM, et les bibliothèques clientes TSM sont installées sur le nœud d'archivage par le processus d'installation du logiciel StorageGRID. Les données d'objet dirigées vers le nœud d'archivage pour le stockage sont enregistrées directement sur le serveur TSM au moment de leur réception. Le nœud d'archivage n'exécute pas les données d'objet avant de les enregistrer sur le serveur TSM, ni l'agrégation d'objets. Cependant, le nœud d'archivage peut envoyer plusieurs copies au serveur TSM en une seule transaction lorsque le taux de données le garantit.
+
+Une fois que le nœud d'archivage enregistre les données d'objet sur le serveur TSM, les données d'objet sont gérées par le serveur TSM à l'aide de ses politiques de cycle de vie/rétention. Ces règles de conservation doivent être définies pour être compatibles avec le fonctionnement du nœud d'archivage. En d'autres termes, les données d'objet enregistrées par le nœud d'archivage doivent être stockées indéfiniment et doivent toujours être accessibles par le nœud d'archivage, à moins qu'elles ne soient supprimées par le nœud d'archivage.
+
+Il n'y a aucune connexion entre les règles ILM du système StorageGRID et les politiques de cycle de vie/conservation du serveur TSM. Chaque système fonctionne de manière indépendante ; cependant, lorsque chaque objet est ingéré dans le système StorageGRID, vous pouvez lui attribuer une classe de gestion TSM. Cette classe de gestion est transmise au serveur TSM avec les données d'objet. L'affectation de classes de gestion à différents types d'objets vous permet de configurer le serveur TSM pour placer les données d'objet dans différents pools de stockage, ou d'appliquer différentes règles de migration ou de conservation, le cas échéant. Par exemple, les objets identifiés comme sauvegardes de bases de données (le contenu temporaire pouvant être remplacé par des données plus récentes) peuvent être traités différemment des données applicatives (contenu fixe qui doit être conservé indéfiniment).
+
+Le nœud d'archivage peut être intégré à un nouveau serveur TSM ou à un serveur TSM existant ; il ne nécessite pas de serveur TSM dédié. Les serveurs TSM peuvent être partagés avec d'autres clients, à condition que la taille du serveur TSM soit adaptée à la charge maximale attendue. TSM doit être installé sur un serveur ou une machine virtuelle distincte du nœud d'archivage.
+
+Il est possible de configurer plusieurs nœuds d'archivage pour écrire sur le même serveur TSM. Cependant, cette configuration n'est recommandée que si les nœuds d'archivage écrivent différents ensembles de données sur le serveur TSM. Il n'est pas recommandé de configurer plusieurs nœuds d'archivage pour écrire sur le même serveur TSM lorsque chaque nœud d'archivage écrit des copies des mêmes données d'objet dans l'archive. Dans ce dernier scénario, les deux copies sont soumises à un point de défaillance unique (le serveur TSM), pour les copies redondantes et indépendantes des données d'objet.
+
+Les nœuds d'archivage n'utilisent pas le composant HSM (Hierarchical Storage Management) de TSM.

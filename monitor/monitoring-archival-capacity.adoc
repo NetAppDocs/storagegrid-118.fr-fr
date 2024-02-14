@@ -1,0 +1,29 @@
+---
+permalink: monitor/monitoring-archival-capacity.html 
+sidebar: sidebar 
+keywords: archive, monitor, monitoring, monitoring archival capacity 
+summary: 'Il n"est pas possible de surveiller directement la capacité d"un système de stockage d"archives externe via le système StorageGRID. Vous pouvez toutefois contrôler si le nœud d"archivage peut toujours envoyer des données d"objet à la destination d"archivage, ce qui peut indiquer qu"une extension de support d"archivage est nécessaire.' 
+---
+= Surveiller la capacité d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il est impossible de surveiller directement la capacité d'un système de stockage d'archives externe via le système StorageGRID. Vous pouvez toutefois contrôler si le nœud d'archivage peut toujours envoyer des données d'objet à la destination d'archivage, ce qui peut indiquer qu'une extension de support d'archivage est nécessaire.
+
+.Description de la tâche
+Vous pouvez surveiller le composant de stockage pour vérifier si le nœud d'archivage peut toujours envoyer des données d'objet au système de stockage d'archives ciblé. L'alarme Store Failures (ARVF) peut également indiquer que le système de stockage d'archives ciblé a atteint sa capacité et qu'il ne peut plus accepter les données d'objet.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC**> vue d'ensemble**> main*.
+. Vérifiez les attributs Etat du magasin et Etat du magasin pour confirmer que le composant Store est en ligne sans erreur.
++
+image::../media/store_status_attribute.gif[Capture d'écran affichant ARC > vue d'ensemble > main]
+
++
+Un composant de stockage hors ligne ou un composant contenant des erreurs peut indiquer que le système de stockage d'archivage ciblé ne peut plus accepter les données d'objet en raison de sa capacité atteinte.
+
+

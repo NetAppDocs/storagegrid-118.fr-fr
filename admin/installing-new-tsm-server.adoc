@@ -1,0 +1,17 @@
+---
+permalink: admin/installing-new-tsm-server.html 
+sidebar: sidebar 
+keywords: install tsm server, tivoli storage manager, integrate archive node with tsm 
+summary: 'Vous pouvez intégrer le nœud d"archivage à un nouveau serveur TSM ou à un serveur TSM existant. Si vous installez un nouveau serveur TSM, suivez les instructions de la documentation TSM pour terminer l"installation.' 
+---
+= Installez un nouveau serveur TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez intégrer le nœud d'archivage à un nouveau serveur TSM ou à un serveur TSM existant. Si vous installez un nouveau serveur TSM, suivez les instructions de la documentation TSM pour terminer l'installation.
+
+
+NOTE: Un nœud d'archivage ne peut pas être co-hébergé avec un serveur TSM.

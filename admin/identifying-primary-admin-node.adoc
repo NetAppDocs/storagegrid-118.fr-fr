@@ -1,0 +1,28 @@
+---
+permalink: admin/identifying-primary-admin-node.html 
+sidebar: sidebar 
+keywords: cmn service, primary admin node, configuration management node 
+summary: 'Le nœud d"administration principal héberge le service CMN. Certaines procédures de maintenance peuvent uniquement être effectuées à l"aide du nœud d"administration principal.' 
+---
+= Identifiez le nœud d'administration principal
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le nœud d'administration principal héberge le service CMN. Certaines procédures de maintenance peuvent uniquement être effectuées à l'aide du nœud d'administration principal.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_site_* > *Admin Node*, puis sélectionnez image:../media/icon_plus_sign_black_on_white.gif["signe plus"] Pour développer l'arborescence de la topologie et afficher les services hébergés sur ce nœud d'administration.
++
+Le nœud d'administration principal héberge le service CMN.
+
+. Si ce nœud d'administration n'héberge pas le service CMN, vérifiez les autres nœuds d'administration.
+

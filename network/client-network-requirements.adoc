@@ -1,0 +1,18 @@
+---
+permalink: network/client-network-requirements.html 
+sidebar: sidebar 
+keywords: client network 
+summary: 'Le réseau client est facultatif. Si vous avez l"intention de configurer un réseau client, prenez en compte les considérations suivantes.' 
+---
+= Exigences du réseau du client
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le réseau client est facultatif. Si vous avez l'intention de configurer un réseau client, prenez en compte les considérations suivantes.
+
+Le réseau client est conçu pour prendre en charge le trafic des clients S3 et Swift. S'il est configuré, la passerelle réseau client devient la passerelle par défaut du nœud.
+
+Si vous utilisez un réseau client, vous pouvez protéger StorageGRID des attaques hostiles en acceptant le trafic client entrant uniquement sur les noeuds finaux de l'équilibreur de charge configurés explicitement. Voir link:../admin/manage-firewall-controls.html["Gérer les contrôles de pare-feu"] et link:../admin/configuring-load-balancer-endpoints.html["Configurer les terminaux de l'équilibreur de charge"].

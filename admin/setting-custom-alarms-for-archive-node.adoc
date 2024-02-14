@@ -1,0 +1,22 @@
+---
+permalink: admin/setting-custom-alarms-for-archive-node.html 
+sidebar: sidebar 
+keywords: archive node, custom alarm, arql, arrl 
+summary: 'Vous devez établir des alarmes personnalisées pour les attributs ARQL et ARRL utilisés pour surveiller la vitesse et l"efficacité de la récupération des données d"objet à partir du système de stockage d"archives par le nœud d"archivage.' 
+---
+= Définissez les alarmes personnalisées pour le nœud d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez établir des alarmes personnalisées pour les attributs ARQL et ARRL utilisés pour surveiller la vitesse et l'efficacité de la récupération des données d'objet à partir du système de stockage d'archives par le nœud d'archivage.
+
+* ARQL : longueur moyenne de la file d'attente. Durée moyenne, en microsecondes, de la mise en file d'attente des données de cet objet pour la récupération à partir du système de stockage d'archivage.
+* ARRL : latence moyenne de la requête. Temps moyen, en microsecondes, requis par le nœud d'archivage pour récupérer les données d'objet à partir du système de stockage d'archivage.
+
+
+Les valeurs acceptables pour ces attributs dépendent de la configuration et de l'utilisation du système de stockage d'archives. (Allez à *ARC* > *Retrieve* > *Présentation* > *main*.) Les valeurs définies pour les délais de requête et le nombre de sessions disponibles pour les demandes de récupération sont particulièrement influentes.
+
+Une fois l'intégration terminée, surveillez les récupérations de données d'objet du nœud d'archivage pour établir des valeurs pour les temps de récupération normaux et la longueur de file d'attente. Ensuite, créez des alarmes personnalisées pour ARQL et ARRL qui se déclencheront en cas de condition de fonctionnement anormale. Reportez-vous aux instructions pour link:../monitor/managing-alarms.html["gestion des alarmes (système hérité)"].

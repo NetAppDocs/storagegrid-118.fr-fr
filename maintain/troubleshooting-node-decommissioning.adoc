@@ -1,0 +1,42 @@
+---
+permalink: maintain/troubleshooting-node-decommissioning.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, decommission, troubleshoot 
+summary: 'Si la procédure de mise hors service du nœud s"arrête à cause d"une erreur, vous pouvez prendre des étapes spécifiques pour résoudre le problème.' 
+---
+= Dépanner le déclassement des nœuds
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si la procédure de mise hors service du nœud s'arrête à cause d'une erreur, vous pouvez prendre des étapes spécifiques pour résoudre le problème.
+
+.Avant de commencer
+Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+
+.Description de la tâche
+Si vous arrêtez le nœud de la grille en cours de mise hors service, la tâche s'arrête jusqu'au redémarrage du nœud de la grille. Le nœud grid doit être en ligne.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Dans l'arborescence de la topologie grille, développez chaque entrée de noeud de stockage et vérifiez que les services DDS et LDR sont tous deux en ligne.
++
+Pour désaffecter les nœuds de stockage, tous les nœuds et tous les services doivent être sains au début du déclassement d'un nœud/site en ligne.
+
+. Pour afficher les tâches de grille actives, sélectionnez *Primary Admin Node* > *CMN* > *Grid Tasks* > *Overview*.
+. Vérifiez l'état de la tâche de grille de mise hors service.
++
+.. Si l'état de la tâche de grille de déclassement indique un problème lors de l'enregistrement des ensembles de tâches de grille, sélectionnez *Primary Admin Node* > *CMN* > *Events* > *Overview*.
+.. Vérifier le nombre de relais d'audit disponibles.
++
+Si l'attribut Relais d'audit disponible est un ou plusieurs, le service CMN est connecté à au moins un service ADC. Les services ADC font office de relais d'audit.
+
++
+Le service CMN doit être connecté à au moins un service ADC et une majorité (50 % plus un) des services ADC du système StorageGRID doit être disponible pour qu'une tâche de grille passe d'une étape de déclassement à une autre et se termine.
+
+.. Si le service CMN n'est pas connecté à suffisamment de services ADC, assurez-vous que les nœuds de stockage sont en ligne et vérifiez la connectivité réseau entre le nœud d'administration principal et les nœuds de stockage.
+
+
+

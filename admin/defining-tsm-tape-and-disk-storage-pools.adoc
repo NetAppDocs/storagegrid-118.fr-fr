@@ -1,0 +1,135 @@
+---
+permalink: admin/defining-tsm-tape-and-disk-storage-pools.html 
+sidebar: sidebar 
+keywords: archive node, tsm, tape storage pool, tivoli storage manager 
+summary: 'Le nœud d"archivage écrit dans un pool de stockage sur disque. Pour archiver du contenu sur bande, vous devez configurer le pool de stockage sur disque afin de déplacer le contenu vers un pool de stockage sur bande.' 
+---
+= Définir les pools de stockage sur bande et sur disque TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le nœud d'archivage écrit dans un pool de stockage sur disque. Pour archiver du contenu sur bande, vous devez configurer le pool de stockage sur disque afin de déplacer le contenu vers un pool de stockage sur bande.
+
+.Description de la tâche
+Pour un serveur TSM, vous devez définir un pool de stockage sur bandes et un pool de stockage sur disque dans Tivoli Storage Manager. Une fois le pool de disques défini, créez un volume de disque et affectez-le au pool de disques. Un pool de bandes n'est pas nécessaire si votre serveur TSM utilise du stockage sur disque uniquement.
+
+Vous devez effectuer plusieurs étapes sur votre serveur TSM avant de pouvoir créer un pool de stockage sur bandes. (Créez une bibliothèque de bandes et au moins un lecteur dans la bibliothèque de bandes. Définissez un chemin entre le serveur et la bibliothèque et entre le serveur et les lecteurs, puis définissez une classe de périphériques pour les lecteurs.) Les détails de ces étapes peuvent varier en fonction de la configuration matérielle et des besoins de stockage du site. Pour plus d'informations, consultez la documentation TSM.
+
+Le jeu d'instructions ci-dessous illustre le processus. Vous devez savoir que les besoins spécifiques à votre site peuvent varier en fonction des besoins de votre déploiement. Pour plus d'informations sur la configuration et pour obtenir des instructions, consultez la documentation TSM.
+
+
+NOTE: Vous devez vous connecter au serveur avec des privilèges d'administration et utiliser l'outil dsmadmc pour exécuter les commandes suivantes.
+
+.Étapes
+. Créez une bibliothèque de bandes.
++
+`define library _tapelibrary_ libtype=_scsi_`
+
++
+Où `_tapelibrary_` est un nom arbitraire choisi pour la bibliothèque de bandes et la valeur de `libtype` peut varier selon le type de bibliothèque de bandes.
+
+. Définissez un chemin entre le serveur et la bibliothèque de bandes.
++
+`define path _servername tapelibrary_ srctype=server desttype=library device=_lib-devicename_`
+
++
+** `_servername_` Est le nom du serveur TSM
+** `_tapelibrary_` est le nom de bibliothèque de bandes que vous avez défini
+** `_lib-devicename_` est le nom du périphérique de la bibliothèque de bandes
+
+
+. Définissez un lecteur pour la bibliothèque.
++
+`define drive _tapelibrary_ _drivename_`
+
++
+** `_drivename_` est le nom que vous souhaitez spécifier pour le lecteur
+** `_tapelibrary_` est le nom de bibliothèque de bandes que vous avez défini
++
+Il est possible que vous souhaitiez configurer un ou plusieurs lecteurs supplémentaires, en fonction de la configuration de votre matériel. (Par exemple, si le serveur TSM est connecté à un commutateur Fibre Channel qui comporte deux entrées d'une bibliothèque de bandes, vous pouvez définir un lecteur pour chaque entrée.)
+
+
+
+. Définissez un chemin entre le serveur et le lecteur que vous avez défini.
++
+`define path _servername_ drivename srctype=server desttype=drive library=_tapelibrary_ device=_drive-dname_`
+
++
+** `_drive-dname_` est le nom du périphérique du lecteur
+** `_tapelibrary_` est le nom de bibliothèque de bandes que vous avez défini
++
+Répétez l'opération pour chaque lecteur que vous avez défini pour la bibliothèque de bandes à l'aide d'un lecteur distinct `_drivename_` et `_drive-dname_` pour chaque lecteur.
+
+
+
+. Définir une classe de périphérique pour les lecteurs.
++
+`define devclass _DeviceClassName_ devtype=_lto_ library=_tapelibrary_ format=_tapetype_`
+
++
+** `_DeviceClassName_` est le nom de la classe de périphérique
+** `_lto_` est le type de lecteur connecté au serveur
+** `_tapelibrary_` est le nom de bibliothèque de bandes que vous avez défini
+** `_tapetype_` est le type de bande ; par exemple, ultrium3
+
+
+. Ajoutez des volumes de bande à l'inventaire de la bibliothèque.
++
+`checkin libvolume _tapelibrary_`
+
++
+`_tapelibrary_` est le nom de bibliothèque de bandes que vous avez défini.
+
+. Créez le pool de stockage sur bande primaire.
++
+`define stgpool _SGWSTapePool_ _DeviceClassName_ description=_description_ _collocate=filespace_ maxscratch=_XX_`
+
++
+** `_SGWSTapePool_` Est le nom du pool de stockage de bandes du nœud d'archivage. Vous pouvez sélectionner n'importe quel nom pour le pool de stockage de bandes (tant que le nom utilise les conventions de syntaxe attendues par le serveur TSM).
+** `_DeviceClassName_` est le nom de la classe de périphérique pour la bibliothèque de bandes.
+** `_description_` Est une description du pool de stockage qui peut être affichée sur le serveur TSM à l'aide de `query stgpool` commande. Par exemple : « pool de stockage sur bande pour le nœud d'archivage ».
+** `_collocate=filespace_` Spécifie que le serveur TSM doit écrire des objets à partir du même espace de fichiers dans une seule bande.
+** `XX` est l'une des suivantes :
++
+*** Nombre de bandes vides dans la bibliothèque de bandes (dans le cas où le nœud d'archivage est la seule application utilisant la bibliothèque).
+*** Nombre de bandes allouées pour l'utilisation par le système StorageGRID (dans les cas où la bibliothèque de bandes est partagée).
+
+
+
+
+. Sur un serveur TSM, créez un pool de stockage sur disque. Sur la console d'administration du serveur TSM, entrez
++
+`define stgpool _SGWSDiskPool_ disk description=_description_ maxsize=_maximum_file_size nextstgpool=SGWSTapePool_ highmig=_percent_high_ lowmig=_percent_low_`
+
++
+** `_SGWSDiskPool_` Est le nom du pool de disques du nœud d'archivage. Vous pouvez sélectionner n'importe quel nom pour le pool de stockage sur disque (tant que le nom utilise les conventions de syntaxe attendues par le TSM).
+** `_description_` Est une description du pool de stockage qui peut être affichée sur le serveur TSM à l'aide de `query stgpool` commande. Par exemple, « pool de stockage sur disque pour le nœud d'archivage ».
+**  `_maximum_file_size_` force les objets de plus grande taille à être écrits directement sur bande, au lieu d'être mis en cache dans le pool de disques. Il est recommandé de le régler `_maximum_file_size_` À 10 Go.
+** `_nextstgpool=SGWSTapePool_` Désigne le pool de stockage sur disque au pool de stockage sur bandes défini pour le nœud d'archivage.
+**  `_percent_high_` définit la valeur à laquelle le pool de disques commence à migrer son contenu vers le pool de bandes. Il est recommandé de le régler `_percent_high_` sur 0, pour que la migration des données commence immédiatement
+**  `_percent_low_` définit la valeur à laquelle la migration vers le pool de bandes s'arrête. Il est recommandé de le régler `_percent_low_` à 0 pour effacer le pool de disques.
+
+
+. Sur un serveur TSM, créez un ou plusieurs volumes de disque et affectez-les au pool de disques.
++
+`define volume _SGWSDiskPool_ _volume_name_ formatsize=_size_`
+
++
+** `_SGWSDiskPool_` est le nom du pool de disques.
+** `_volume_name_` est le chemin complet vers l'emplacement du volume (par exemple, `/var/local/arc/stage6.dsm`) Sur le serveur TSM où il écrit le contenu du pool de disques en préparation du transfert sur bande.
+** `_size_` Est la taille, en Mo, du volume de disque.
++
+Par exemple, pour créer un volume de disque unique de sorte que le contenu d'un pool de disques remplisse une seule bande, définissez la valeur de la taille sur 200000 lorsque le volume de bande a une capacité de 200 Go.
+
++
+Cependant, il est préférable de créer plusieurs volumes de disque de taille inférieure, car le serveur TSM peut écrire sur chaque volume du pool de disques. Par exemple, si la taille de la bande est de 250 Go, créez 25 volumes de disque d'une taille de 10 Go (10000) chacun.
+
++
+Le serveur TSM préalloue de l'espace dans le répertoire du volume de disque. Cette opération peut prendre un certain temps (plus de trois heures pour un volume de disque de 200 Go).
+
+
+
+

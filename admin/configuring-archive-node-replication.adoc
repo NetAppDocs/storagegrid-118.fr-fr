@@ -1,0 +1,43 @@
+---
+permalink: admin/configuring-archive-node-replication.html 
+sidebar: sidebar 
+keywords: archive node replication 
+summary: 'Vous pouvez configurer les paramètres de réplication d"un nœud d"archivage et désactiver la réplication entrante et sortante, ou réinitialiser le nombre d"échecs en cours de suivi pour les alarmes associées.' 
+---
+= Configurer la réplication du noeud d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer les paramètres de réplication d'un nœud d'archivage et désactiver la réplication entrante et sortante, ou réinitialiser le nombre d'échecs en cours de suivi pour les alarmes associées.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *Replication*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/archive_node_replication.gif[Page de configuration d'un nœud d'archivage > Paramètres de réplication]
+
+. Modifiez les paramètres suivants, si nécessaire :
++
+** *Réinitialiser le nombre d'échecs de réplication entrant* : sélectionnez cette option pour réinitialiser le compteur pour les échecs de réplication entrants. Cette fonction permet d'effacer l'alarme RRF (Replications entrantes -- FAILED).
+** *Réinitialiser le nombre d'échecs de réplication sortante* : sélectionnez cette option pour réinitialiser le compteur des échecs de réplication sortants. Cette fonction permet d'effacer l'alarme RORF (réplications sortantes -- en échec).
+** *Désactiver la réplication entrante* : sélectionnez cette option pour désactiver la réplication entrante dans le cadre d'une procédure de maintenance ou de test. Laisser effacé pendant le fonctionnement normal.
++
+Lorsque la réplication entrante est désactivée, les données d'objet peuvent être extraites du service ARC pour être répliquées vers d'autres emplacements du système StorageGRID, mais les objets ne peuvent pas être répliqués vers ce service ARC à partir d'autres emplacements système. Le service ARC est en lecture seule.
+
+** *Désactiver la réplication sortante* : cochez cette case pour désactiver la réplication sortante (y compris les demandes de contenu pour les récupérations HTTP) dans le cadre d'une procédure de maintenance ou de test. Laisser non vérifié pendant le fonctionnement normal.
++
+Lorsque la réplication sortante est désactivée, les données d'objet peuvent être copiées vers ce service ARC pour respecter les règles ILM, mais les données d'objet ne peuvent pas être récupérées du service ARC pour être copiées vers d'autres emplacements du système StorageGRID. Le service ARC est en écriture uniquement.
+
+
+
+. Sélectionnez *appliquer les modifications*.
+

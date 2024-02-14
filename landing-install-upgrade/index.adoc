@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-install-upgrade/index.html 
+summary: 'Un système StorageGRID se compose de nœuds matériels et logiciels individuels. Vous devez d"abord installer le matériel pour chaque nœud d"appliance et configurer chaque hôte Linux ou VMware. Vous installez ensuite le logiciel StorageGRID sur chaque appliance ou hôte logiciel et connectez les nœuds à un grid.' 
+---
+= Installez, mettez à niveau et correctif StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

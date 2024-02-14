@@ -1,0 +1,41 @@
+---
+permalink: admin/configuring-archive-node-retrieve-settings.html 
+sidebar: sidebar 
+keywords: archive node, retrieve settings 
+summary: 'Vous pouvez configurer les paramètres de récupération d"un nœud d"archivage pour définir l"état en ligne ou hors ligne, ou réinitialiser le nombre d"échecs en cours de suivi pour les alarmes associées.' 
+---
+= Configurer les paramètres de récupération du nœud d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer les paramètres de récupération d'un nœud d'archivage pour définir l'état en ligne ou hors ligne, ou réinitialiser le nombre d'échecs en cours de suivi pour les alarmes associées.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *Archive Node* > *ARC* > *Retrieve*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/archive_node_retreive.gif[Page de configuration d'un nœud d'archivage > récupérer les paramètres]
+
+. Modifiez les paramètres suivants, si nécessaire :
++
+** *Récupérer l'état* : définissez l'état du composant sur :
++
+*** En ligne : le nœud de grille est disponible pour récupérer les données d'objet à partir du périphérique de support d'archivage.
+*** Hors ligne : le nœud grid n'est pas disponible pour récupérer les données d'objet.
+
+
+** Réinitialiser le nombre d'échecs de demande : cochez cette case pour réinitialiser le compteur des échecs de demande. Il peut être utilisé pour effacer l'alarme ARRF (demandes d'échecs).
+** Réinitialiser le nombre d'échecs de vérification : cochez cette case pour réinitialiser le compteur des échecs de vérification sur les données d'objet récupérées. Il peut être utilisé pour effacer l'alarme ARRV (échecs de vérification).
+
+
+. Sélectionnez *appliquer les modifications*.
+

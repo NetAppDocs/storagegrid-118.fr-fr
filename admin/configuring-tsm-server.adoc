@@ -1,0 +1,22 @@
+---
+permalink: admin/configuring-tsm-server.html 
+sidebar: sidebar 
+keywords: tsm server, tivoli storage manager 
+summary: 'Cette section contient des exemples d"instructions pour préparer un serveur TSM en suivant les meilleures pratiques TSM.' 
+---
+= Configurer le serveur TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section contient des exemples d'instructions pour préparer un serveur TSM en suivant les meilleures pratiques TSM.
+
+Les instructions suivantes vous guident tout au long du processus :
+
+* Définition d'un pool de stockage sur disque et d'un pool de stockage sur bandes (le cas échéant) sur le serveur TSM
+* Définition d'une stratégie de domaine qui utilise la classe de gestion TSM pour les données enregistrées à partir du nœud d'archivage et enregistrement d'un nœud pour utiliser cette stratégie de domaine
+
+
+Ces instructions sont fournies à titre indicatif uniquement ; elles ne sont pas destinées à remplacer la documentation TSM ou à fournir des instructions complètes adaptées à toutes les configurations. Des instructions spécifiques à un déploiement doivent être fournies par un administrateur TSM qui connaît à la fois vos exigences détaillées et la documentation complète de TSM Server.

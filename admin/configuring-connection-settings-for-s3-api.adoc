@@ -1,0 +1,74 @@
+---
+permalink: admin/configuring-connection-settings-for-s3-api.html 
+sidebar: sidebar 
+keywords: archive node connection to s3, arc service 
+summary: 'Si vous vous connectez à un noeud d"archivage à l"aide de l"interface S3, vous devez configurer les paramètres de connexion de l"API S3. Tant que ces paramètres ne sont pas configurés, le service ARC reste dans un état d"alarme majeur car il ne parvient pas à communiquer avec le système de stockage d"archives externe.' 
+---
+= Configurez les paramètres de connexion pour l'API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si vous vous connectez à un noeud d'archivage à l'aide de l'interface S3, vous devez configurer les paramètres de connexion de l'API S3. Tant que ces paramètres ne sont pas configurés, le service ARC reste dans un état d'alarme majeur car il ne parvient pas à communiquer avec le système de stockage d'archives externe.
+
+[CAUTION]
+====
+La prise en charge des nœuds d'archivage est obsolète et sera supprimée dans une version ultérieure. Le déplacement d'objets d'un nœud d'archivage vers un système de stockage d'archivage externe via l'API S3 a été remplacé par les pools de stockage cloud ILM, offrant ainsi plus de fonctionnalités.
+
+L'option Cloud Tiering - simple Storage Service (S3) est également obsolète. Si vous utilisez actuellement un nœud d'archivage avec cette option, link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrez vos objets vers un pool de stockage cloud"] à la place.
+
+En outre, vous devez supprimer les nœuds d'archivage de la règle ILM active dans StorageGRID 11.7 ou version antérieure. La suppression des données d'objet stockées sur les nœuds d'archivage simplifie les mises à niveau futures. Voir link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Utilisation des règles ILM et des règles ILM"].
+
+====
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Vous avez créé un compartiment sur le système de stockage d'archivage cible :
++
+** Le compartiment est dédié à un seul nœud d'archivage. Il ne peut pas être utilisé par d'autres nœuds d'archivage ou d'autres applications.
+** La région du compartiment est sélectionnée pour votre emplacement.
+** Le compartiment doit être configuré avec une gestion des versions suspendue.
+
+
+* La segmentation d'objet est activée et la taille de segment maximale est inférieure ou égale à 4.5 Gio (4,831,838,208 octets). Les demandes d'API S3 qui dépassent cette valeur échouent si S3 est utilisé comme système de stockage d'archivage externe.
+
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *Archive Node* > *ARC* > *Target*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/archive_node_s3_middleware.gif[Page de configuration d'un nœud d'archivage]
+
+. Sélectionnez *Cloud Tiering - simple Storage Service (S3)* dans la liste déroulante Type de cible.
++
+
+NOTE: Les paramètres de configuration ne sont pas disponibles tant que vous n'avez pas sélectionné de type cible.
+
+. Configurez le compte de Tiering cloud (S3) via lequel le nœud d'archivage se connecte au système de stockage d'archivage externe cible compatible S3.
++
+La plupart des champs de cette page sont explicites. La section suivante décrit les champs pour lesquels vous avez peut-être besoin d'aide.
+
++
+** *Région* : disponible uniquement si *Use AWS* est sélectionné. La région que vous sélectionnez doit correspondre à la région du compartiment.
+** *Endpoint* et *use AWS* : pour Amazon Web Services (AWS), sélectionnez *use AWS*. *Endpoint* est alors automatiquement renseigné avec une URL de point de terminaison en fonction des attributs Nom du compartiment et région. Par exemple :
++
+`\https://bucket.region.amazonaws.com`
+
++
+Pour une cible non AWS, entrez l'URL du système hébergeant le compartiment, y compris le numéro de port. Par exemple :
+
++
+`\https://system.com:1080`
+
+** *Authentification par point de terminaison* : activée par défaut. Si le réseau vers le système de stockage d'archives externe est approuvé, vous pouvez décocher la case pour désactiver la vérification du certificat SSL de point final et du nom d'hôte pour le système de stockage d'archives externe ciblé. Si une autre instance d'un système StorageGRID est le périphérique de stockage d'archives cible et que le système est configuré avec des certificats signés publiquement, vous pouvez garder la case cochée.
+** *Classe de stockage* : sélectionnez *Standard (par défaut)* pour le stockage normal. Sélectionnez *réduction de redondance* uniquement pour les objets qui peuvent être facilement recréés. *Redondance réduite* fournit un stockage moins coûteux et moins fiable. Si le système de stockage d'archives cible est une autre instance du système StorageGRID, *Storage Class* contrôle le nombre de copies intermédiaires de l'objet à l'entrée sur le système cible, si la double validation est utilisée lors de l'ingestion d'objets.
+
+
+. Sélectionnez *appliquer les modifications*.
++
+Les paramètres de configuration spécifiés sont validés et appliqués à votre système StorageGRID. Une fois les paramètres appliqués, la cible ne peut pas être modifiée.
+
+

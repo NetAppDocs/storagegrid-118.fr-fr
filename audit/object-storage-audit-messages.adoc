@@ -1,0 +1,172 @@
+---
+permalink: audit/object-storage-audit-messages.html 
+sidebar: sidebar 
+keywords: audit, object storage, object management, object retrieval, node transfer, verification, APCT, ARCB, ARCE, ARCT, AREM, ASCE, ASCT, ATCE, AVCC, BROR, CBSE, CBRE, CGRR, EBDL, EBKR, SCMT, SREM 
+summary: 'Vous devez connaître les messages d"audit appartenant à la catégorie d"audit du stockage objet. Ce sont des événements liés au stockage et à la gestion des objets dans le système StorageGRID. Il s"agit notamment du stockage objet et des récupérations, des transferts entre nœuds grid et nœuds.' 
+---
+= Messages d'audit du stockage objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les messages d'audit appartenant à la catégorie d'audit du stockage objet sont utilisés pour les événements liés au stockage et à la gestion d'objets au sein du système StorageGRID. Il s'agit notamment du stockage objet et des récupérations, des transferts entre nœuds grid et nœuds.
+
+[cols="1a,2a,1a"]
+|===
+| Code | Description | Voir 
+
+
+ a| 
+APCT
+ a| 
+Suppression d'archivage à partir du Tier cloud : les données d'objet archivé sont supprimées d'un système de stockage d'archivage externe qui se connecte au StorageGRID via l'API S3.
+ a| 
+link:apct-archive-purge-from-cloud-tier.html["APCT : archive Purge à partir du Tier cloud"]
+
+
+
+ a| 
+ARCB
+ a| 
+Début de la récupération de l'objet d'archive : le service ARC lance la récupération des données d'objet à partir du système de stockage d'archives externe.
+ a| 
+link:arcb-archive-object-retrieve-begin.html["ARCB : début de la récupération de l'objet d'archive"]
+
+
+
+ a| 
+ARCE
+ a| 
+Fin de la récupération de l'objet d'archive : les données de l'objet ont été extraites d'un système de stockage d'archives externe et le service ARC signale l'état de l'opération de récupération.
+ a| 
+link:arce-archive-object-retrieve-end.html["ARCE : fin de la récupération de l'objet d'archive"]
+
+
+
+ a| 
+ARCT
+ a| 
+Archivage à partir du Tier cloud : les données d'objet archivé sont récupérées depuis un système de stockage d'archivage externe qui se connecte à StorageGRID via l'API S3.
+ a| 
+link:arct-archive-retrieve-from-cloud-tier.html["ARCT : récupération d'archives depuis Cloud-Tier"]
+
+
+
+ a| 
+AREM
+ a| 
+Suppression de l'objet d'archive : un bloc de contenu a été supprimé avec succès ou sans succès du système de stockage d'archives externe.
+ a| 
+link:arem-archive-object-remove.html["AREM : suppression de l'objet d'archive"]
+
+
+
+ a| 
+ASCE
+ a| 
+Fin du magasin d'objets d'archivage : un bloc de contenu a été écrit dans le système de stockage d'archives externe et le service ARC signale l'état de l'opération d'écriture.
+ a| 
+link:asce-archive-object-store-end.html["ASCE : fin du magasin d'objets d'archivage"]
+
+
+
+ a| 
+ASCT
+ a| 
+Tier dans le stockage d'archives : les données d'objet sont stockées dans un système de stockage d'archives externe qui se connecte à StorageGRID via l'API S3.
+ a| 
+link:asct-archive-store-cloud-tier.html["ASCT : magasin d'archives, niveau du cloud"]
+
+
+
+ a| 
+ATCE
+ a| 
+Début de l'archive du magasin d'objets : l'écriture d'un bloc de contenu sur un stockage d'archivage externe a commencé.
+ a| 
+link:atce-archive-object-store-begin.html["ATCE : début du magasin d'objets d'archivage"]
+
+
+
+ a| 
+AVCC
+ a| 
+Archive Valider la configuration du Tier cloud : les paramètres du compte et des compartiments fournis ont été validés avec succès ou non.
+ a| 
+link:avcc-archive-validate-cloud-tier-configuration.html["AVCC : validation de la configuration du Tier cloud"]
+
+
+
+ a| 
+BROR
+ a| 
+Demande de lecture seule du compartiment : un compartiment est entré ou a quitté le mode lecture seule.
+ a| 
+link:bror-bucket-read-only-request.html["BROR : demande en lecture seule du compartiment"]
+
+
+
+ a| 
+CBSE
+ a| 
+Objet Envoyer fin : l'entité source a terminé une opération de transfert des données nœud-grille vers nœud-grille.
+ a| 
+link:cbse-object-send-end.html["CBSE : fin de l'envoi de l'objet"]
+
+
+
+ a| 
+CBRE
+ a| 
+Fin de réception de l'objet : l'entité de destination a terminé une opération de transfert des données nœud-grille vers nœud-grille.
+ a| 
+link:cbre-object-receive-end.html["CBRE : fin de la réception de l'objet"]
+
+
+
+ a| 
+CGRR
+ a| 
+Demande de réplication multigrille : StorageGRID a tenté une opération de réplication multigrille pour répliquer des objets entre des compartiments dans une connexion de fédération de grille.
+ a| 
+link:cgrr-cross-grid-replication-request.html["CGRR : demande de réplication croisée"]
+
+
+
+ a| 
+EBDL
+ a| 
+Suppression d'un compartiment vide : l'analyse ILM a supprimé un objet d'un compartiment qui supprime tous les objets (opération de compartiment vide).
+ a| 
+link:ebdl-empty-bucket-delete.html["EBDL : suppression du compartiment vide"]
+
+
+
+ a| 
+EBKR
+ a| 
+Demande de compartiment vide : un utilisateur a envoyé une demande d'activation ou de désactivation de compartiment vide (c'est-à-dire de supprimer des objets de compartiment ou d'arrêter la suppression d'objets).
+ a| 
+link:ebkr-empty-bucket-request.html["EBKR : demande de godet vide"]
+
+
+
+ a| 
+BALAYAGE
+ a| 
+Validation d'un magasin d'objets : un bloc de contenu a été entièrement stocké et vérifié, et peut désormais être demandé.
+ a| 
+link:scmt-object-store-commit.html["SCMT : demande de validation de magasin d'objets"]
+
+
+
+ a| 
+SREM
+ a| 
+Suppression du magasin d'objets : un bloc de contenu a été supprimé d'un nœud de grille et ne peut plus être demandé directement.
+ a| 
+link:srem-object-store-remove.html["SREM : Suppression du magasin d'objets"]
+
+|===

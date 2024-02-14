@@ -1,0 +1,55 @@
+---
+permalink: audit/apct-archive-purge-from-cloud-tier.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, APCT, Archive Purge from Cloud-Tier 
+summary: 'Ce message est généré lorsque les données d"objet archivé sont supprimées d"un système de stockage d"archives externe qui se connecte à StorageGRID via l"API S3.' 
+---
+= APCT : archive Purge à partir du Tier cloud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsque les données d'objet archivé sont supprimées d'un système de stockage d'archives externe qui se connecte à StorageGRID via l'API S3.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+ID du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu supprimé.
+
+
+
+ a| 
+CSIZ
+ a| 
+Taille du contenu
+ a| 
+Taille de l'objet en octets. Renvoie toujours 0.
+
+
+
+ a| 
+RSLT
+ a| 
+Code de résultat
+ a| 
+Renvoie réussi (CS) ou l'erreur signalée par le back-end.
+
+
+
+ a| 
+SUID
+ a| 
+Identifiant unique du stockage
+ a| 
+Identifiant unique (UUID) du Tier cloud à partir duquel l'objet a été supprimé.
+
+|===

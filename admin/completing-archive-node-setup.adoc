@@ -1,0 +1,20 @@
+---
+permalink: admin/completing-archive-node-setup.html 
+sidebar: sidebar 
+keywords: archive node setup 
+summary: 'Le nœud d"archivage ne fonctionne pas après avoir terminé le processus d"installation. Avant que le système StorageGRID puisse enregistrer des objets sur le nœud d"archivage TSM, vous devez terminer l"installation et la configuration du serveur TSM et configurer le nœud d"archivage pour qu"il communique avec le serveur TSM.' 
+---
+= Terminez la configuration du nœud d'archivage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le nœud d'archivage ne fonctionne pas après avoir terminé le processus d'installation. Avant que le système StorageGRID puisse enregistrer des objets sur le nœud d'archivage TSM, vous devez terminer l'installation et la configuration du serveur TSM et configurer le nœud d'archivage pour qu'il communique avec le serveur TSM.
+
+Si nécessaire, reportez-vous à la documentation IBM suivante lorsque vous préparez votre serveur TSM pour l'intégration au nœud d'archivage d'un système StorageGRID :
+
+* http://www.ibm.com/support/docview.wss?rs=577&uid=ssg1S7002972["Guide d'installation et d'utilisation des pilotes de périphérique de bande IBM"^]
+* http://www.ibm.com/support/docview.wss?rs=577&uid=ssg1S7003032["Référence de programmation des pilotes de périphériques de bande IBM"^]
+

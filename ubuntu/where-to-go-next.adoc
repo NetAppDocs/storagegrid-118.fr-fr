@@ -1,0 +1,45 @@
+---
+permalink: ubuntu/where-to-go-next.html 
+sidebar: sidebar 
+keywords: what to do after ubuntu installation 
+summary: 'Une fois l"installation terminée, effectuez les tâches d"intégration et de configuration requises. Vous pouvez effectuer les tâches facultatives nécessaires.' 
+---
+= Par où aller plus loin
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois l'installation terminée, effectuez les tâches d'intégration et de configuration requises. Vous pouvez effectuer les tâches facultatives nécessaires.
+
+
+
+== Tâches requises
+
+* link:../admin/managing-tenants.html["Créez un compte de locataire"] Pour chaque protocole client (Swift ou S3) qui sera utilisé pour stocker des objets sur votre système StorageGRID.
+* link:../admin/controlling-storagegrid-access.html["Contrôler l'accès au système"] en configurant des groupes et des comptes utilisateur. Si vous le souhaitez, vous pouvez link:../admin/using-identity-federation.html["configurer un référentiel d'identité fédéré"] (Comme Active Directory ou OpenLDAP), vous pouvez importer des groupes et des utilisateurs d'administration. Ou bien, c'est possible link:../admin/managing-users.html#create-a-local-user["créer des groupes et des utilisateurs locaux"].
+* Intégrer et tester le link:../s3/configuring-tenant-accounts-and-connections.html["API S3"] ou link:../swift/configuring-tenant-accounts-and-connections.html["API Swift"] Applications client que vous utiliserez pour télécharger des objets sur votre système StorageGRID.
+* link:../ilm/index.html["Configuration des règles de gestion du cycle de vie des informations (ILM) et de la règle ILM"] utilisez pour protéger les données d'objet.
+* Si votre installation inclut des nœuds de stockage de l'appliance, effectuez les tâches suivantes avec SANtricity OS :
++
+** Connectez-vous à chaque appliance StorageGRID.
+** Vérifiez la réception des données AutoSupport.
++
+Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["Configurer le matériel"^].
+
+
+
+* Examinez et suivez les link:../harden/index.html["Instructions de renforcement du système StorageGRID"] pour éliminer les risques de sécurité.
+* link:../monitor/email-alert-notifications.html["Configurez les notifications par e-mail pour les alertes système"].
+* Si votre système StorageGRID inclut des nœuds d'archivage (obsolètes), configurez la connexion du nœud d'archivage au système de stockage d'archives externe cible.
+
+
+
+
+== Tâches facultatives
+
+* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["Mettre à jour les adresses IP des nœuds de la grille"] S'ils ont changé depuis que vous avez planifié votre déploiement et généré le package de récupération.
+* link:../admin/changing-network-options-object-encryption.html["Configurer le chiffrement du stockage"], si nécessaire.
+* link:../admin/configuring-stored-object-compression.html["Configurer la compression du stockage"] pour réduire la taille des objets stockés, si nécessaire.
+

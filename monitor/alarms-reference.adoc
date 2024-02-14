@@ -1,0 +1,1511 @@
+---
+permalink: monitor/alarms-reference.html 
+sidebar: sidebar 
+keywords: alarms, alarms reference 
+summary: 'Le tableau suivant répertorie toutes les alarmes par défaut héritées. Si une alarme est déclenchée, vous pouvez rechercher le code d"alarme dans ce tableau pour trouver les actions recommandées.' 
+---
+= Référence des alarmes (système hérité)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le tableau suivant répertorie toutes les alarmes par défaut héritées. Si une alarme est déclenchée, vous pouvez rechercher le code d'alarme dans ce tableau pour trouver les actions recommandées.
+
+
+NOTE: Bien que le système d'alarme existant continue d'être pris en charge, le système d'alerte offre des avantages significatifs et est plus facile à utiliser.
+
+[cols="1a,1a,1a,3a"]
+|===
+| Code | Nom | Service | Action recommandée 
+
+
+ a| 
+ABRL
+ a| 
+Relais d'attribut disponibles
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Rétablir la connectivité à un service (un service ADC) exécutant un service de relais d'attribut dès que possible. S'il n'y a pas de relais d'attribut connecté, le nœud de grille ne peut pas signaler les valeurs d'attribut au service NMS. Ainsi, le service NMS ne peut plus surveiller l'état du service ou mettre à jour les attributs du service.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+ACMS
+ a| 
+Services de métadonnées disponibles
+ a| 
+BARC, BLDR, BCMN
+ a| 
+Une alarme se déclenche lorsqu'un service LDR ou ARC perd la connexion à un service DDS. Dans ce cas, les transactions d'ingestion ou de récupération ne peuvent pas être traitées. Si l'indisponibilité des services DDS n'est qu'un bref problème transitoire, les transactions peuvent être retardées.
+
+Vérifiez et restaurez les connexions à un service DDS pour effacer cette alarme et rétablir la fonctionnalité complète du service.
+
+
+
+ a| 
+ACTES
+ a| 
+État du service NetApp Cloud Tiering
+ a| 
+ARC
+ a| 
+Disponible uniquement pour les nœuds d'archivage avec un type de Tiering cloud cible : simple Storage Service (S3).
+
+Si l'attribut ACT pour le nœud d'archivage est défini sur lecture seule activée ou lecture-écriture désactivée, vous devez définir l'attribut sur lecture-écriture activée.
+
+Si une alarme majeure est déclenchée en raison d'un échec de l'authentification, vérifiez les informations d'identification associées au compartiment de destination et mettez à jour les valeurs, si nécessaire.
+
+Si une alarme majeure est déclenchée pour une autre raison, contactez le support technique.
+
+
+
+ a| 
+ADCA
+ a| 
+État ADC
+ a| 
+ADC
+ a| 
+Si une alarme est déclenchée, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *ADC* > *Présentation* > *main* et *ADC* > *alarmes* > *main* pour déterminer la cause de l'alarme.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+ADCE
+ a| 
+État ADC
+ a| 
+ADC
+ a| 
+Si la valeur de l'état ADC est Veille, continuez à surveiller le service et si le problème persiste, contactez l'assistance technique.
+
+Si la valeur de l'état ADC est hors ligne, redémarrez le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+AITE
+ a| 
+État de récupération
+ a| 
+BARC
+ a| 
+Disponible uniquement pour les nœuds d'archivage avec un type cible de Tivoli Storage Manager (TSM).
+
+Si la valeur de Retrieve State est en attente de la cible, vérifiez le serveur middleware TSM et assurez-vous qu'il fonctionne correctement. Si le nœud d'archivage vient d'être ajouté au système StorageGRID, assurez-vous que la connexion du nœud d'archivage au système de stockage d'archives externe cible est correctement configurée.
+
+Si la valeur de l'état de récupération d'archives est hors ligne, essayez de mettre à jour l'état en ligne. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *main*, sélectionnez *Archive Retrieve State* > *Online*, puis cliquez sur *Apply Changes*.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+AITU
+ a| 
+État de récupération
+ a| 
+BARC
+ a| 
+Si la valeur de l'état de récupération est erreur cible, recherchez des erreurs dans le système de stockage d'archives externes ciblé.
+
+Si la valeur de l'état de récupération d'archives est session perdue, vérifiez le système de stockage d'archives externes ciblé pour vous assurer qu'il est en ligne et qu'il fonctionne correctement. Vérifiez la connexion réseau avec la cible.
+
+Si la valeur de l'état de récupération d'archives est erreur inconnue, contactez le support technique.
+
+
+
+ a| 
+ALIS
+ a| 
+Sessions d'attribut entrant
+ a| 
+ADC
+ a| 
+Si le nombre de sessions d'attribut entrantes sur un relais d'attribut augmente trop important, cela peut indiquer que le système StorageGRID est devenu déséquilibré. Dans des conditions normales, les sessions d'attribut doivent être réparties de manière uniforme entre les services ADC. Un déséquilibre peut entraîner des problèmes de performances.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+ALOS
+ a| 
+Sessions d'attribut sortant
+ a| 
+ADC
+ a| 
+Le service ADC a un nombre élevé de sessions d'attribut et est en train de devenir surchargé. Si cette alarme se déclenche, contactez le support technique.
+
+
+
+ a| 
+ALUR
+ a| 
+Référentiels d'attributs inaccessibles
+ a| 
+ADC
+ a| 
+Vérifiez la connectivité réseau avec le service NMS pour vous assurer que le service peut contacter le référentiel d'attributs.
+
+Si cette alarme se déclenche et que la connectivité réseau est correcte, contactez le support technique.
+
+
+
+ a| 
+AMQS
+ a| 
+Messages d'audit en file d'attente
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BDDS
+ a| 
+Si les messages d'audit ne peuvent pas être immédiatement transmis à un relais d'audit ou à un référentiel, ils sont stockés dans une file d'attente de disques. Si la file d'attente des disques est saturée, des pannes peuvent se produire.
+
+Pour vous permettre de répondre dans le temps afin d'éviter une panne, des alarmes AMQS sont déclenchées lorsque le nombre de messages dans la file d'attente du disque atteint les seuils suivants :
+
+* Remarque : plus de 100,000 messages
+* Mineur : au moins 500,000 messages
+* Majeur : au moins 2,000,000 messages
+* Critique : au moins 5,000,000 messages
+
+
+Si une alarme AMQS est déclenchée, vérifiez la charge sur le système --s'il y a eu un nombre important de transactions, l'alarme doit se résoudre au fil du temps. Dans ce cas, vous pouvez ignorer l'alarme.
+
+Si l'alarme persiste et augmente la gravité, affichez un graphique de la taille de la file d'attente. Si ce chiffre augmente régulièrement au fil des heures ou des jours, la charge d'audit a probablement dépassé la capacité d'audit du système. Réduisez le taux de fonctionnement du client ou diminuez le nombre de messages d'audit consignés en changeant le niveau d'audit sur erreur ou Désactivé. Voir link:../monitor/configure-audit-messages.html["Configurez les messages d'audit et les destinations des journaux"].
+
+
+
+ a| 
+AOTE
+ a| 
+État du magasin
+ a| 
+BARC
+ a| 
+Disponible uniquement pour les nœuds d'archivage avec un type cible de Tivoli Storage Manager (TSM).
+
+Si la valeur de l'état du magasin attend la cible, vérifiez le système de stockage d'archives externe et assurez-vous qu'il fonctionne correctement. Si le nœud d'archivage vient d'être ajouté au système StorageGRID, assurez-vous que la connexion du nœud d'archivage au système de stockage d'archives externe cible est correctement configurée.
+
+Si la valeur de l'état du magasin est hors ligne, vérifiez la valeur de l'état du magasin. Corrigez tout problème avant de remettre l'état du magasin en ligne.
+
+
+
+ a| 
+AOTU
+ a| 
+État du magasin
+ a| 
+BARC
+ a| 
+Si la valeur Etat de stockage est session perdue, vérifiez que le système de stockage d'archives externe est connecté et en ligne.
+
+Si la valeur erreur cible est définie, recherchez des erreurs dans le système de stockage d'archives externe.
+
+Si la valeur de l'état du stockage est erreur inconnue, contactez le support technique.
+
+
+
+ a| 
+APMS
+ a| 
+Connectivité multivoie du stockage
+ a| 
+SSM
+ a| 
+Si l'alarme d'état de chemins d'accès multiples apparaît comme « dégradé » (sélectionnez *SUPPORT* > *Tools* > *Grid topology*, puis sélectionnez *_site_* > *_GRID node_* > *SSM* > *Events*), procédez comme suit :
+
+. Branchez ou remplacez le câble qui n'affiche aucun voyant.
+. Attendez une à cinq minutes.
++
+Ne débranchez pas l'autre câble au moins cinq minutes après avoir branché le premier câble. Un débranchement trop précoce peut entraîner la lecture seule du volume racine, ce qui nécessite le redémarrage du matériel.
+
+. Retournez à la page *SSM* > *Resources* et vérifiez que l'état « dégradé » du chemin multiple est passé à « nominal » dans la section Storage Hardware (matériel de stockage).
+
+
+
+
+ a| 
+ARCE
+ a| 
+État DE L'ARC
+ a| 
+ARC
+ a| 
+Le service ARC dispose d'un état de veille jusqu'à ce que tous les composants ARC (réplication, stockage, récupération, cible) aient démarré. Il passe ensuite en ligne.
+
+Si la valeur de l'état ARC ne passe pas du mode Veille au mode en ligne, vérifier l'état des composants ARC.
+
+Si la valeur de l'état ARC est hors ligne, redémarrer le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+AROQ
+ a| 
+Objets mis en file d'attente
+ a| 
+ARC
+ a| 
+Cette alarme peut être déclenchée si le périphérique de stockage amovible fonctionne lentement en raison de problèmes avec le système de stockage d'archives externes ciblé ou si plusieurs erreurs de lecture sont détectées. Vérifiez que le système de stockage d'archives externe ne présente pas d'erreurs et assurez-vous qu'il fonctionne correctement.
+
+Dans certains cas, cette erreur peut survenir en raison d'un taux élevé de demandes de données. Surveillez le nombre d'objets mis en file d'attente lorsque l'activité du système diminue.
+
+
+
+ a| 
+ARRF
+ a| 
+Échecs de demande
+ a| 
+ARC
+ a| 
+Si une récupération à partir du système de stockage d'archives externe cible échoue, le nœud d'archivage retente l'extraction car la défaillance peut être due à un problème transitoire. Cependant, si les données de l'objet sont corrompues ou si elles ont été marquées comme étant définitivement indisponibles, la récupération n'échoue pas. En revanche, le nœud d'archivage tente continuellement la récupération et la valeur des échecs de demande continue d'augmenter.
+
+Cette alarme peut indiquer que le support de stockage contenant les données demandées est corrompu. Vérifiez le système de stockage d'archives externe pour diagnostiquer le problème.
+
+Si vous déterminez que les données d'objet ne sont plus dans l'archive, l'objet devra être supprimé du système StorageGRID. Pour plus d'informations, contactez le support technique.
+
+Une fois le problème qui a déclenché cette alarme résolu, réinitialisez le nombre de défaillances. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *main*, sélectionnez *Réinitialiser le nombre d'échecs de demande* et cliquez sur *appliquer les modifications*.
+
+
+
+ a| 
+ARRV
+ a| 
+Échecs de vérification
+ a| 
+ARC
+ a| 
+Pour diagnostiquer et corriger ce problème, contactez le support technique.
+
+Une fois le problème qui a déclenché cette alarme résolu, réinitialisez le nombre de pannes. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *main*, sélectionnez *Réinitialiser le nombre d'échecs de vérification* et cliquez sur *appliquer les changements*.
+
+
+
+ a| 
+ARVF
+ a| 
+Échecs de stockage
+ a| 
+ARC
+ a| 
+Cette alarme peut survenir en raison d'erreurs avec le système de stockage d'archives externes ciblé. Vérifiez que le système de stockage d'archives externe ne présente pas d'erreurs et assurez-vous qu'il fonctionne correctement.
+
+Une fois le problème qui a déclenché cette alarme résolu, réinitialisez le nombre de défaillances. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *ARC* > *Retrieve* > *Configuration* > *main*, sélectionnez *Réinitialiser le nombre d'échecs de stockage* et cliquez sur *appliquer les changements*.
+
+
+
+ a| 
+ASXP
+ a| 
+Partages d'audit
+ a| 
+AMS
+ a| 
+Une alarme est déclenchée si la valeur des partages d'audit est inconnue. Cette alarme peut indiquer un problème d'installation ou de configuration du nœud d'administration.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+AUMA
+ a| 
+Statut AMS
+ a| 
+AMS
+ a| 
+Si la valeur de l'état AMS est erreur de connectivité DB, redémarrez le nœud de la grille.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+AUME
+ a| 
+État AMS
+ a| 
+AMS
+ a| 
+Si la valeur de l'état AMS est Veille, continuez à surveiller le système StorageGRID. Si le problème persiste, contactez le support technique.
+
+Si la valeur de l'état AMS est hors ligne, redémarrez le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+AUXS
+ a| 
+Audit de l'état d'exportation
+ a| 
+AMS
+ a| 
+Si une alarme se déclenche, corrigez le problème sous-jacent, puis redémarrez le service AMS.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+BADD
+ a| 
+Nombre de disques défaillants du contrôleur de stockage
+ a| 
+SSM
+ a| 
+Cette alarme se déclenche lorsqu'un ou plusieurs disques d'une appliance StorageGRID sont défectueux ou non optimaux. Remplacez les disques si nécessaire.
+
+
+
+ a| 
+BASF
+ a| 
+Identificateurs d'objet disponibles
+ a| 
+CMN
+ a| 
+Lorsqu'un système StorageGRID est provisionné, le service CMN reçoit un nombre fixe d'identifiants d'objets. Cette alarme se déclenche lorsque le système StorageGRID commence à épuiser sa fourniture d'identifiants d'objets.
+
+Pour attribuer davantage d'identifiants, contactez le support technique.
+
+
+
+ a| 
+BASSES
+ a| 
+Identificateur de l'état d'allocation de bloc
+ a| 
+CMN
+ a| 
+Par défaut, une alarme est déclenchée lorsque les identificateurs d'objet ne peuvent pas être attribués car le quorum ADC ne peut pas être atteint.
+
+L'allocation de bloc d'identificateur sur le service CMN requiert un quorum (50 % + 1) des services ADC pour être connectés et en ligne. Si le quorum n'est pas disponible, le service CMN ne peut pas allouer de nouveaux blocs d'identification tant que le quorum ADC n'est pas rétabli. En cas de perte du quorum ADC, il n'y a généralement aucun impact immédiat sur le système StorageGRID (les clients peuvent toujours récupérer et récupérer le contenu), car la quantité d'identifiants d'un mois environ est mise en cache ailleurs dans le réseau ; Cependant, si la condition persiste, le système StorageGRID perdra la possibilité d'ingérer un nouveau contenu.
+
+Si une alarme est déclenchée, recherchez la raison de la perte du quorum ADC (par exemple, il peut s'agir d'une défaillance du réseau ou du nœud de stockage) et prenez des mesures correctives.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+BRDT
+ a| 
+Température du châssis du contrôleur de calcul
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée si la température du contrôleur de calcul d'une appliance StorageGRID dépasse le seuil nominal.
+
+Vérifier si les composants matériels et les problèmes environnementaux sont en surchauffe. Si nécessaire, remplacer l'organe.
+
+
+
+ a| 
+POINT DE FIN
+ a| 
+Décalage
+ a| 
+BADC, BLDR, BNMS, BAMS, BCLB, BCMN, BARC
+ a| 
+Une alarme se déclenche si l'heure d'entretien (secondes) diffère sensiblement de l'heure du système d'exploitation. Dans des conditions normales, le service doit se resynchroniser. Si le temps d'entretien dépasse trop loin du temps du système d'exploitation, le fonctionnement du système peut être affecté. Vérifiez que la source de temps du système StorageGRID est correcte.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+BTSE
+ a| 
+État de l'horloge
+ a| 
+BADC, BLDR, BNMS, BAMS, BCLB, BCMN, BARC
+ a| 
+Une alarme se déclenche si l'heure du service n'est pas synchronisée avec l'heure suivie par le système d'exploitation. Dans des conditions normales, le service doit se resynchroniser. Si le temps dérive trop loin du temps du système d'exploitation, le fonctionnement du système peut être affecté. Vérifiez que la source de temps du système StorageGRID est correcte.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+CAHP
+ a| 
+Pourcentage d'utilisation du tas Java
+ a| 
+DDS
+ a| 
+Une alarme se déclenche si Java ne parvient pas à effectuer la collecte des déchets à un rythme qui permet au système de disposer d'un espace suffisant pour fonctionner correctement. Une alarme peut indiquer une charge de travail d'utilisateur dépassant les ressources disponibles sur le système pour le magasin de métadonnées DDS. Vérifiez l'activité ILM dans le tableau de bord ou sélectionnez *SUPPORT* > *Outils* > *topologie de grille*, puis sélectionnez *_site_* > *_GRID node_* > *DDS* > *Resources* > *Overview* > *main*.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+CASA
+ a| 
+État de la banque de données
+ a| 
+DDS
+ a| 
+Une alarme est déclenchée si le magasin de métadonnées Cassandra n'est plus disponible.
+
+Vérifier l'état de Cassandra :
+
+. Sur le nœud de stockage, connectez-vous en tant qu'administrateur et `su` Pour s'identifier à l'aide du mot de passe indiqué dans le fichier Passwords.txt.
+. Entrez : `service cassandra status`
+. Si Cassandra n'est pas en cours d'exécution, redémarrez-le : `service cassandra restart`
+
+
+Cette alarme peut également indiquer que le magasin de métadonnées (base de données Cassandra) pour un nœud de stockage nécessite une reconstruction.
+
+Reportez-vous aux informations relatives au dépannage de l'alarme Services : état - Cassandra (SVST) dans link:../troubleshoot/troubleshooting-metadata-issues.html["Diagnostiquez les problèmes liés aux métadonnées"].
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+CASSE
+ a| 
+État du magasin de données
+ a| 
+DDS
+ a| 
+Cette alarme est déclenchée lors de l'installation ou de l'extension pour indiquer qu'un nouveau magasin de données rejoint la grille.
+
+
+
+ a| 
+CCNE
+ a| 
+Matériel de calcul
+ a| 
+SSM
+ a| 
+Cette alarme est déclenchée si l'état du matériel du contrôleur de calcul d'une appliance StorageGRID nécessite une intervention.
+
+
+
+ a| 
+CDLP
+ a| 
+Espace utilisé pour les métadonnées (en %)
+ a| 
+DDS
+ a| 
+Cette alarme se déclenche lorsque l'espace effectif des métadonnées (CEMS) atteint 70 % (alarme mineure), 90 % (alarme majeure) et 100 % (alarme critique).
+
+Si cette alarme atteint le seuil de 90 %, un avertissement apparaît sur le tableau de bord dans le Gestionnaire de grille. Vous devez effectuer une procédure d'extension pour ajouter de nouveaux nœuds de stockage dès que possible. Voir link:../expand/index.html["Développez une grille"].
+
+Si cette alarme atteint le seuil de 100 %, vous devez arrêter d'ingérer immédiatement des objets et ajouter des nœuds de stockage. Cassandra exige un certain espace pour effectuer les opérations essentielles telles que le compactage et la réparation. Ces opérations seront affectées si les métadonnées de l'objet utilisent plus de 100 % de l'espace autorisé. Des résultats indésirables peuvent survenir.
+
+*Remarque* : contactez le support technique si vous ne pouvez pas ajouter de nœuds de stockage.
+
+Une fois que de nouveaux nœuds de stockage sont ajoutés, le système rééquilibre automatiquement les métadonnées d'objet sur tous les nœuds de stockage, et l'alarme est supprimée.
+
+Consultez également les informations relatives au dépannage de l'alerte de stockage de métadonnées faible dans link:../troubleshoot/troubleshooting-metadata-issues.html["Diagnostiquez les problèmes liés aux métadonnées"].
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+CMNA
+ a| 
+État CMN
+ a| 
+CMN
+ a| 
+Si la valeur de l'état CMN est erreur, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*, puis sélectionnez *_site_* > *_grid node_* > *CMN* > *Présentation* > *main* et *CMN* > *alarmes* > *main* pour déterminer la cause de l'erreur et résoudre le problème.
+
+Une alarme est déclenchée et la valeur de l'état CMN est pas de CMN en ligne lors d'une actualisation matérielle du nœud d'administration principal lorsque les CMN sont commutés (la valeur de l'ancien état CMN est en attente et la nouvelle est en ligne).
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+CPRC
+ a| 
+Capacité restante
+ a| 
+NMS
+ a| 
+Une alarme se déclenche si la capacité restante (nombre de connexions disponibles pouvant être ouvertes à la base de données NMS) est inférieure à la gravité configurée pour l'alarme.
+
+Si une alarme est déclenchée, contactez le support technique.
+
+
+
+ a| 
+CPSA
+ a| 
+Alimentation a du contrôleur de calcul
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée en cas de problème au niveau de l'alimentation A du contrôleur de calcul d'une appliance StorageGRID.
+
+Si nécessaire, remplacer l'organe.
+
+
+
+ a| 
+CPSB
+ a| 
+Alimentation B du contrôleur de calcul
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée en cas de problème au niveau de l'alimentation B du contrôleur de calcul d'une appliance StorageGRID.
+
+Si nécessaire, remplacer l'organe.
+
+
+
+ a| 
+CPUT
+ a| 
+Température du processeur du contrôleur de calcul
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée si la température du CPU du contrôleur de calcul d'une appliance StorageGRID dépasse le seuil nominal.
+
+Si le nœud de stockage est une appliance StorageGRID, le système StorageGRID indique que le contrôleur nécessite une intervention.
+
+Vérifier si les composants matériels et les problèmes d'environnement sont en surchauffe. Si nécessaire, remplacer l'organe.
+
+
+
+ a| 
+DNST
+ a| 
+État DNS
+ a| 
+SSM
+ a| 
+Une fois l'installation terminée, une alarme DNST est déclenchée dans le service SSM. Une fois que le DNS est configuré et que les nouvelles informations de serveur atteignent tous les nœuds de la grille, l'alarme est annulée.
+
+
+
+ a| 
+ECCD
+ a| 
+Fragments corrompus détectés
+ a| 
+LDR
+ a| 
+Une alarme est déclenchée lorsque le processus de vérification en arrière-plan détecte un fragment de code d'effacement corrompu. Si un fragment corrompu est détecté, une tentative de reconstruction du fragment est effectuée. Réinitialisez les fragments corrompus détectés et copie les attributs perdus à zéro et surveillez-les pour voir si les comptages sont à nouveau affichés. Si le nombre augmente, le stockage sous-jacent du nœud de stockage peut être problématique. Une copie des données d'objet avec code d'effacement n'est pas considérée comme manquante tant que le nombre de fragments perdus ou corrompus ne respecte pas la tolérance de panne du code d'effacement. Par conséquent, il est possible d'avoir un fragment corrompu et de pouvoir récupérer l'objet.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+ECST
+ a| 
+État de vérification
+ a| 
+LDR
+ a| 
+Cette alarme indique l'état actuel du processus de vérification en arrière-plan des données d'objet avec code d'effacement sur ce nœud de stockage.
+
+Une alarme majeure est déclenchée en cas d'erreur dans le processus de vérification en arrière-plan.
+
+
+
+ a| 
+FONPN
+ a| 
+Ouvrez les descripteurs de fichier
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Le FOPN peut devenir grand pendant l'activité de pointe. S'il ne diminue pas pendant des périodes de ralentissement d'activité, contacter le support technique.
+
+
+
+ a| 
+HSTE
+ a| 
+État HTTP
+ a| 
+BLDR
+ a| 
+Voir les actions recommandées pour HSTU.
+
+
+
+ a| 
+HSTU
+ a| 
+Statut HTTP
+ a| 
+BLDR
+ a| 
+HSTE et HSTU sont liés au protocole HTTP pour tout le trafic LDR, y compris S3, Swift et autres trafics StorageGRID internes. Une alarme indique que l'une des situations suivantes s'est produite :
+
+* HTTP a été mis hors ligne manuellement.
+* L'attribut HTTP de démarrage automatique a été désactivé.
+* Le service LDR est en cours de fermeture.
+
+
+L'attribut Auto-Start HTTP est activé par défaut. Si ce paramètre est modifié, HTTP peut rester hors ligne après un redémarrage.
+
+Si nécessaire, attendez que le service LDR redémarre.
+
+Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_Storage Node_* > *LDR* > *Configuration*. Si HTTP est hors ligne, mettez-le en ligne. Vérifiez que l'attribut Auto-Start HTTP est activé.
+
+Si HTTP reste hors ligne, contactez le support technique.
+
+
+
+ a| 
+HTA
+ a| 
+Démarrage automatique HTTP
+ a| 
+LDR
+ a| 
+Spécifie si les services HTTP doivent démarrer automatiquement au démarrage. Il s'agit d'une option de configuration spécifiée par l'utilisateur.
+
+
+
+ a| 
+IRSU
+ a| 
+État de la réplication entrante
+ a| 
+BLDR, BARC
+ a| 
+Une alarme indique que la réplication entrante a été désactivée. Confirmer les paramètres de configuration : sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuration* > *main*.
+
+
+
+ a| 
+LATA
+ a| 
+Latence moyenne
+ a| 
+NMS
+ a| 
+Vérifiez les problèmes de connectivité.
+
+Vérifiez l'activité du système pour confirmer qu'il y a une augmentation de l'activité du système. Une augmentation de l'activité système entraînera une augmentation de l'activité des données d'attribut. Cette augmentation de l'activité entraînera un retard dans le traitement des données d'attribut. Il peut s'agir d'une activité normale du système et se subside.
+
+Rechercher des alarmes multiples. Une augmentation des temps de latence moyens peut être indiquée par un nombre excessif d'alarmes déclenchées.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+LDRE
+ a| 
+Etat LDR
+ a| 
+LDR
+ a| 
+Si la valeur de l'Etat LDR est en attente, continuez à suivre la situation et si le problème persiste, contactez l'assistance technique.
+
+Si la valeur de LDR State est hors ligne, redémarrez le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+PERDU
+ a| 
+Objets perdus
+ a| 
+DDS, LDR
+ a| 
+Déclenché lorsque le système StorageGRID ne parvient pas à extraire une copie de l'objet demandé à partir de n'importe quel emplacement du système. Avant le déclenchement d'une alarme PERDUE (objets perdus), le système tente de récupérer et de remplacer un objet manquant ailleurs dans le système.
+
+Les objets perdus représentent une perte de données. L'attribut objets perdus est incrémenté chaque fois que le nombre d'emplacements d'un objet passe à zéro sans que le service DDS purge automatiquement le contenu pour satisfaire la stratégie ILM.
+
+Rechercher immédiatement les alarmes PERDUES (objets PERDUS). Si le problème persiste, contactez le support technique.
+
+link:../troubleshoot/troubleshooting-lost-and-missing-object-data.html["Dépanner les données d'objet perdues ou manquantes"]
+
+
+
+ a| 
+MCEP
+ a| 
+Expiration du certificat de l'interface de gestion
+ a| 
+CMN
+ a| 
+Déclenché lorsque le certificat utilisé pour accéder à l'interface de gestion est sur le point d'expirer.
+
+. Dans Grid Manager, sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Dans l'onglet *Global*, sélectionnez *Management interface certificate*.
+. link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["Télécharger un nouveau certificat d'interface de gestion."]
+
+
+
+
+ a| 
+MINQ
+ a| 
+Notifications par e-mail en file d'attente
+ a| 
+NMS
+ a| 
+Vérifiez les connexions réseau des serveurs hébergeant le service NMS et le serveur de messagerie externe. Vérifiez également que la configuration du serveur de messagerie est correcte.
+
+link:managing-alarms.html["Configuration des paramètres du serveur de messagerie pour les alarmes (système hérité)"]
+
+
+
+ a| 
+MINUTES
+ a| 
+Statut des notifications par e-mail
+ a| 
+BNMS
+ a| 
+Une alarme mineure se déclenche si le service NMS ne parvient pas à se connecter au serveur de messagerie. Vérifiez les connexions réseau des serveurs hébergeant le service NMS et le serveur de messagerie externe. Vérifiez également que la configuration du serveur de messagerie est correcte.
+
+link:managing-alarms.html["Configuration des paramètres du serveur de messagerie pour les alarmes (système hérité)"]
+
+
+
+ a| 
+MLLE
+ a| 
+État du moteur d'interface NMS
+ a| 
+BNMS
+ a| 
+Une alarme se déclenche si le moteur d'interface NMS du nœud d'administration qui collecte et génère du contenu d'interface est déconnecté du système. Cochez Server Manager pour déterminer si l'application individuelle du serveur est en panne.
+
+
+
+ a| 
+NANG
+ a| 
+Paramètre de négociation automatique du réseau
+ a| 
+SSM
+ a| 
+Vérifiez la configuration de la carte réseau. Le paramètre doit correspondre aux préférences de vos routeurs et commutateurs réseau.
+
+Un réglage incorrect peut avoir un impact important sur les performances du système.
+
+
+
+ a| 
+NUP
+ a| 
+Paramètre duplex réseau
+ a| 
+SSM
+ a| 
+Vérifiez la configuration de la carte réseau. Le paramètre doit correspondre aux préférences de vos routeurs et commutateurs réseau.
+
+Un réglage incorrect peut avoir un impact important sur les performances du système.
+
+
+
+ a| 
+NLNK
+ a| 
+Détection de la liaison réseau
+ a| 
+SSM
+ a| 
+Vérifiez les connexions des câbles réseau sur le port et au niveau du commutateur.
+
+Vérifiez les configurations du routeur, du commutateur et de la carte réseau.
+
+Redémarrez le serveur.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+NRER
+ a| 
+Erreurs de réception
+ a| 
+SSM
+ a| 
+Les causes suivantes peuvent être des alarmes NRER :
+
+* Correction d'erreur de marche avant (FEC) non compatible
+* Le port du commutateur et la MTU de la carte réseau ne correspondent pas
+* Taux d'erreur de liaison élevés
+* Dépassement de la mémoire tampon de la sonnerie NIC
+
+
+Voir les informations sur le dépannage de l'alarme d'erreur de réception réseau (NRER) dans link:../troubleshoot/troubleshooting-network-hardware-and-platform-issues.html["Résolution des problèmes de réseau, de matériel et de plateforme"].
+
+
+
+ a| 
+NRLY
+ a| 
+Relais d'audit disponibles
+ a| 
+BADC, BARC, BCLB, BCMN, BLDR, BNMS, BDDS
+ a| 
+Si les relais d'audit ne sont pas connectés aux services ADC, les événements d'audit ne peuvent pas être signalés. Elles sont mises en file d'attente et indisponibles aux utilisateurs jusqu'à ce que la connexion soit restaurée.
+
+Rétablir la connectivité avec un service ADC dès que possible.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+NSCA
+ a| 
+Etat NMS
+ a| 
+NMS
+ a| 
+Si la valeur de NMS Status est DB Connectivity Error, redémarrez le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+NSCE
+ a| 
+Etat NMS
+ a| 
+NMS
+ a| 
+Si la valeur de l'état NMS est Veille, continuez à surveiller et si le problème persiste, contactez le support technique.
+
+Si la valeur de l'état NMS est hors ligne, redémarrez le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+NSPD
+ a| 
+Vitesse
+ a| 
+SSM
+ a| 
+Cela peut être dû à des problèmes de connectivité réseau ou de compatibilité des pilotes. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+NTBR
+ a| 
+Espace libre
+ a| 
+NMS
+ a| 
+Si une alarme est déclenchée, vérifiez la rapidité d'utilisation de la base de données. Une chute soudaine (par opposition à un changement progressif dans le temps) indique une condition d'erreur. Si le problème persiste, contactez le support technique.
+
+Le réglage du seuil d'alarme vous permet de gérer de manière proactive les besoins de stockage supplémentaire.
+
+Si l'espace disponible atteint un seuil bas (voir seuil d'alarme), contactez le support technique pour modifier l'allocation de la base de données.
+
+
+
+ a| 
+NTRE
+ a| 
+Erreurs de transmission
+ a| 
+SSM
+ a| 
+Ces erreurs peuvent être résolues sans être réinitialisées manuellement. S'ils ne s'effacent pas, vérifiez le matériel réseau. Vérifiez que le matériel et le pilote de la carte sont correctement installés et configurés pour fonctionner avec vos routeurs et commutateurs réseau.
+
+Une fois le problème sous-jacent résolu, réinitialiser le compteur. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *SSM* > *Resources* > *Configuration* > *main*, sélectionnez *Réinitialiser le nombre d'erreurs de transmission* et cliquez sur *appliquer les modifications*.
+
+
+
+ a| 
+NTFQ
+ a| 
+Décalage de fréquence NTP
+ a| 
+SSM
+ a| 
+Si le décalage de fréquence dépasse le seuil configuré, il y a probablement un problème matériel avec l'horloge locale. Si le problème persiste, contactez l'assistance technique pour organiser un remplacement.
+
+
+
+ a| 
+NTPL
+ a| 
+Verrouillage NTP
+ a| 
+SSM
+ a| 
+Si le démon NTP n'est pas verrouillé sur une source de temps externe, vérifiez la connectivité réseau aux sources de temps externes désignées, leur disponibilité et leur stabilité.
+
+
+
+ a| 
+NTOF
+ a| 
+Décalage horaire NTP
+ a| 
+SSM
+ a| 
+Si le décalage dépasse le seuil configuré, il y a probablement un problème matériel avec l'oscillateur de l'horloge locale. Si le problème persiste, contactez l'assistance technique pour organiser un remplacement.
+
+
+
+ a| 
+NTSJ
+ a| 
+Jitter de la source horaire choisie
+ a| 
+SSM
+ a| 
+Cette valeur indique la fiabilité et la stabilité de la source de temps que NTP sur le serveur local utilise comme référence.
+
+Si une alarme est déclenchée, cela peut indiquer que l'oscillateur de la source de temps est défectueux ou qu'il y a un problème avec la liaison WAN à la source de temps.
+
+
+
+ a| 
+NTSU
+ a| 
+État NTP
+ a| 
+SSM
+ a| 
+Si la valeur de l'état NTP n'est pas en cours d'exécution, contactez le support technique.
+
+
+
+ a| 
+OPST
+ a| 
+État général de l'alimentation
+ a| 
+SSM
+ a| 
+Une alarme se déclenche si l'alimentation d'un appareil StorageGRID diffère de la tension de fonctionnement recommandée.
+
+Vérifier l'état du bloc d'alimentation A ou B pour déterminer quelle alimentation fonctionne normalement.
+
+Si nécessaire remplacer l'alimentation.
+
+
+
+ a| 
+OQRT
+ a| 
+Objets en quarantaine
+ a| 
+LDR
+ a| 
+Une fois les objets restaurés automatiquement par le système StorageGRID, les objets mis en quarantaine peuvent être supprimés du répertoire de quarantaine.
+
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *site* > *Storage Node* > *LDR* > *Verification* > *Configuration* > *main*.
+. Sélectionnez *Supprimer les objets en quarantaine*.
+. Cliquez sur *appliquer les modifications*.
+
+
+Les objets mis en quarantaine sont supprimés et le nombre est remis à zéro.
+
+
+
+ a| 
+ORSU
+ a| 
+État de la réplication sortante
+ a| 
+BLDR, BARC
+ a| 
+Une alarme indique que la réplication sortante n'est pas possible : le stockage est dans un état où les objets ne peuvent pas être récupérés. Une alarme se déclenche si la réplication sortante est désactivée manuellement. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuration*.
+
+Une alarme est déclenchée si le service LDR n'est pas disponible pour la réplication. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *LDR* > *Storage*.
+
+
+
+ a| 
+SLF
+ a| 
+État du tiroir
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée si l'état de l'un des composants du tiroir de stockage d'une appliance de stockage est dégradé. Les composants des tiroirs de stockage incluent les IOM, les ventilateurs, les alimentations et les tiroirs disques.si cette alarme se déclenche, consultez les instructions de maintenance de votre appliance.
+
+
+
+ a| 
+PMEM
+ a| 
+Utilisation de la mémoire de service (pourcentage)
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Peut avoir une valeur supérieure à y% RAM, où y représente le pourcentage de mémoire utilisé par le serveur.
+
+Les chiffres inférieurs à 80 % sont normaux. Plus de 90 % sont considérés comme un problème.
+
+Si l'utilisation de la mémoire est élevée pour un seul service, surveillez la situation et recherchez.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+PSAS
+ a| 
+État de l'alimentation Électrique A
+ a| 
+SSM
+ a| 
+Une alarme se déclenche si l'alimentation A d'un appareil StorageGRID diffère de la tension de fonctionnement recommandée.
+
+Si nécessaire remplacer l'alimentation A.
+
+
+
+ a| 
+PSB
+ a| 
+État de l'alimentation B
+ a| 
+SSM
+ a| 
+Une alarme se déclenche si l'alimentation B d'un appareil StorageGRID diffère de la tension de fonctionnement recommandée.
+
+Si nécessaire remplacer l'alimentation B.
+
+
+
+ a| 
+RTTD
+ a| 
+État de Tivoli Storage Manager
+ a| 
+BARC
+ a| 
+Disponible uniquement pour les nœuds d'archivage avec un type cible de Tivoli Storage Manager (TSM).
+
+Si la valeur de l'état Tivoli Storage Manager est hors ligne, vérifiez l'état de Tivoli Storage Manager et résolvez les problèmes éventuels.
+
+Remettre le composant en ligne. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *ARC* > *cible* > *Configuration* > *main*, sélectionnez *Tivoli Storage Manager State* > *Online*, puis cliquez sur *appliquer les modifications*.
+
+
+
+ a| 
+RTU
+ a| 
+Statut de Tivoli Storage Manager
+ a| 
+BARC
+ a| 
+Disponible uniquement pour les nœuds d'archivage avec un type cible de Tivoli Storage Manager (TSM).
+
+Si la valeur de l'état de Tivoli Storage Manager est erreur de configuration et que le nœud d'archivage vient d'être ajouté au système StorageGRID, assurez-vous que le serveur middleware TSM est correctement configuré.
+
+Si la valeur de l'état de Tivoli Storage Manager est échec de la connexion ou échec de la connexion, essayez de nouveau, vérifiez la configuration réseau sur le serveur middleware TSM et la connexion réseau entre le serveur middleware TSM et le système StorageGRID.
+
+Si la valeur de l'état de Tivoli Storage Manager est échec de l'authentification, ou échec de l'authentification, reconnexion, le système StorageGRID peut se connecter au serveur middleware TSM, mais ne peut pas authentifier la connexion. Vérifiez que le serveur middleware TSM est configuré avec l'utilisateur, le mot de passe et les autorisations appropriés, puis redémarrez le service.
+
+Si la valeur de Tivoli Storage Manager Status est session Failure (échec de session), une session établie a été perdue de manière inattendue. Vérifiez la connexion réseau entre le serveur middleware TSM et le système StorageGRID. Vérifiez que le serveur middleware ne comporte pas d'erreurs.
+
+Si la valeur de l'état de Tivoli Storage Manager est erreur inconnue, contactez l'assistance technique.
+
+
+
+ a| 
+RRF
+ a| 
+Réplications entrantes -- échec
+ a| 
+BLDR, BARC
+ a| 
+Une alarme de répétition entrante -- une alarme de défaillance peut se produire pendant des périodes de charge élevée ou de perturbations temporaires du réseau. Une fois l'activité du système réduite, cette alarme doit être déclenchée. Si le nombre de réplications ayant échoué continue à augmenter, recherchez des problèmes réseau et vérifiez que les services LDR et ARC source et destination sont en ligne et disponibles.
+
+Pour réinitialiser le nombre, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*, puis sélectionnez *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuration* > *main*. Sélectionnez *Réinitialiser le nombre d'échecs de réplication entrants*, puis cliquez sur *appliquer les modifications*.
+
+
+
+ a| 
+RIRQ
+ a| 
+Réplications entrantes -- en file d'attente
+ a| 
+BLDR, BARC
+ a| 
+Des alarmes peuvent se produire en cas de charge élevée ou d'interruption temporaire du réseau. Une fois l'activité du système réduite, cette alarme doit être déclenchée. Si le nombre de réplications en file d'attente continue à augmenter, recherchez des problèmes réseau et vérifiez que les services LDR et ARC source et destination sont en ligne et disponibles.
+
+
+
+ a| 
+RORQ
+ a| 
+Réplications sortantes -- en file d'attente
+ a| 
+BLDR, BARC
+ a| 
+La file d'attente de réplication sortante contient des données d'objet copiées afin de satisfaire les règles ILM et les objets requis par les clients.
+
+Une alarme peut se produire suite à une surcharge du système. Attendez que l'alarme s'efface lorsque l'activité du système diminue. Si l'alarme se répète, ajoutez de la capacité en ajoutant des nœuds de stockage.
+
+
+
+ a| 
+VICE-PRÉSIDENT SAVP
+ a| 
+Espace utilisable total (pourcentage)
+ a| 
+LDR
+ a| 
+Si l'espace utilisable atteint un seuil minimal, options incluent l'extension du système StorageGRID ou le déplacement des données d'objet vers l'archivage via un nœud d'archivage.
+
+
+
+ a| 
+SCA
+ a| 
+État
+ a| 
+CMN
+ a| 
+Si la valeur Etat de la tâche de grille active est erreur, recherchez le message de tâche de grille. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *CMN* > *Grid Tasks* > *Overview* > *main*. Le message de tâche de grille affiche des informations sur l'erreur (par exemple, « échec de la vérification sur le nœud 12130011 »).
+
+Après avoir examiné et corrigé le problème, redémarrez la tâche de grille. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *CMN* > *Grid Tasks* > *Configuration* > *main* et sélectionnez *actions* > *Exécuter*.
+
+Si la valeur Etat d'une tâche de grille en cours d'arrêt est erreur, réessayez de mettre fin à la tâche de grille.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SCEP
+ a| 
+Expiration du certificat des terminaux du service d'API de stockage
+ a| 
+CMN
+ a| 
+Déclenché lorsque le certificat utilisé pour accéder aux terminaux de l'API de stockage arrive à expiration.
+
+. Sélectionnez *CONFIGURATION* > *sécurité* > *certificats*.
+. Dans l'onglet *Global*, sélectionnez *S3 et certificat API Swift*.
+. link:../admin/configuring-custom-server-certificate-for-storage-node.html#add-a-custom-s3-and-swift-api-certificate["Téléchargez un nouveau certificat API S3 et Swift."]
+
+
+
+
+ a| 
+SCHR
+ a| 
+État
+ a| 
+CMN
+ a| 
+Si la valeur Etat de la tâche de grille historique est abandonnée, recherchez la raison et exécutez à nouveau la tâche si nécessaire.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SCSA
+ a| 
+Contrôleur de stockage A
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée en cas de problème au niveau du contrôleur de stockage A dans une appliance StorageGRID.
+
+Si nécessaire, remplacer l'organe.
+
+
+
+ a| 
+SCSB
+ a| 
+Contrôleur de stockage B
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée en cas de problème au niveau du contrôleur de stockage B dans une appliance StorageGRID.
+
+Si nécessaire, remplacer l'organe.
+
+Certains modèles d'appliance ne disposent pas de contrôleur de stockage B.
+
+
+
+ a| 
+SHLH
+ a| 
+Santé
+ a| 
+LDR
+ a| 
+Si la valeur de l'option Santé d'un magasin d'objets est erreur, vérifiez et corrigez :
+
+* problèmes avec le volume monté
+* erreurs du système de fichiers
+
+
+
+
+ a| 
+SLSA
+ a| 
+Moyenne de charge CPU
+ a| 
+SSM
+ a| 
+Plus la valeur est élevée, plus le système est occupé.
+
+Si la moyenne de charge CPU persiste à une valeur élevée, le nombre de transactions dans le système doit être examiné afin de déterminer si cela est dû à une charge importante à ce moment-là. Afficher un graphique de la moyenne de charge de la CPU : sélectionnez *SUPPORT* > *Outils* > *topologie de la grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *SSM* > *Ressources* > *Rapports* > *graphiques*.
+
+Si la charge du système n'est pas importante et que le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SMST
+ a| 
+Etat du moniteur de journal
+ a| 
+SSM
+ a| 
+Si la valeur de l'état de surveillance du journal n'est pas connectée pendant une période prolongée, contactez le support technique.
+
+
+
+ a| 
+SMTT
+ a| 
+Nombre total d'événements
+ a| 
+SSM
+ a| 
+Si la valeur du total des événements est supérieure à zéro, vérifiez s'il existe des événements connus (tels que des défaillances réseau) pouvant en être la cause. Sauf si ces erreurs ont été effacées (c'est-à-dire que le nombre a été remis à 0), les alarmes Total Events peuvent être déclenchées.
+
+Lorsqu'un problème est résolu, réinitialisez le compteur pour effacer l'alarme. Sélectionnez *NODES* > *_site_* > *_grid node_* > *Events* > *Reset Event counts*.
+
+
+NOTE: Pour réinitialiser le nombre d'événements, vous devez disposer de l'autorisation de configuration de la page de topologie de la grille.
+
+Si la valeur de Total Events est égale à zéro ou si le nombre augmente et que le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SNST
+ a| 
+État
+ a| 
+CMN
+ a| 
+Une alarme indique qu'il y a un problème de stockage des lots de tâches de la grille. Si la valeur de l'état est erreur de point de contrôle ou si le quorum n'est pas atteint, confirmez qu'une majorité des services ADC sont connectés au système StorageGRID (50 % plus un) et patientez quelques minutes.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SOSS
+ a| 
+État du système d'exploitation de stockage
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée si SANtricity OS indique qu'un composant d'une appliance StorageGRID présente un problème de type « nécessite une intervention ».
+
+Sélectionnez *NOEUDS*. Sélectionnez ensuite *appliance Storage Node* > *Hardware*. Faites défiler vers le bas pour afficher l'état de chaque composant. Dans SANtricity OS, vérifiez les autres composants de l'appliance pour isoler le problème.
+
+
+
+ a| 
+SSMA
+ a| 
+État SSM
+ a| 
+SSM
+ a| 
+Si la valeur État SSM est erreur, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*, puis sélectionnez *_site_* > *_grid node_* > *SSM* > *Présentation* > *main* et *SSM* > *Présentation* > *Survol* > *alarmes* pour déterminer la cause de l'alarme.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SSME
+ a| 
+État SSM
+ a| 
+SSM
+ a| 
+Si la valeur de l'état SSM est Veille, continuez à surveiller et si le problème persiste, contactez le support technique.
+
+Si la valeur de l'état SSM est hors ligne, redémarrez le service. Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+SST
+ a| 
+État du stockage
+ a| 
+BLDR
+ a| 
+Si la valeur de l'état de stockage est insuffisant espace utilisable, il n'y a plus de stockage disponible sur le nœud de stockage et les ingoses de données sont redirigées vers un autre nœud de stockage disponible. Les demandes de récupération peuvent continuer à être fournies à partir de ce nœud de grille.
+
+Un stockage supplémentaire doit être ajouté. Elle n'a aucun impact sur les fonctionnalités de l'utilisateur final, mais l'alarme persiste tant que du stockage supplémentaire n'est pas ajouté.
+
+Si la valeur de l'état du stockage est Volume(s) indisponible(s), une partie du stockage est indisponible. Le stockage et la récupération de ces volumes ne sont pas possibles. Pour plus d'informations, sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *LDR* > *Storage* > *Présentation* > *main*. L'état de santé du volume est répertorié sous magasins d'objets.
+
+Si la valeur de l'état de stockage est erreur, contactez le support technique.
+
+link:../troubleshoot/troubleshooting-storage-status-alarm.html["Dépanner l'alarme Storage Status (SSTS)"]
+
+
+
+ a| 
+VST
+ a| 
+État
+ a| 
+SSM
+ a| 
+Cette alarme s'efface lorsque d'autres alarmes liées à un service non opérationnel sont résolues. Suivez les alarmes de service source pour rétablir le fonctionnement.
+
+Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *SSM* > *Services* > *Présentation* > *main*. Lorsque l'état d'un service est indiqué comme non en cours d'exécution, son état est désactivé d'un point de vue administratif. L'état du service peut être indiqué comme étant en cours d'exécution pour les raisons suivantes :
+
+* Le service a été arrêté manuellement (`/etc/init.d/<service\> stop`).
+* Il y a un problème avec la base de données MySQL et Server Manager arrête le service MI.
+* Un nœud de grille a été ajouté, mais pas démarré.
+* Pendant l'installation, un nœud de grille n'est pas encore connecté au nœud d'administration.
+
+
+Si un service n'est pas en cours d'exécution, redémarrez-le (`/etc/init.d/<service\> restart`).
+
+Cette alarme peut également indiquer que le magasin de métadonnées (base de données Cassandra) pour un nœud de stockage nécessite une reconstruction.
+
+Si le problème persiste, contactez le support technique.
+
+link:../troubleshoot/troubleshooting-metadata-issues.html["Dépanner l'alarme Services : Status - Cassandra (SVST)"]
+
+
+
+ a| 
+TMEM
+ a| 
+Mémoire installée
+ a| 
+SSM
+ a| 
+Les nœuds exécutés avec moins de 24 Gio de mémoire installée peuvent entraîner des problèmes de performances et l'instabilité du système. La quantité de mémoire installée sur le système doit être augmentée à au moins 24 Gio.
+
+
+
+ a| 
+TPOP
+ a| 
+Opérations en attente
+ a| 
+ADC
+ a| 
+Une file d'attente de messages peut indiquer que le service ADC est surchargé. Trop peu de services ADC peuvent être connectés au système StorageGRID. Dans un déploiement important, le service ADC peut nécessiter l'ajout de ressources de calcul, ou le système peut nécessiter des services ADC supplémentaires.
+
+
+
+ a| 
+UMEM
+ a| 
+Mémoire disponible
+ a| 
+SSM
+ a| 
+Si la RAM disponible est faible, déterminez s'il s'agit d'un problème matériel ou logiciel. S'il ne s'agit pas d'un problème matériel ou si la mémoire disponible est inférieure à 50 Mo (seuil d'alarme par défaut), contactez le support technique.
+
+
+
+ a| 
+VMFI
+ a| 
+Entrées disponibles
+ a| 
+SSM
+ a| 
+Cela indique que du stockage supplémentaire est nécessaire. Contactez l'assistance technique.
+
+
+
+ a| 
+VMFR
+ a| 
+Espace disponible
+ a| 
+SSM
+ a| 
+Si la valeur de l'espace disponible est trop faible (voir seuils d'alarme), il faut examiner si des fichiers journaux ne sont pas proportionnels ou si des objets prennent trop d'espace disque (voir seuils d'alarme) qui doivent être réduits ou supprimés.
+
+Si le problème persiste, contactez le support technique.
+
+
+
+ a| 
+VMST
+ a| 
+État
+ a| 
+SSM
+ a| 
+Une alarme est déclenchée si la valeur État du volume monté est Inconnu. Une valeur Inconnu ou Offline peut indiquer que le volume ne peut pas être monté ou accessible en raison d'un problème avec le périphérique de stockage sous-jacent.
+
+
+
+ a| 
+VPRI
+ a| 
+Priorité de vérification
+ a| 
+BLDR, BARC
+ a| 
+Par défaut, la valeur de la priorité de vérification est adaptative. Si la priorité de vérification est définie sur élevée, une alarme est déclenchée car la vérification du stockage peut ralentir le fonctionnement normal du service.
+
+
+
+ a| 
+VSTU
+ a| 
+État de vérification de l'objet
+ a| 
+BLDR
+ a| 
+Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*. Sélectionnez ensuite *_site_* > *_grid node_* > *LDR* > *Storage* > *Présentation* > *main*.
+
+Vérifiez si le système d'exploitation ne présente aucun signe d'erreur de périphérique de bloc ou de système de fichiers.
+
+Si la valeur de l'état de vérification de l'objet est erreur inconnue, elle indique généralement un problème matériel ou système de fichiers de bas niveau (erreur d'E/S) qui empêche la tâche de vérification du stockage d'accéder au contenu stocké. Contactez l'assistance technique.
+
+
+
+ a| 
+XAMS
+ a| 
+Référentiels d'audit inaccessibles
+ a| 
+BADC, BARC, BCLB, BCMN, BLDR, BNMS
+ a| 
+Vérifiez la connectivité réseau au serveur hébergeant le nœud d'administration.
+
+Si le problème persiste, contactez le support technique.
+
+|===

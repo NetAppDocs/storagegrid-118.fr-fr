@@ -1,0 +1,116 @@
+---
+permalink: admin/configuring-audit-client-access.html 
+sidebar: sidebar 
+keywords: audit client, ams, audit management service 
+summary: 'Le nœud d"administration, via le service AMS (Audit Management System), consigne tous les événements système vérifiés dans un fichier journal disponible via le partage d"audit, qui est ajouté à chaque nœud d"administration lors de l"installation. Le partage d"audit est automatiquement activé en tant que partage en lecture seule.' 
+---
+= Configurer l'accès client d'audit pour NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le nœud d'administration, via le service AMS (Audit Management System), consigne tous les événements système vérifiés dans un fichier journal disponible via le partage d'audit, qui est ajouté à chaque nœud d'administration lors de l'installation. Le partage d'audit est automatiquement activé en tant que partage en lecture seule.
+
+
+NOTE: La prise en charge de NFS est obsolète et sera supprimée dans une future version.
+
+Pour accéder aux journaux d'audit, vous pouvez configurer l'accès client aux partages d'audit pour NFS. Ou bien, c'est possible link:../monitor/considerations-for-external-syslog-server.html["utilisez un serveur syslog externe"].
+
+Le système StorageGRID utilise une reconnaissance positive pour éviter toute perte de messages d'audit avant qu'ils ne soient écrits dans le fichier journal. Un message reste placé dans la file d'attente d'un service jusqu'à ce que le service AMS ou un service de relais d'audit intermédiaire en ait reconnu le contrôle. Pour plus d'informations, voir link:../audit/index.html["Examiner les journaux d'audit"].
+
+.Avant de commencer
+* Vous avez le `Passwords.txt` avec le mot de passe root/admin.
+* Vous avez le `Configuration.txt` Fichier (disponible dans le progiciel de récupération).
+* Le client d'audit utilise NFS version 3 (NFSv3).
+
+
+.Description de la tâche
+Effectuez cette procédure pour chaque nœud d'administration d'un déploiement StorageGRID à partir duquel vous souhaitez récupérer des messages d'audit.
+
+.Étapes
+. Connectez-vous au nœud d'administration principal :
++
+.. Saisissez la commande suivante : `ssh admin@_primary_Admin_Node_IP_`
+.. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour passer à la racine : `su -`
+.. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
+
+. Vérifiez que tous les services sont en cours d'exécution ou vérifiés. Entrez : `storagegrid-status`
++
+Si certains services ne sont pas répertoriés comme étant en cours d'exécution ou vérifiés, résolvez les problèmes avant de continuer.
+
+. Revenez à la ligne de commande. Appuyez sur *Ctrl*+*C*.
+. Démarrez l'utilitaire de configuration NFS. Entrez : `config_nfs.rb`
++
+[listing]
+----
+
+-----------------------------------------------------------------
+| Shares               | Clients              | Config          |
+-----------------------------------------------------------------
+| add-audit-share      | add-ip-to-share      | validate-config |
+| enable-disable-share | remove-ip-from-share | refresh-config  |
+|                      |                      | help            |
+|                      |                      | exit            |
+-----------------------------------------------------------------
+----
+. Ajouter le client d'audit : `add-audit-share`
++
+.. Lorsque vous y êtes invité, entrez l'adresse IP ou la plage d'adresses IP du client d'audit pour le partage d'audit : `client_IP_address`
+.. Lorsque vous y êtes invité, appuyez sur *entrée*.
+
+
+. Si plusieurs clients d'audit sont autorisés à accéder au partage d'audit, ajoutez l'adresse IP de l'utilisateur supplémentaire : `add-ip-to-share`
++
+.. Entrez le numéro du partage d'audit : `_audit_share_number_`
+.. Lorsque vous y êtes invité, entrez l'adresse IP ou la plage d'adresses IP du client d'audit pour le partage d'audit : `_client_IP_address_`
+.. Lorsque vous y êtes invité, appuyez sur *entrée*.
++
+L'utilitaire de configuration NFS s'affiche.
+
+.. Répétez ces sous-étapes pour chaque client d'audit supplémentaire ayant accès au partage d'audit.
+
+
+. Vérifiez éventuellement votre configuration.
++
+.. Saisissez les informations suivantes : `validate-config`
++
+Les services sont vérifiés et affichés.
+
+.. Lorsque vous y êtes invité, appuyez sur *entrée*.
++
+L'utilitaire de configuration NFS s'affiche.
+
+.. Fermez l'utilitaire de configuration NFS : `exit`
+
+
+. Déterminez si vous devez activer des partages d'audit sur d'autres sites.
++
+** Si le déploiement de StorageGRID est un site unique, passez à l'étape suivante.
+** Si le déploiement de StorageGRID inclut des nœuds d'administration sur d'autres sites, activez ces partages d'audit si nécessaire :
++
+... Connectez-vous à distance au nœud d'administration du site :
++
+.... Saisissez la commande suivante : `ssh admin@_grid_node_IP_`
+.... Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.... Entrez la commande suivante pour passer à la racine : `su -`
+.... Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+
+
+... Répétez cette procédure pour configurer les partages d'audit pour chaque nœud d'administration supplémentaire.
+... Fermez la connexion du shell sécurisé distant au nœud d'administration distant. Entrez : `exit`
+
+
+
+
+. Déconnectez-vous du shell de commande : `exit`
++
+Les clients d'audit NFS ont accès à un partage d'audit en fonction de leur adresse IP. Accordez l'accès au partage d'audit à un nouveau client d'audit NFS en ajoutant son adresse IP au partage ou supprimez un client d'audit existant en supprimant son adresse IP.
+
+

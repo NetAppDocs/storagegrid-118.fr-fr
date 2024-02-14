@@ -1,0 +1,37 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api 
+summary: 'StorageGRID 11.8 utilise la version 4 de l"API de gestion du grid. La version 4 déchiffre la version 3 ; cependant, les versions 1, 2 et 3 sont toujours prises en charge.' 
+---
+= Modifications apportées à l'API de gestion du grid
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.8 utilise la version 4 de l'API de gestion du grid. La version 4 déchiffre la version 3 ; cependant, les versions 1, 2 et 3 sont toujours prises en charge.
+
+
+NOTE: Vous pouvez continuer à utiliser des versions obsolètes de l'API de gestion avec StorageGRID 11.8. Cependant, la prise en charge de ces versions de l'API sera supprimée dans une future version de StorageGRID. Après la mise à niveau vers StorageGRID 11.8, les API obsolètes peuvent être désactivées à l'aide de `PUT /grid/config/management` API.
+
+Pour en savoir plus, rendez-vous sur link:../admin/using-grid-management-api.html["Utilisez l'API de gestion du grid"].
+
+
+
+== Modifications pour `ilm-policies` API v4
+
+À partir de StorageGRID 11.8, version 4 du `ilm-policies` L'API contient les différences suivantes par rapport à la version 3 :
+
+* Les politiques historiques ne sont plus renvoyées. Une nouvelle API séparée pour l'obtention des données de balise et des règles historiques a été ajoutée à l'adresse `/grid/ilm-history`.
+* Propriétés supprimées : `proposed`, `historical`, `historicalRules`, `activationTime`.
+* Propriétés ajoutées : `active` (booléen), `activatedBy` (Tableau des UUID de balise auxquels la stratégie est affectée).
+* Paramètre de requête de type facultatif pour `GET ilm-policies` prend maintenant les valeurs `inactive` et `active.` Les valeurs précédentes étaient `proposed`, `active`, et `historical`.
+
+
+
+
+== Nouveaux terminaux pour la gestion des disques
+
+Vous pouvez utiliser les points de terminaison de l'API */grid/drive-details/{nodeid}* pour effectuer des opérations sur les disques dans des modèles spécifiques de nœuds de stockage d'appliance.

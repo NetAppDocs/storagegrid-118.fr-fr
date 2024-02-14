@@ -1,0 +1,59 @@
+---
+permalink: admin/managing-archive-node-when-tsm-server-reaches-capacity.html 
+sidebar: sidebar 
+keywords: archive node, tsm server, full capacity, node is full 
+summary: 'Le serveur TSM n"a aucun moyen d"informer le nœud d"archivage lorsque la base de données TSM ou le stockage des supports d"archivage gérés par le serveur TSM atteint sa capacité maximale. Cette situation peut être évitée grâce à la surveillance proactive du serveur TSM.' 
+---
+= Gérer un nœud d'archivage lorsque le serveur TSM atteint sa capacité
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le serveur TSM n'a aucun moyen d'informer le nœud d'archivage lorsque la base de données TSM ou le stockage des supports d'archivage gérés par le serveur TSM atteint sa capacité maximale. Cette situation peut être évitée grâce à la surveillance proactive du serveur TSM.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+Le nœud d'archivage continue à accepter les données d'objet pour le transfert vers le serveur TSM une fois que le serveur TSM a arrêté d'accepter le nouveau contenu. Ce contenu ne peut pas être écrit sur un support géré par le serveur TSM. Une alarme est déclenchée si cela se produit.
+
+
+
+== Empêcher le service ARC d'envoyer du contenu au serveur TSM
+
+Pour empêcher le service ARC d'envoyer du contenu supplémentaire au serveur TSM, vous pouvez mettre le nœud d'archivage hors ligne en mettant hors ligne son composant *ARC* > *Store*. Cette procédure peut également être utile pour empêcher les alarmes lorsque le serveur TSM n'est pas disponible pour la maintenance.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *Store*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/tsm_offline.gif[Page de configuration d'un nœud d'archivage]
+
+. Définissez *Etat du magasin* sur `Offline`.
+. Sélectionnez *Archive Store Disabled au démarrage*.
+. Sélectionnez *appliquer les modifications*.
+
+
+
+
+== Définissez le nœud d'archivage sur lecture seule si le middleware TSM atteint sa capacité
+
+Si le serveur middleware TSM cible atteint sa capacité, le nœud d'archivage peut être optimisé pour effectuer uniquement des récupérations.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *cible*.
+. Sélectionnez *Configuration* > *main*.
+. Modifiez le nombre maximal de sessions de récupération pour qu'il soit identique au nombre de sessions simultanées répertoriées dans nombre de sessions.
+. Définissez le nombre maximum de sessions de stockage sur 0.
++
+
+NOTE: Il n'est pas nécessaire de modifier le nombre maximal de sessions de stockage sur 0 si le nœud d'archivage est en lecture seule. Les sessions de magasin ne seront pas créées.
+
+. Sélectionnez *appliquer les modifications*.
+

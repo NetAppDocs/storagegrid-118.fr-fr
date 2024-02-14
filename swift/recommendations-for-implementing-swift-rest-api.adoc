@@ -1,0 +1,60 @@
+---
+permalink: swift/recommendations-for-implementing-swift-rest-api.html 
+sidebar: sidebar 
+keywords: implement swift rest api 
+summary: 'Suivez ces recommandations lors de la mise en œuvre de l"API REST Swift pour une utilisation avec StorageGRID.' 
+---
+= Recommandations pour l'implémentation de l'API REST Swift
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Suivez ces recommandations lors de la mise en œuvre de l'API REST Swift pour une utilisation avec StorageGRID.
+
+
+
+== Recommandations pour les têtes à des objets inexistants
+
+Si votre application vérifie régulièrement si un objet existe dans un chemin où vous ne vous attendez pas à ce que l'objet existe réellement, vous devez utiliser la cohérence « disponible ». Par exemple, vous devez utiliser la cohérence « disponible » si votre application effectue une opération de TÊTE À un emplacement avant d'effectuer une opération de MISE À cet emplacement.
+
+Sinon, si l'opération HEAD ne trouve pas l'objet, vous pouvez recevoir un nombre élevé de 500 erreurs de serveur interne si un ou plusieurs nœuds de stockage ne sont pas disponibles.
+
+Vous pouvez définir la cohérence « disponible » pour chaque conteneur à l'aide du link:put-container-consistency-request.html["REQUÊTE de cohérence du conteneur"]. En effet, vous définissez la cohérence « disponible » pour chaque conteneur à l'aide de link:get-container-consistency-request.html["DEMANDE DE cohérence du conteneur"].
+
+
+
+== Recommandations pour les noms d'objet
+
+Pour les conteneurs créés dans StorageGRID 11.4 ou version ultérieure, il n'est plus nécessaire de limiter les noms d'objet afin de respecter les bonnes pratiques de performance. Par exemple, vous pouvez maintenant utiliser des valeurs aléatoires pour les quatre premiers caractères des noms d'objets.
+
+Pour les conteneurs créés dans des versions antérieures à StorageGRID 11.4, suivez ces recommandations pour les noms d'objet :
+
+* Vous ne devez pas utiliser de valeurs aléatoires comme les quatre premiers caractères des noms d'objets. Cela contraste avec l'ancienne recommandation AWS pour les préfixes de noms. Au lieu de cela, vous devez utiliser des préfixes non aléatoires et non uniques, tels que `image`.
+* Si vous suivez l'ancienne recommandation AWS pour utiliser des caractères aléatoires et uniques dans les préfixes de noms, vous devez préfixer les noms d'objets avec un nom de répertoire. C'est-à-dire, utilisez le format suivant :
++
+[listing]
+----
+mycontainer/mydir/f8e3-image3132.jpg
+----
++
+Au lieu de ce format :
+
++
+[listing]
+----
+mycontainer/f8e3-image3132.jpg
+----
+
+
+
+
+== Recommandations pour les « lectures de plage »
+
+Si le link:../admin/configuring-stored-object-compression.html["option globale pour compresser les objets stockés"] Est activé, les applications clientes Swift doivent éviter d'effectuer des opérations GET Object qui spécifient une plage d'octets à renvoyer. Ces opérations de « lecture de plage » sont inefficaces car StorageGRID doit décompresser efficacement les objets pour accéder aux octets demandés. LES opérations GET Object qui demandent une petite plage d'octets provenant d'un objet très volumineux sont particulièrement inefficaces. Par exemple, il est très inefficace de lire une plage de 10 Mo à partir d'un objet compressé de 50 Go.
+
+Si les plages sont lues à partir d'objets compressés, les demandes client peuvent être en attente.
+
+
+NOTE: Si vous devez compresser des objets et que votre application client doit utiliser des lectures de plage, augmentez le délai de lecture de l'application.

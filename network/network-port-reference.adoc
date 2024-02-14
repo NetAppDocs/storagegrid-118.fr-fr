@@ -1,0 +1,16 @@
+---
+permalink: network/network-port-reference.html 
+sidebar: sidebar 
+keywords: network port reference 
+summary: 'Vous devez vous assurer que l"infrastructure réseau peut assurer une communication interne et externe entre les nœuds de la grille et les clients et services externes. Il se peut que vous ayez besoin d"accéder à des pare-feu internes et externes, à des systèmes de commutation et à des systèmes de routage.' 
+---
+= Référence du port réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez vous assurer que l'infrastructure réseau peut assurer une communication interne et externe entre les nœuds de la grille et les clients et services externes. Il se peut que vous ayez besoin d'accéder à des pare-feu internes et externes, à des systèmes de commutation et à des systèmes de routage.
+
+Utilisez les informations fournies pour link:internal-grid-node-communications.html["Communications internes sur les nœuds de la grille"] et link:external-communications.html["Communications externes"] pour déterminer comment configurer chaque port requis.

@@ -1,0 +1,211 @@
+---
+permalink: swift/object-operations.html 
+sidebar: sidebar 
+keywords: swift object operations 
+summary: 'Les opérations suivantes de l"API Swift sont effectuées sur des objets.' 
+---
+= Opérations sur l'objet
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les opérations suivantes de l'API Swift sont effectuées sur des objets. Ces opérations peuvent être suivies dans link:monitoring-and-auditing-operations.html["Journal d'audit StorageGRID"].
+
+
+
+== SUPPRIMER l'objet
+
+Cette opération supprime le contenu et les métadonnées d'un objet du système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+* `Object`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Une exécution réussie renvoie les en-têtes de réponse suivants avec un `HTTP/1.1 204 No Content` réponse :
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+Lors du traitement d'une requête DE SUPPRESSION d'objet, StorageGRID tente de supprimer immédiatement toutes les copies de l'objet des emplacements stockés. En cas de succès, StorageGRID renvoie immédiatement une réponse au client. Si toutes les copies ne peuvent pas être supprimées dans les 30 secondes (par exemple, parce qu'un emplacement est temporairement indisponible), StorageGRID met les copies en file d'attente pour suppression et indique que le client a réussi.
+
+Pour plus d'informations, voir link:../ilm/how-objects-are-deleted.html["Comment supprimer les objets"].
+
+
+
+== OBJET GET
+
+Cette opération récupère le contenu de l'objet et obtient ses métadonnées depuis un système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+* `Object`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Les en-têtes de demande suivants sont facultatifs :
+
+* `Accept-Encoding`
+* `If-Match`
+* `If-Modified-Since`
+* `If-None-Match`
+* `If-Unmodified-Since`
+* `Range`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec un `HTTP/1.1 200 OK` réponse :
+
+* `Accept-Ranges`
+*  `Content-Disposition`, retourné seulement si `Content-Disposition` les métadonnées ont été définies
+*  `Content-Encoding`, retourné seulement si `Content-Encoding` les métadonnées ont été définies
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== Objet TÊTE
+
+Cette opération récupère les métadonnées et les propriétés d'un objet ingéré à partir d'un système StorageGRID.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+* `Object`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse "HTTP/1.1 200 OK" :
+
+* `Accept-Ranges`
+*  `Content-Disposition`, retourné seulement si `Content-Disposition` les métadonnées ont été définies
+*  `Content-Encoding`, retourné seulement si `Content-Encoding` les métadonnées ont été définies
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== PLACER l'objet
+
+Cette opération crée un nouvel objet avec des données et des métadonnées, ou remplace un objet existant par des données et des métadonnées dans un système StorageGRID.
+
+StorageGRID prend en charge les objets jusqu'à 5 Tio (5,497,558,138,880 octets).
+
+
+NOTE: Les demandes contradictoires des clients, telles que deux clients qui écrivent sur la même clé, sont résolues sur une base de « derniers-victoires ». Le moment auquel l'évaluation « derniers-victoires » est basé sur la date à laquelle le système StorageGRID remplit une demande donnée et non sur la date à laquelle les clients Swift entament une opération.
+
+Les paramètres de demande suivants sont requis :
+
+* `Account`
+* `Container`
+* `Object`
+
+
+L'en-tête de demande suivant est requis :
+
+* `X-Auth-Token`
+
+
+Les en-têtes de demande suivants sont facultatifs :
+
+* `Content-Disposition`
+* `Content-Encoding`
++
+Ne pas utiliser de moucheté `Content-Encoding` Si la règle ILM appliquée à un objet filtre les objets en fonction de leur taille et utilise le placement synchrone à l'ingestion (options équilibrées ou strictes pour le comportement d'ingestion).
+
+* `Transfer-Encoding`
++
+N'utilisez pas de compression ou de déboucheté `Transfer-Encoding` Si la règle ILM appliquée à un objet filtre les objets en fonction de leur taille et utilise le placement synchrone à l'ingestion (options équilibrées ou strictes pour le comportement d'ingestion).
+
+* `Content-Length`
++
+Si une règle ILM filtre les objets par taille et utilise le placement synchrone lors de l'ingestion, vous devez spécifier `Content-Length`.
+
++
+
+NOTE: Si vous ne suivez pas ces directives pour `Content-Encoding`, `Transfer-Encoding`, et `Content-Length`, StorageGRID doit enregistrer l'objet avant de déterminer la taille de l'objet et d'appliquer la règle ILM. En d'autres termes, StorageGRID doit créer par défaut des copies intermédiaires d'un objet à l'entrée. C'est-à-dire que StorageGRID doit utiliser l'option de double validation pour le comportement d'ingestion.
+
++
+Pour plus d'informations sur le placement synchrone et les règles ILM, voir link:../ilm/data-protection-options-for-ingest.html["Options de protection des données pour l'ingestion"].
+
+* `Content-Type`
+* `ETag`
+* `X-Object-Meta-<name\>` (métadonnées liées aux objets)
++
+Si vous souhaitez utiliser l'option *temps de création défini par l'utilisateur* comme heure de référence pour une règle ILM, vous devez stocker la valeur dans un en-tête défini par l'utilisateur nommé `X-Object-Meta-Creation-Time`. Par exemple :
+
++
+[listing]
+----
+X-Object-Meta-Creation-Time: 1443399726
+----
++
+Ce champ est évalué en secondes depuis le 1er janvier 1970.
+
+* `X-Storage-Class: reduced_redundancy`
++
+Cet en-tête affecte le nombre de copies d'objet créées par StorageGRID si la règle ILM correspondant à l'objet ingéré spécifie le comportement d'ingestion de la double validation ou de l'équilibrage.
+
++
+** *Double commit* : si la règle ILM spécifie l'option de double validation pour le comportement d'ingestion, StorageGRID crée une copie intermédiaire unique lors de l'ingestion de l'objet (simple commit).
+** *Équilibré* : si la règle ILM spécifie l'option équilibrée, StorageGRID effectue une seule copie intermédiaire uniquement si le système ne peut pas immédiatement effectuer toutes les copies spécifiées dans la règle. Si StorageGRID peut effectuer un placement synchrone, cet en-tête n'a aucun effet.
++
+Le `reduced_redundancy` L'en-tête est le plus utilisé lorsque la règle ILM correspondant à l'objet crée une copie répliquée unique. Dans ce cas, utilisez `reduced_redundancy` élimine la création et la suppression inutiles d'une copie d'objet supplémentaire pour chaque opération d'ingestion.
+
++
+À l'aide du `reduced_redundancy` l'en-tête n'est pas recommandé dans d'autres cas, car il augmente le risque de perte de données d'objet lors de l'ingestion. Vous risquez par exemple de perdre des données si une seule copie est initialement stockée sur un nœud de stockage qui échoue avant l'évaluation du ILM.
+
++
+
+CAUTION: Le fait d'avoir une seule copie répliquée pendant une période donnée présente un risque de perte permanente des données. Si une seule copie répliquée d'un objet existe, cet objet est perdu en cas de défaillance ou d'erreur importante d'un noeud de stockage. De plus, lors des procédures de maintenance telles que les mises à niveau, l'accès à l'objet est temporairement perdu.
+
+
+
++
+Notez que la spécification `reduced_redundancy` l'impact sur le nombre de copies créées uniquement lors de l'ingestion d'un objet. Cela n'affecte pas le nombre de copies de l'objet effectuées lorsque l'objet est évalué par les règles ILM actives et n'entraîne pas le stockage des données à des niveaux de redondance inférieurs dans le système StorageGRID.
+
+
+
+Une exécution réussie renvoie les en-têtes suivants avec une réponse "HTTP/1.1 201 created" :
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Trans-Id`
+

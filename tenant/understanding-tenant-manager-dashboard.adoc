@@ -1,0 +1,101 @@
+---
+permalink: tenant/understanding-tenant-manager-dashboard.html 
+sidebar: sidebar 
+keywords: how to understand tenant manager dashboard 
+summary: 'Le tableau de bord du gestionnaire de locataires offre un aperçu de la configuration d"un compte de locataire et de la quantité d"espace utilisée par les objets dans les compartiments du locataire \(S3\) ou conteneurs \(Swift\). Si le locataire dispose d"un quota, le tableau de bord indique la part du quota utilisée et la quantité restante. En cas d"erreurs liées au compte de tenant, les erreurs s"affichent dans le tableau de bord.' 
+---
+= Présentation du tableau de bord du gestionnaire de locataires
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le tableau de bord du gestionnaire de locataires présente la configuration d'un compte de locataire et la quantité d'espace utilisée par les objets dans les compartiments du locataire (S3) ou les conteneurs (Swift). Si le locataire dispose d'un quota, le tableau de bord indique la part du quota utilisée et la quantité restante. En cas d'erreurs liées au compte de tenant, les erreurs s'affichent dans le tableau de bord.
+
+
+NOTE: Les valeurs espace utilisé sont des estimations. Ces estimations sont affectées par le moment de l'ingestion, la connectivité réseau et l'état des nœuds.
+
+Une fois les objets téléchargés, le tableau de bord ressemble à l'exemple suivant :
+
+image::../media/tenant_dashboard_with_buckets.png[Tableau de bord - liste des compartiments]
+
+
+
+== Récapitulatif du compte de locataire
+
+La partie supérieure du tableau de bord contient les informations suivantes :
+
+* Le nombre de compartiments ou de conteneurs configurés, de groupes et d'utilisateurs
+* Le nombre de terminaux de services de plate-forme, le cas échéant, ont été configurés
+
+
+Vous pouvez sélectionner les liens pour afficher les détails.
+
+Le côté droit du tableau de bord contient les informations suivantes :
+
+* Nombre total d'objets pour le locataire.
++
+Pour un compte S3, si aucun objet n'a été ingéré et que vous avez le link:tenant-management-permissions.html["Autorisation d'accès racine"], les directives de démarrage apparaissent à la place du nombre total d'objets.
+
+* Détails du locataire, y compris le nom et l'ID du compte de locataire, et si le locataire peut l'utiliser link:what-platform-services-are.html["services de plateforme"], link:../admin/using-identity-federation.html["son propre référentiel d'identité"], link:grid-federation-account-clone.html["fédération des grilles"], ou  link:../admin/manage-s3-select-for-tenant-accounts.html["S3 Select"] (seules les autorisations activées sont répertoriées).
+
+
+
+
+== Utilisation du stockage et des quotas
+
+Le panneau utilisation du stockage contient les informations suivantes :
+
+* Volume des données d'objet pour le locataire.
++
+
+TIP: Cette valeur indique la quantité totale de données d'objet chargées et ne représente pas l'espace utilisé pour stocker les copies de ces objets et leurs métadonnées.
+
+* Si un quota est défini, la quantité totale d'espace disponible pour les données d'objet ainsi que la quantité et le pourcentage d'espace restant. Le quota limite la quantité de données d'objet pouvant être ingérées.
++
+
+CAUTION: L'utilisation des quotas est basée sur des estimations internes et peut être dépassée dans certains cas. Par exemple, StorageGRID vérifie le quota lorsqu'un locataire commence à charger des objets et rejette les nouvelles ingère si le locataire a dépassé le quota. Cependant, StorageGRID ne prend pas en compte la taille du téléchargement actuel lors de la détermination du dépassement du quota. Si des objets sont supprimés, un locataire peut temporairement empêcher le téléchargement de nouveaux objets jusqu'au recalcul de l'utilisation du quota. Le calcul de l'utilisation des quotas peut prendre 10 minutes ou plus.
+
+* Un graphique à barres qui représente les tailles relatives des grands godets ou conteneurs.
++
+Vous pouvez placer le curseur sur n'importe quel segment de graphique pour afficher l'espace total utilisé par ce compartiment ou ce conteneur.
+
++
+image::../media/tenant_dashboard_storage_usage_segment.png[Segment de diagramme à barres]
+
+* Pour correspondre au graphique à barres, une liste des plus grands seaux ou conteneurs, y compris la quantité totale de données d'objet et le nombre d'objets pour chaque godet ou conteneur.
++
+image::../media/tenant_dashboard_buckets.png[Compartiments du tableau de bord des locataires]
+
++
+Si le locataire possède plus de neuf compartiments ou conteneurs, tous les autres compartiments ou conteneurs sont regroupés en une seule entrée au bas de la liste.
+
+
+
+
+NOTE: Pour modifier les unités des valeurs de stockage affichées dans le Gestionnaire de locataires, sélectionnez la liste déroulante utilisateur dans le coin supérieur droit du Gestionnaire de locataires, puis sélectionnez *Préférences utilisateur*.
+
+
+
+== Alertes d'utilisation des quotas
+
+Si les alertes d'utilisation des quotas ont été activées dans Grid Manager, elles s'affichent dans le Gestionnaire de locataires lorsque le quota est faible ou dépassé, comme suit :
+
+Si 90 % ou plus du quota d'un locataire a été utilisé, l'alerte *usage du quota de locataire élevé* est déclenchée. Effectuez les actions recommandées pour l'alerte.
+
+image::../media/tenant_dashboard_quota_remaining.png[Quota restant du tableau de bord des locataires]
+
+Si vous dépassez votre quota, vous ne pouvez pas télécharger de nouveaux objets.
+
+image::../media/tenant_dashboard_quota_used.png[Quota utilisé dans le tableau de bord des locataires]
+
+
+
+== Erreurs de point final
+
+Si vous avez utilisé le gestionnaire de grille pour configurer un ou plusieurs points de terminaison pour les services de plateforme, le tableau de bord du gestionnaire de locataires affiche une alerte si des erreurs de point de terminaison se sont produites au cours des sept derniers jours.
+
+image::../media/tenant_dashboard_endpoint_error.png[Tableau de bord affichant le message de point final]
+
+Pour afficher des détails sur link:troubleshooting-platform-services-endpoint-errors.html["erreurs de noeud final des services de plate-forme"], Sélectionnez *noeuds finaux* pour afficher la page noeuds finaux.

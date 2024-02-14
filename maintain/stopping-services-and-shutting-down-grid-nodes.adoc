@@ -1,0 +1,110 @@
+---
+permalink: maintain/stopping-services-and-shutting-down-grid-nodes.html 
+sidebar: sidebar 
+keywords: recover, stop services, shut down nodes, node shutdown 
+summary: Avant de mettre un système StorageGRID hors tension, vous devez arrêter tous les services exécutés sur chaque nœud de grid, puis arrêter toutes les machines virtuelles VMware, les moteurs de conteneurs et les appliances StorageGRID. 
+---
+= Arrêtez les services et arrêtez les nœuds de la grille
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de mettre un système StorageGRID hors tension, vous devez arrêter tous les services exécutés sur chaque nœud de grid, puis arrêter toutes les machines virtuelles VMware, les moteurs de conteneurs et les appliances StorageGRID.
+
+.Description de la tâche
+Arrêtez d'abord les services sur les nœuds d'administration et les nœuds de passerelle, puis arrêtez les services sur les nœuds de stockage.
+
+Cette approche vous permet d'utiliser le nœud d'administration principal pour surveiller l'état des autres nœuds de la grille aussi longtemps que possible.
+
+
+NOTE: Si un seul hôte comprend plusieurs nœuds de grille, n'arrêtez pas l'hôte tant que vous n'avez pas arrêté tous les nœuds de cet hôte. Si l'hôte inclut le nœud d'administration principal, arrêtez l'hôte en dernier.
+
+
+NOTE: Si nécessaire, vous pouvez link:linux-migrating-grid-node-to-new-host.html["Migrer des nœuds d'un hôte Linux vers un autre"] pour effectuer la maintenance de l'hôte sans affecter les fonctionnalités ou la disponibilité de votre grille.
+
+.Étapes
+. Arrêtez toutes les applications client d'accéder à la grille.
+. [[log_in_to_gn]]Connectez-vous à chaque nœud de passerelle :
++
+.. Saisissez la commande suivante : `ssh admin@_grid_node_IP_`
+.. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
+.. Entrez la commande suivante pour passer à la racine : `su -`
+.. Entrez le mot de passe indiqué dans le `Passwords.txt` fichier.
++
+Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
+
+
+
+. [[stop_All_services]]Arrêter tous les services exécutés sur le nœud : `service servermanager stop`
++
+L'arrêt des services peut prendre jusqu'à 15 minutes et il est possible que vous souhaitiez vous connecter au système à distance afin de surveiller le processus d'arrêt.
+
+
+
+. Répétez les deux étapes précédentes pour arrêter les services sur tous les nœuds de stockage, les nœuds d'archivage et les nœuds d'administration non primaires.
++
+Vous pouvez arrêter les services sur ces nœuds dans n'importe quel ordre.
+
++
+
+NOTE: Si vous émettez le `service servermanager stop` Commande pour arrêter les services d'un nœud de stockage d'appliance, vous devez mettre l'appliance hors tension puis sous tension afin de redémarrer le nœud.
+
+. Pour le nœud d'administration principal, répétez les étapes à <<log_in_to_gn,connectez-vous au nœud>> et <<stop_all_services,arrêt de tous les services du nœud>>.
+. Pour les nœuds qui s'exécutent sur des hôtes Linux :
++
+.. Connectez-vous au système d'exploitation hôte.
+.. Arrêter le nœud : `storagegrid node stop`
+.. Arrêtez le système d'exploitation hôte.
+
+
+. Pour les nœuds qui s'exécutent sur des machines virtuelles VMware et pour les nœuds de stockage d'appliance, exécutez la commande shutdown : `shutdown -h now`
++
+Effectuer cette étape indépendamment du résultat du `service servermanager stop` commande.
+
++
+Pour l'appliance, cette commande arrête le contrôleur de calcul, mais l'appliance est toujours sous tension. Vous devez passer à l'étape suivante.
+
+. Si vous avez des nœuds d'appliance :
++
+** Pour les appliances SG100, SG1000 ou SGF6112
++
+... Mettez l'appareil hors tension.
+... Attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+** Pour l'appareil SG6000
++
+... Attendez que la LED verte cache actif située à l'arrière des contrôleurs de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+... Mettez l'appareil hors tension et attendez que le voyant d'alimentation bleu s'éteigne.
+
+
+** Pour l'appliance SG5700
++
+... Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+... Mettez l'appareil hors tension et attendez que toutes les LED et l'activité d'affichage à sept segments s'arrêtent.
+
+
+
+
+. Si nécessaire, déconnectez-vous du shell de commande : `exit`
++
+La grille StorageGRID est maintenant arrêtée.
+
+
+
+.Informations associées
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112"^]
+
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositifs de stockage SG6000"^]
+
+https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Appliances de stockage SG5700"^]
+
+https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appareils de services SG100 et SG1000"^]

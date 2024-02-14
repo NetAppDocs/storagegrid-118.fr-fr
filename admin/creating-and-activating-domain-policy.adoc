@@ -1,0 +1,64 @@
+---
+permalink: admin/creating-and-activating-domain-policy.html 
+sidebar: sidebar 
+keywords: domain policy for tsm, tivoli storage manager policy 
+summary: 'Vous devez créer une stratégie de domaine, puis l"activer pour configurer le serveur TSM afin d"enregistrer les données envoyées à partir du noeud d"archivage.' 
+---
+= Créez et activez la stratégie de domaine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez créer une stratégie de domaine, puis l'activer pour configurer le serveur TSM afin d'enregistrer les données envoyées à partir du noeud d'archivage.
+
+.Étapes
+. Créer une stratégie de domaine.
++
+`copy domain standard tsm-domain`
+
+. Si vous n'utilisez pas de classe de gestion existante, entrez l'une des options suivantes :
++
+`define policyset tsm-domain standard`
+
++
+`define mgmtclass tsm-domain standard _default_`
+
++
+`_default_` est la classe de gestion par défaut pour le déploiement.
+
+. Créez un groupe de copie dans le pool de stockage approprié. Entrer (sur une ligne) :
++
+`define copygroup tsm-domain standard _default_ type=archive destination=SGWSDiskPool retinit=event retmin=0 retver=0`
+
++
+`_default_` Est la classe de gestion par défaut du nœud d'archivage. Les valeurs de `retinit`, `retmin`, et `retver` Ont été choisis pour refléter le comportement de rétention actuellement utilisé par le noeud d'archivage
+
++
+
+NOTE: Ne pas configurer `retinit` à `retinit=create`. Réglage `retinit=create` Empêche le nœud d'archivage de supprimer du contenu, car les événements de rétention sont utilisés pour supprimer du contenu du serveur TSM.
+
+. Attribuez la classe de gestion à la valeur par défaut.
++
+`assign defmgmtclass _tsm-domain_ standard _default_`
+
+. Définissez la nouvelle règle sur active.
++
+`activate policyset tsm-domain standard`
+
++
+Ignorez l'avertissement « no backup copy group » qui s'affiche lorsque vous entrez la commande activate.
+
+. Enregistrez un nœud pour utiliser le nouvel ensemble de règles sur le serveur TSM. Sur le serveur TSM, entrez (sur une ligne) :
++
+`register node arc-user arc-password passexp=0 domain=tsm-domain MAXNUMMP=number-of-sessions`
+
++
+Arc-user et arc-mot-de-passe sont les mêmes nom de noeud client et mot de passe que ceux définis sur le noeud d'archivage, et la valeur MAXNUMMP est définie sur le nombre de lecteurs de bande réservés pour les sessions de magasin de noeud d'archivage.
+
++
+
+NOTE: Par défaut, l'enregistrement d'un nœud crée un ID utilisateur administratif avec l'autorité propriétaire du client, avec le mot de passe défini pour le nœud.
+
+

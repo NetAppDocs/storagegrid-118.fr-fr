@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-get-started/index.html 
+summary: 'Avant d"installer et d"utiliser un système StorageGRID, prenez le temps d"en savoir plus sur ce qu"est StorageGRID.' 
+---
+= Lancez-vous avec un système StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

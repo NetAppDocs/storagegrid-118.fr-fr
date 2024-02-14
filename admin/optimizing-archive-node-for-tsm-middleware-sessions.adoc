@@ -1,0 +1,33 @@
+---
+permalink: admin/optimizing-archive-node-for-tsm-middleware-sessions.html 
+sidebar: sidebar 
+keywords: archive node optimization 
+summary: 'Vous pouvez optimiser les performances d"un noeud d"archivage qui se connecte à Tivoli Server Manager \(TSM\) en configurant les sessions du noeud d"archivage.' 
+---
+= Optimisez un nœud d'archivage pour les sessions middleware TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez optimiser les performances d'un noeud d'archivage qui se connecte à Tivoli Server Manager (TSM) en configurant les sessions du noeud d'archivage.
+
+.Avant de commencer
+* Vous êtes connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+
+
+.Description de la tâche
+En général, le nombre de sessions simultanées que le nœud d'archivage a ouvertes au serveur middleware TSM est défini sur le nombre de lecteurs de bande que le serveur TSM a dédiés au nœud d'archivage. Un lecteur de bande est alloué au stockage tandis que le reste est alloué à la récupération. Toutefois, lorsqu'un nœud de stockage est en cours de reconstruction à partir de copies de nœud d'archivage ou que le nœud d'archivage fonctionne en mode lecture seule, vous pouvez optimiser les performances du serveur TSM en définissant le nombre maximal de sessions d'extraction à identique au nombre de sessions simultanées. Il en résulte que tous les disques peuvent être utilisés simultanément pour la récupération et, au plus, un de ces lecteurs peut également être utilisé pour le stockage, le cas échéant.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC* > *cible*.
+. Sélectionnez *Configuration* > *main*.
+. Modifier *nombre maximal de sessions de récupération* pour être le même que *nombre de sessions*.
++
+image::../media/optimizing_tivoli_storage_manager.gif[Page de configuration du nœud d'archivage]
+
+. Sélectionnez *appliquer les modifications*.
+

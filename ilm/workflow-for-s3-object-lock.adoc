@@ -1,0 +1,40 @@
+---
+permalink: ilm/workflow-for-s3-object-lock.html 
+sidebar: sidebar 
+keywords: object lock workflow 
+summary: 'En tant qu"administrateur du grid, vous devez coordonner étroitement avec les utilisateurs des locataires pour assurer la protection des objets conformément aux exigences de conservation.' 
+---
+= Workflow pour le verrouillage d'objets S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur du grid, vous devez coordonner étroitement avec les utilisateurs des locataires pour assurer la protection des objets conformément aux exigences de conservation.
+
+Le schéma des workflows représente les étapes générales d'utilisation du verrouillage d'objet S3. Ces étapes sont réalisées par l'administrateur du grid et les utilisateurs locataires.
+
+image::../media/s3_object_lock_workflow_gm.png[Workflow de verrouillage d'objet S3 pour Grid Manager]
+
+
+
+== Tâches de l'administrateur du grid
+
+Comme le montre le diagramme de workflow, un administrateur grid doit effectuer deux tâches générales avant que les locataires S3 ne puissent utiliser S3 Object Lock :
+
+. Créez au moins une règle ILM conforme et définissez cette règle comme règle par défaut dans une règle ILM active.
+. Activez le paramètre global de verrouillage d'objet S3 pour l'ensemble du système StorageGRID.
+
+
+
+
+== Tâches des locataires
+
+Une fois que le paramètre global de verrouillage d'objet S3 a été activé, les locataires peuvent effectuer les tâches suivantes :
+
+. Créez des compartiments dont le verrouillage d'objet S3 est activé.
+. Vous pouvez également spécifier les paramètres de conservation par défaut du compartiment. Les paramètres de compartiment par défaut sont appliqués uniquement aux nouveaux objets qui ne disposent pas de leurs propres paramètres de conservation.
+. Ajoutez des objets à ces compartiments, et spécifiez éventuellement des périodes de conservation au niveau objet et des paramètres de conservation légale.
+. Si nécessaire, mettez à jour la conservation par défaut du compartiment ou la période de conservation ou le paramètre de conservation légale d'un objet individuel.
+

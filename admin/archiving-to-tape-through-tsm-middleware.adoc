@@ -1,0 +1,33 @@
+---
+permalink: admin/archiving-to-tape-through-tsm-middleware.html 
+sidebar: sidebar 
+keywords: tivoli storage manager, tsm server, archive node, tape 
+summary: 'Vous pouvez configurer un nœud d"archivage pour qu"il cible un serveur Tivoli Storage Manager \(TSM\) fournissant une interface logique pour stocker et récupérer les données d"objet sur des unités de stockage à accès aléatoire ou séquentiel, y compris les librairies de bandes.' 
+---
+= Archivez vos données sur bande via le logiciel médiateur TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez configurer un nœud d'archivage pour qu'il cible un serveur Tivoli Storage Manager (TSM) qui fournit une interface logique permettant de stocker et de récupérer des données d'objet sur des unités de stockage à accès aléatoire ou séquentiel, y compris des librairies de bandes.
+
+Le service ARC du nœud d'archivage sert de client au serveur TSM, utilisant Tivoli Storage Manager comme logiciel médiateur pour communiquer avec le système de stockage d'archives.
+
+[CAUTION]
+====
+La prise en charge des nœuds d'archivage est obsolète et sera supprimée dans une version ultérieure. Le déplacement d'objets d'un nœud d'archivage vers un système de stockage d'archivage externe via l'API S3 a été remplacé par les pools de stockage cloud ILM, offrant ainsi plus de fonctionnalités.
+
+L'option Cloud Tiering - simple Storage Service (S3) est également obsolète. Si vous utilisez actuellement un nœud d'archivage avec cette option, link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrez vos objets vers un pool de stockage cloud"] à la place.
+
+En outre, vous devez supprimer les nœuds d'archivage de la règle ILM active dans StorageGRID 11.7 ou version antérieure. La suppression des données d'objet stockées sur les nœuds d'archivage simplifie les mises à niveau futures. Voir link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Utilisation des règles ILM et des règles ILM"].
+
+====
+
+
+== Cours de gestion TSM
+
+Les classes de gestion définies par le middleware TSM décrivent le fonctionnement des opérations de sauvegarde et d'archivage de TSMʹs et peuvent être utilisées pour spécifier les règles du contenu appliqué par le serveur TSM. Ces règles fonctionnent indépendamment de la politique ILM du système StorageGRID et doivent rester cohérentes avec StorageGRID la condition que les objets soient stockés de manière permanente et soient toujours disponibles pour la récupération par le nœud d'archivage. Une fois les données d'objet envoyées à un serveur TSM par le nœud d'archivage, les règles de cycle de vie et de conservation TSM sont appliquées pendant que les données de l'objet sont stockées sur bande gérée par le serveur TSM.
+
+La classe de gestion TSM est utilisée par le serveur TSM pour appliquer des règles pour l'emplacement ou la conservation des données après que les objets soient envoyés au serveur TSM par le nœud d'archivage. Par exemple, les objets identifiés comme sauvegardes de bases de données (contenu temporaire pouvant être remplacé par des données plus récentes) peuvent être traités différemment des données d'application (contenu fixe qui doit être conservé indéfiniment).

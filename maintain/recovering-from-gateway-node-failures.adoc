@@ -1,0 +1,16 @@
+---
+permalink: maintain/recovering-from-gateway-node-failures.html 
+sidebar: sidebar 
+keywords: recover, gateway node failure, workflow 
+summary: Vous devez effectuer une séquence de tâches afin de pouvoir effectuer une restauration suite à une défaillance du noeud de passerelle. 
+---
+= Défaillances de restauration à partir du nœud de passerelle : workflow
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez effectuer une séquence de tâches afin de pouvoir effectuer une restauration suite à une défaillance du noeud de passerelle.
+
+image::../media/overview_api_gateway_node_recovery.png[Organigramme général de la restauration du nœud passerelle]

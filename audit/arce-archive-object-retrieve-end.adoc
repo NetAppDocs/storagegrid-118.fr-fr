@@ -1,0 +1,54 @@
+---
+permalink: audit/arce-archive-object-retrieve-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ARCE, Archive Object Retrieve End 
+summary: 'Ce message est généré lorsqu"une tentative du nœud d"archivage de récupérer des données d"objet à partir d"un système de stockage d"archives externe est terminée. En cas de réussite, le message indique que les données de l"objet demandé ont été entièrement lues à partir de l"emplacement d"archivage et qu"elles ont été vérifiées avec succès. Une fois que les données de l"objet ont été récupérées et vérifiées, elles sont envoyées au service requérant.' 
+---
+= ARCE : fin de la récupération de l'objet d'archive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce message est généré lorsqu'une tentative du nœud d'archivage de récupérer des données d'objet à partir d'un système de stockage d'archives externe est terminée. En cas de réussite, le message indique que les données de l'objet demandé ont été entièrement lues à partir de l'emplacement d'archivage et qu'elles ont été vérifiées avec succès. Une fois que les données de l'objet ont été récupérées et vérifiées, elles sont envoyées au service requérant.
+
+[cols="1a,1a,4a"]
+|===
+| Code | Champ | Description 
+
+
+ a| 
+CBID
+ a| 
+ID du bloc de contenu
+ a| 
+Identifiant unique du bloc de contenu à extraire du système de stockage d'archives externe.
+
+
+
+ a| 
+VLID
+ a| 
+Identifiant du volume
+ a| 
+Identifiant du volume sur lequel les données ont été archivées. Si aucun emplacement d'archive n'est trouvé pour le contenu, un ID de volume de 0 est renvoyé.
+
+
+
+ a| 
+RSLT
+ a| 
+Résultat de la récupération
+ a| 
+L'état d'achèvement du processus de récupération des archives :
+
+* CMC : réussi
+* VRFL : échec (échec de la vérification de l'objet)
+* ARUN : échec (système de stockage d'archivage externe indisponible)
+* ANNUL : échec (opération de récupération annulée)
+* GERR : échec (erreur générale)
+
+
+|===
+Le fait de faire correspondre ce message au message ARCB correspondant peut indiquer le temps nécessaire à la récupération de l'archive. Ce message indique si la récupération a réussi et, en cas d'échec, la cause de l'échec de récupération du bloc de contenu.

@@ -1,0 +1,34 @@
+---
+permalink: admin/modifying-cloud-tiering-service-state.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: 'Vous pouvez contrôler la capacité de lecture et d"écriture du nœud d"archivage sur le système de stockage d"archives externes ciblé qui se connecte via l"API S3 en modifiant l"état du service de Tiering cloud.' 
+---
+= Modifiez l'état du service NetApp Cloud Tiering
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez contrôler la capacité de lecture et d'écriture du nœud d'archivage sur le système de stockage d'archives externe ciblé qui se connecte via l'API S3 en modifiant l'état du service de Tiering cloud.
+
+.Avant de commencer
+* Vous devez être connecté au Grid Manager à l'aide d'un link:../admin/web-browser-requirements.html["navigateur web pris en charge"].
+* Vous avez link:admin-group-permissions.html["autorisations d'accès spécifiques"].
+* Le nœud d'archivage doit être configuré.
+
+
+.Description de la tâche
+Vous pouvez mettre le nœud d'archivage hors ligne en changeant l'état du service de Tiering cloud sur *Read-Write Disabled*.
+
+.Étapes
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_Archive Node_* > *ARC*.
+. Sélectionnez *Configuration* > *main*.
++
+image::../media/modifying_middleware_state.gif[État du service de Tiering cloud]
+
+. Sélectionnez un *Cloud Tiering Service State*.
+. Sélectionnez *appliquer les modifications*.
+

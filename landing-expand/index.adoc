@@ -1,0 +1,14 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-expand/index.html 
+keywords: expand grid 
+summary: Vous pouvez augmenter la capacité ou les fonctionnalités de votre système StorageGRID sans interrompre les opérations système. 
+---
+= Développez une grille
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

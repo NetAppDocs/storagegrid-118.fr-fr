@@ -1,0 +1,241 @@
+---
+permalink: monitor/comparing-alerts-and-alarms.html 
+sidebar: sidebar 
+keywords: how to compare alerts and alarms 
+summary: 'Il existe plusieurs similitudes entre le système d"alerte et le système d"alarme hérité, mais le système d"alerte offre des avantages significatifs et est plus facile à utiliser.' 
+---
+= Comparez les alertes et les alarmes
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il existe plusieurs similitudes entre le système d'alerte et le système d'alarme hérité, mais le système d'alerte offre des avantages significatifs et est plus facile à utiliser.
+
+Reportez-vous au tableau suivant pour savoir comment effectuer des opérations similaires.
+
+[cols="1a,1a,1a"]
+|===
+|  | Alertes | Alarmes (système hérité) 
+
+
+ a| 
+Comment puis-je voir quelles alertes ou alarmes sont actives ?
+ a| 
+* Sélectionnez le lien *alertes actuelles* sur le tableau de bord.
+* Sélectionnez l'alerte sur la page *NOEUDS* > *Présentation*.
+* Sélectionnez *ALERTES* > *actuel*.
+
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["Afficher les alertes en cours"]
+ a| 
+Sélectionnez *SUPPORT* > *alarmes (hérité)* > *alarmes actuelles*.
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Quelle est la cause du déclenchement d'une alerte ou d'une alarme ?
+ a| 
+Les alertes sont déclenchées lorsqu'une expression Prometheus dans une règle d'alerte est évaluée comme TRUE pour une condition de déclenchement et une durée spécifiques.
+
+link:view-alert-rules.html["Afficher les règles d'alerte"]
+ a| 
+Les alarmes sont déclenchées lorsqu'un attribut StorageGRID atteint une valeur de seuil.
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Si une alerte ou une alarme est déclenchée, comment résoudre le problème sous-jacent ?
+ a| 
+Les actions recommandées pour une alerte sont incluses dans les notifications par e-mail et sont disponibles dans les pages alertes du Gestionnaire de grille.
+
+Si nécessaire, des informations supplémentaires sont fournies dans la documentation StorageGRID.
+
+link:alerts-reference.html["Référence des alertes"]
+ a| 
+Pour en savoir plus sur une alarme, sélectionnez le nom de l'attribut ou recherchez un code d'alarme dans la documentation StorageGRID.
+
+link:alarms-reference.html["Référence des alarmes (système hérité)"]
+
+
+
+ a| 
+Où puis-je voir une liste d'alertes ou d'alarmes qui ont été résolues ?
+ a| 
+Sélectionnez *ALERTES* > *résolu*.
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["Afficher les alertes actuelles et résolues"]
+ a| 
+Sélectionnez *SUPPORT* > *alarmes (hérité)* > *alarmes historiques*.
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Où puis-je gérer les paramètres ?
+ a| 
+Sélectionnez *ALERTES* > *règles*.
+
+link:managing-alerts.html["Gérer les alertes"]
+ a| 
+Sélectionnez *SUPPORT*. Utilisez ensuite les options de la section *alarmes (hérité)* du menu.
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Quelles autorisations de groupe d'utilisateurs ai-je besoin ?
+ a| 
+* Toute personne qui peut se connecter au Grid Manager peut afficher les alertes actuelles et résolues.
+* Vous devez disposer de l'autorisation gérer les alertes pour gérer les silences, les notifications d'alerte et les règles d'alerte.
+
+
+link:../admin/index.html["Administrer StorageGRID"]
+ a| 
+* Toute personne qui peut se connecter à Grid Manager peut afficher les alarmes héritées.
+* Vous devez disposer de l'autorisation d'acquittement des alarmes pour accuser réception des alarmes.
+* Pour gérer les alarmes globales et les notifications par e-mail, vous devez disposer à la fois de la configuration de la page topologie de la grille et d'autres autorisations de configuration de la grille.
+
+
+link:../admin/index.html["Administrer StorageGRID"]
+
+
+
+ a| 
+Comment puis-je gérer les notifications par e-mail ?
+ a| 
+Sélectionnez *ALERTES* > *Configuration de la messagerie*.
+
+*Remarque :* puisque les alarmes et les alertes sont des systèmes indépendants, la configuration des e-mails utilisée pour les notifications d'alarme et de AutoSupport n'est pas utilisée pour les notifications d'alerte. Cependant, vous pouvez utiliser le même serveur de messagerie pour toutes les notifications.
+
+link:email-alert-notifications.html["Configurez les notifications par e-mail pour les alertes"]
+ a| 
+Sélectionnez *SUPPORT* > *alarmes (hérité)* > *Configuration messagerie héritée*.
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Comment gérer les notifications SNMP ?
+ a| 
+Sélectionnez *CONFIGURATION* > *surveillance* > *agent SNMP*.
+
+link:using-snmp-monitoring.html["Utiliser la surveillance SNMP"]
+ a| 
+_Non pris en charge_
+
+
+
+ a| 
+Comment puis-je contrôler qui reçoit les notifications ?
+ a| 
+. Sélectionnez *ALERTES* > *Configuration de la messagerie*.
+. Dans la section *destinataires*, entrez une adresse e-mail pour chaque liste d'e-mails ou personne qui doit recevoir un e-mail lorsqu'une alerte se produit.
+
+
+link:email-alert-notifications.html["Configurez les notifications par e-mail pour les alertes"]
+ a| 
+. Sélectionnez *SUPPORT* > *alarmes (hérité)* > *Configuration messagerie héritée*.
+. Création d'une liste de diffusion.
+. Sélectionnez *Notifications*.
+. Sélectionnez la liste de diffusion.
+
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Quels nœuds d'administration envoient des notifications ?
+ a| 
+Un seul nœud d'administration (l'expéditeur préféré).
+
+link:../primer/what-admin-node-is.html["Qu'est-ce qu'un nœud d'administration ?"]
+ a| 
+Un seul nœud d'administration (l'expéditeur préféré).
+
+link:../primer/what-admin-node-is.html["Qu'est-ce qu'un nœud d'administration ?"]
+
+
+
+ a| 
+Comment supprimer certaines notifications ?
+ a| 
+. Sélectionnez *ALERTES* > *silences*.
+. Sélectionnez la règle d'alerte que vous souhaitez désactiver.
+. Spécifiez une durée pour le silence.
+. Sélectionnez la gravité de l'alerte que vous souhaitez désactiver.
+. Sélectionnez cette option pour appliquer le silence à la grille entière, à un seul site ou à un seul nœud.
+
+
+*Remarque* : si vous avez activé l'agent SNMP, les silences suppriment également les interruptions SNMP et informe.
+
+link:silencing-alert-notifications.html["Notifications d'alerte de silence"]
+ a| 
+. Sélectionnez *SUPPORT* > *alarmes (hérité)* > *Configuration messagerie héritée*.
+. Sélectionnez *Notifications*.
+. Sélectionnez une liste de diffusion et sélectionnez *Supprimer*.
+
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Comment supprimer toutes les notifications ?
+ a| 
+Sélectionnez *ALERTES* > *silences*.sélectionnez alors *toutes les règles*.
+
+*Remarque* : si vous avez activé l'agent SNMP, les silences suppriment également les interruptions SNMP et informe.
+
+link:silencing-alert-notifications.html["Notifications d'alerte de silence"]
+ a| 
+_Non pris en charge_
+
+
+
+ a| 
+Comment personnaliser les conditions et les déclencheurs ?
+ a| 
+. Sélectionnez *ALERTES* > *règles*.
+. Sélectionnez une règle par défaut à modifier ou sélectionnez *Créer une règle personnalisée*.
+
+
+link:editing-alert-rules.html["Modifiez les règles d'alerte"]
+
+link:creating-custom-alert-rules.html["Création de règles d'alerte personnalisées"]
+ a| 
+. Sélectionnez *SUPPORT* > *alarmes (hérité)* > *alarmes globales*.
+. Créez une alarme personnalisée globale pour remplacer une alarme par défaut ou pour surveiller un attribut qui n'a pas d'alarme par défaut.
+
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+
+
+ a| 
+Comment désactiver une alerte ou une alarme individuelle ?
+ a| 
+. Sélectionnez *ALERTES* > *règles*.
+. Sélectionnez la règle et sélectionnez *Modifier la règle*.
+. Décochez la case *activé*.
+
+
+link:disabling-alert-rules.html["Désactiver les règles d'alerte"]
+ a| 
+. Sélectionnez *SUPPORT* > *alarmes (hérité)* > *alarmes globales*.
+. Sélectionnez la règle et sélectionnez l'icône Modifier.
+. Décochez la case *activé*.
+
+
+link:managing-alarms.html["Gestion des alarmes (système hérité)"]
+
+|===

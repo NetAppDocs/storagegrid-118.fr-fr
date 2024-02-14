@@ -1,0 +1,26 @@
+---
+permalink: admin/defining-domain-policy-and-registering-node.html 
+sidebar: sidebar 
+keywords: domain policy, tsm, tivoli storage manager 
+summary: 'Vous devez définir une stratégie de domaine qui utilise la classe de gestion TSM pour les données enregistrées à partir du nœud d"archivage, puis enregistrer un nœud pour utiliser cette stratégie de domaine.' 
+---
+= Définissez une stratégie de domaine et enregistrez un nœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez définir une stratégie de domaine qui utilise la classe de gestion TSM pour les données enregistrées à partir du nœud d'archivage, puis enregistrer un nœud pour utiliser cette stratégie de domaine.
+
+
+NOTE: Les processus du nœud d'archivage peuvent fuir de mémoire si le mot de passe client du nœud d'archivage dans Tivoli Storage Manager (TSM) expire. Assurez-vous que le serveur TSM est configuré de sorte que le nom d'utilisateur/mot de passe du client pour le nœud d'archivage n'expire jamais.
+
+Lors de l'enregistrement d'un noeud sur le serveur TSM pour l'utilisation du noeud d'archivage (ou la mise à jour d'un noeud existant), vous devez spécifier le nombre de points de montage que le noeud peut utiliser pour les opérations d'écriture en spécifiant le paramètre MAXNUMMP à la commande ENREGISTRER NOEUD. Le nombre de points de montage est généralement équivalent au nombre de têtes de lecteur de bande attribuées au nœud d'archivage. Le nombre spécifié pour MAXNUMMP sur le serveur TSM doit être au moins aussi grand que la valeur définie pour *ARC* > *Target* > *Configuration* > *main* > *maximum Store sessions* pour le nœud d'archivage, Qui est défini sur 0 ou 1, car les sessions de stockage simultanées ne sont pas prises en charge par le nœud d'archivage.
+
+La valeur MAXSESSIONS définie pour le serveur TSM contrôle le nombre maximal de sessions qui peuvent être ouvertes sur le serveur TSM par toutes les applications clientes. La valeur de MAXSESSIONS spécifiée sur TSM doit être au moins aussi grande que la valeur spécifiée pour *ARC* > *Target* > *Configuration* > *main* > *nombre de sessions* dans le gestionnaire de grille pour le noeud d'archives. Le nœud d'archivage crée simultanément au plus une session par point de montage et un petit nombre (< 5) de sessions supplémentaires.
+
+Le nœud TSM affecté au nœud d'archivage utilise une stratégie de domaine personnalisée `tsm-domain`. Le `tsm-domain` La stratégie de domaine est une version modifiée de la stratégie de domaine « standard », configurée pour écrire sur bande et avec la destination d'archivage définie comme étant le pool de stockage du système StorageGRID (`_SGWSDiskPool_`).
+
+
+NOTE: Vous devez vous connecter au serveur TSM avec des privilèges d'administration et utiliser l'outil dsmadmc pour créer et activer la stratégie de domaine.

@@ -1,0 +1,114 @@
+---
+permalink: admin/migrating-data-into-storagegrid.html 
+sidebar: sidebar 
+keywords: data migration, move data into storagegrid 
+summary: 'Vous pouvez migrer d"importants volumes de données vers le système StorageGRID tout en utilisant le système StorageGRID pour les opérations quotidiennes.' 
+---
+= Migrer les données vers StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez migrer d'importants volumes de données vers le système StorageGRID tout en utilisant le système StorageGRID pour les opérations quotidiennes.
+
+Ce guide vous aidera à planifier une migration de grands volumes de données vers le système StorageGRID. Ce n'est pas un guide général de la migration des données et n'inclut pas des étapes détaillées pour effectuer une migration. Suivez les instructions de cette section pour assurer une migration efficace des données dans le système StorageGRID sans perturber les opérations quotidiennes et que les données migrées sont correctement gérées par le système StorageGRID.
+
+
+
+== Vérifier la capacité du système StorageGRID
+
+Avant de migrer d'importants volumes de données vers le système StorageGRID, vérifiez que le système StorageGRID dispose des capacités de disque nécessaires pour gérer le volume prévu.
+
+Si le système StorageGRID inclut un nœud d'archivage et qu'une copie des objets migrés a été enregistrée sur un stockage secondaire (par exemple, une bande), assurez-vous que le stockage du nœud d'archivage dispose de suffisamment de capacité pour le volume prévu de données migrées.
+
+Dans le cadre de l'évaluation de la capacité, examinez le profil de données des objets que vous prévoyez de migrer et calculez la capacité de disque requise. Pour plus d'informations sur la surveillance de la capacité du disque de votre système StorageGRID, reportez-vous à la section link:managing-storage-nodes.html["Gérer des nœuds de stockage"] et les instructions pour link:../monitor/index.html["Surveillance StorageGRID"].
+
+
+
+== Détermination de la règle ILM pour les données migrées
+
+La règle ILM du système StorageGRID détermine le nombre de copies effectuées, l'emplacement des copies stockées et la durée de conservation de ces copies. Une règle ILM comprend un ensemble de règles ILM décrit la procédure de filtrage des objets et de gestion des données d'objet au fil du temps.
+
+Selon l'utilisation des données migrées et vos exigences concernant les données migrées, vous pouvez définir des règles ILM uniques pour les données migrées qui ne sont pas les règles ILM utilisées pour les opérations quotidiennes. Par exemple, si la gestion quotidienne des données implique différentes exigences réglementaires que les données incluses dans la migration, il est possible de vouloir créer un nombre différent de copies des données migrées sur un niveau de stockage différent.
+
+Vous pouvez configurer des règles qui s'appliquent exclusivement aux données migrées si une distinction unique entre les données migrées et les données objet enregistrées au quotidien.
+
+Si vous faites la distinction de manière fiable entre les types de données en utilisant l'un des critères de métadonnées, ce critère vous permet de définir une règle ILM qui ne s'applique qu'aux données migrées.
+
+Avant de commencer la migration des données, veillez à bien comprendre la règle ILM du système StorageGRID et la manière dont elle s'applique aux données migrées, et à effectuer et tester toutes les modifications apportées à la règle ILM. Voir link:../ilm/index.html["Gestion des objets avec ILM"].
+
+
+CAUTION: Une règle ILM incorrecte peut entraîner une perte de données irrécupérable. Examinez attentivement toutes les modifications apportées à une stratégie ILM avant de l'activer pour vous assurer que celle-ci fonctionne comme prévu.
+
+
+
+== Évaluez l'impact de la migration sur les opérations
+
+Le système StorageGRID permet un fonctionnement efficace du stockage objet et de la récupération. Il offre une excellente protection contre la perte de données grâce à la création transparente de copies redondantes des données d'objet et des métadonnées.
+
+Cependant, la migration des données doit être gérée avec soin conformément aux instructions de ce guide afin d'éviter tout impact sur les opérations quotidiennes du système ou, dans des cas extrêmes, le risque de perte des données en cas de défaillance du système StorageGRID.
+
+La migration de volumes importants de données impose une charge supplémentaire au système. Lorsque le système StorageGRID est lourdement chargé, il répond plus lentement aux demandes de stockage et de récupération d'objets. Cela peut interférer avec les demandes de stockage et de récupération qui font partie intégrante des opérations quotidiennes. La migration peut également entraîner d'autres problèmes opérationnels. Par exemple, lorsqu'un nœud de stockage arrive à saturation de la capacité, la charge intermittente importante due à l'ingestion par lots peut faire basculer le nœud de stockage entre la lecture seule et la lecture-écriture, générant des notifications.
+
+Si le chargement persiste, les files d'attente peuvent développer différentes opérations que le système StorageGRID doit exécuter pour assurer la redondance complète des données d'objet et des métadonnées.
+
+La migration des données doit être gérée avec soin conformément aux directives présentées dans ce document afin de garantir un fonctionnement sûr et efficace du système StorageGRID pendant la migration. Lors de la migration des données, ingestion d'objets par lots ou ingestion continue. Ensuite, surveillez en permanence le système StorageGRID pour vous assurer que les différentes valeurs d'attribut ne sont pas dépassées.
+
+
+
+== Planifiez et surveillez la migration des données
+
+La migration des données doit être planifiée et contrôlée si nécessaire pour assurer le placement des données conformément à la politique ILM dans les délais impartis.
+
+
+
+=== Planification de la migration des données
+
+Évitez la migration des données pendant les heures de fonctionnement essentielles. Limitez la migration des données aux soirées, week-ends et autres fois que l'utilisation du système est faible.
+
+Si possible, ne planifiez pas la migration des données pendant les périodes d'activité élevée. Toutefois, s'il n'est pas pratique d'éviter complètement la période d'activité élevée, il est sûr de procéder aussi longtemps que vous surveillez attentivement les attributs pertinents et que vous prenez des mesures s'ils dépassent les valeurs acceptables.
+
+
+
+=== Surveiller la migration des données
+
+Ce tableau répertorie les attributs que vous devez contrôler lors de la migration des données, ainsi que les problèmes qu'ils représentent.
+
+Si vous utilisez des stratégies de classification du trafic avec des limites de taux pour accélérer l'entrée, vous pouvez surveiller le taux observé en conjonction avec les statistiques décrites dans le tableau suivant et réduire les limites si nécessaire.
+
+[cols="1a,2a"]
+|===
+| Superviser | Description 
+
+
+ a| 
+Nombre d'objets en attente de l'évaluation ILM
+ a| 
+. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+. Sélectionnez *_déploiement_* > *Présentation* > *main*.
+. Dans la section ILM Activity, surveillez le nombre d'objets affichés pour les attributs suivants :
++
+** *Attente - tous (XQUZ)*: Le nombre total d'objets en attente d'évaluation ILM.
+** *Attente - client (XCQZ)* : nombre total d'objets en attente d'évaluation ILM des opérations client (par exemple, transfert).
+
+
+. Si le nombre d'objets affichés pour l'un de ces attributs dépasse 100,000, réduisez la vitesse d'entrée des objets afin de réduire la charge sur le système StorageGRID.
+
+
+
+
+ a| 
+Capacité de stockage des systèmes d'archivage ciblés
+ a| 
+Si la règle ILM enregistre une copie des données migrées vers un système de stockage d'archives ciblé (bande ou cloud), surveillez la capacité du système de stockage d'archivage ciblé pour s'assurer que la capacité disponible est suffisante.
+
+
+
+ a| 
+*Archive Node* > *ARC* > *Store*
+ a| 
+Si une alarme pour l'attribut *Store Failures (ARVF)* est déclenchée, le système de stockage d'archives ciblé a peut-être atteint sa capacité. Vérifiez le système de stockage d'archives ciblé et résolvez tout problème ayant déclenché une alarme.
+
+|===

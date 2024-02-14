@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-recover/index.html 
+summary: 'En cas de défaillance d"un nœud de grille, vous pouvez le restaurer en remplaçant le serveur physique ou virtuel défaillant, en réinstallant le logiciel StorageGRID et en restaurant les données récupérables.' 
+---
+= Récupérer ou remplacer des nœuds
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

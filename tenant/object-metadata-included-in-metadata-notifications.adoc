@@ -1,0 +1,75 @@
+---
+permalink: tenant/object-metadata-included-in-metadata-notifications.html 
+sidebar: sidebar 
+keywords: object metadata notification 
+summary: 'Le tableau répertorie tous les champs inclus dans le document JSON qui est envoyé au noeud final de destination lorsque l"intégration de la recherche est activée.' 
+---
+= Métadonnées d'objet incluses dans les notifications de métadonnées
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le tableau répertorie tous les champs inclus dans le document JSON qui est envoyé au noeud final de destination lorsque l'intégration de la recherche est activée.
+
+Le nom du document inclut le nom du compartiment, le nom de l'objet et l'ID de version, le cas échéant.
+
+[cols="1a,2a"]
+|===
+| Type | Nom et description de l'élément 
+
+
+ a| 
+Informations sur les compartiments et les objets
+ a| 
+`bucket`: Nom du compartiment
+
+
+
+ a| 
+`key`: Nom de la clé d'objet
+
+
+
+ a| 
+`versionID`: Version d'objet, pour les objets dans les compartiments multiversion
+
+
+
+ a| 
+`region`: Région godet, par exemple `us-east-1`
+
+
+
+ a| 
+Métadonnées de système
+ a| 
+`size`: Taille de l'objet (en octets) visible par un client HTTP
+
+
+
+ a| 
+`md5`: Hachage d'objet
+
+
+
+ a| 
+Métadonnées d'utilisateur
+ a| 
+`metadata`: Toutes les métadonnées utilisateur de l'objet, en tant que paires clé-valeur
+
+`key:value`
+
+
+
+ a| 
+Étiquettes
+ a| 
+`tags`: Toutes les balises d'objet définies pour l'objet, en tant que paires clé-valeur
+
+`key:value`
+
+|===
+
+NOTE: Pour les balises et les métadonnées d'utilisateur, StorageGRID transmet des dates et des chiffres à Elasticsearch en tant que chaînes ou notifications d'événement S3. Pour configurer Elasticsearch afin d'interpréter ces chaînes comme des dates ou des chiffres, suivez les instructions Elasticsearch pour un mappage dynamique des champs et un mappage des formats de date. Vous devez activer les mappages de champs dynamiques sur l'index avant de configurer le service d'intégration de la recherche. Une fois qu'un document est indexé, vous ne pouvez pas modifier les types de champ du document dans l'index.
