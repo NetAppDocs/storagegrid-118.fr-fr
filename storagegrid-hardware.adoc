@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: storagegrid-hardware.html 
 keywords: storagegrid, software, grid 
-summary: Découvrez comment configurer et utiliser le matériel des appliances StorageGRID. 
+summary: Découvrez comment installer, configurer et utiliser le matériel des appliances StorageGRID. 
 ---
-= Installez les appliances StorageGRID
+= Appliances StorageGRID
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

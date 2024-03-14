@@ -1,6 +1,7 @@
 ---
 settings:
   name: StorageGRID 11.8
+  search: storagegrid-enable,storagegrid-118,storagegrid-appliances
   internal:
     pdf_enabled: false
     termcheck_enabled: false
@@ -13,6 +14,8 @@ sidebar:
   entries:
   - title: Documents StorageGRID 11.8
     url: "/index.html"
+  - title: Appliances StorageGRID
+    url: "/storagegrid-hardware.html"
   - title: Notes de mise à jour
     url: "/release-notes/index.html"
   - title: Commencez
