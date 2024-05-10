@@ -2,7 +2,7 @@
 permalink: maintain/starting-software-installation-on-services-appliance-recovery.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, services appliance, start software installation 
-summary: 'Pour installer un nœud de passerelle ou un nœud d"administration sur une appliance de services SG100 ou SG1000, utilisez le programme d"installation de l"appliance StorageGRID inclus sur l"appliance.' 
+summary: 'Pour installer un nœud de passerelle ou un nœud d"administration sur une appliance de services, utilisez le programme d"installation de l"appliance StorageGRID, inclus dans l"appliance.' 
 ---
 = Démarrez l'installation du logiciel sur l'appliance des services
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Pour installer un nœud de passerelle ou un nœud d"administration sur
 
 
 [role="lead"]
-Pour installer un nœud de passerelle ou un nœud d'administration sur une appliance de services SG100 ou SG1000, utilisez le programme d'installation de l'appliance StorageGRID inclus sur l'appliance.
+Pour installer un nœud de passerelle ou un nœud d'administration sur une appliance de services, utilisez le programme d'installation de l'appliance StorageGRID, inclus dans l'appliance.
 
 .Avant de commencer
 * L'appliance est installée dans un rack, connectée à vos réseaux et sous tension.
@@ -31,7 +31,7 @@ NOTE: Une version récente du logiciel StorageGRID est préchargée sur l'applia
 
 
 .Description de la tâche
-Pour installer le logiciel StorageGRID sur une appliance de services SG100 ou SG1000 :
+Pour installer le logiciel StorageGRID sur une appliance de services :
 
 * Pour un nœud d'administration principal, vous spécifiez le nom du nœud, puis téléchargez les packs logiciels appropriés (le cas échéant).
 * Pour un noeud d'administration non primaire ou un noeud de passerelle, vous spécifiez ou confirmez l'adresse IP du noeud d'administration principal et le nom du noeud.
@@ -41,7 +41,7 @@ Pour installer le logiciel StorageGRID sur une appliance de services SG100 ou SG
 
 
 .Étapes
-. Ouvrez un navigateur et saisissez l'une des adresses IP de l'appliance de services SG100 ou SG1000.
+. Ouvrez un navigateur et entrez l'une des adresses IP de l'appliance de services.
 +
 `https://_Controller_IP_:8443`
 

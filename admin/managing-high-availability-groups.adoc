@@ -23,7 +23,7 @@ Chaque groupe HA permet d'accéder aux services partagés sur les nœuds sélect
 
 * Les groupes HAUTE DISPONIBILITÉ, incluant les nœuds de passerelle et les nœuds d'administration, ou les deux, fournissent des connexions de données hautement disponibles pour les clients S3 et Swift.
 * Les groupes HAUTE DISPONIBILITÉ comprenant uniquement des nœuds d'administration fournissent des connexions hautement disponibles au Grid Manager et au tenant Manager.
-* Un groupe haute disponibilité comprenant uniquement des appliances SG100 ou SG1000 et des nœuds logiciels VMware peut offrir des connexions hautement disponibles pour link:../admin/manage-s3-select-for-tenant-accounts.html["Locataires S3 avec S3 Select"].
+* Un groupe haute disponibilité incluant uniquement des appliances de services et des nœuds logiciels VMware peut fournir des connexions extrêmement disponibles pour link:../admin/manage-s3-select-for-tenant-accounts.html["Locataires S3 avec S3 Select"].
 Les groupes HAUTE DISPONIBILITÉ sont recommandés lors de l'utilisation de S3 Select, mais pas requis.
 
 

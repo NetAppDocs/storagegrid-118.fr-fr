@@ -39,22 +39,29 @@ link:specifying-urn-for-platform-services-endpoint.html["Spécifiez l'URN du ter
 +
 [role="tabbed-block"]
 ====
-.Terminaux d'intégration de la recherche AWS
+.Rechercher les terminaux d'intégration
 --
-Pour les terminaux d'intégration de la recherche AWS, vous pouvez utiliser les informations d'identification suivantes :
+Pour les terminaux d'intégration de recherche, vous pouvez utiliser les informations d'identification suivantes :
 
 *** Clé d'accès : ID de clé d'accès et clé d'accès secrète
 *** HTTP de base : nom d'utilisateur et mot de passe
-*** CAP (C2S Access Portal) : URL d'informations d'identification temporaires, certificats de serveur et de client, clés client et phrase de passe de clé privée de client facultative.
 
 
 --
-.La réplication CloudMirror et les terminaux Amazon SNS
+.Terminaux de réplication CloudMirror
 --
-Pour la réplication CloudMirror et les terminaux Amazon SNS, vous pouvez utiliser les informations d'identification suivantes :
+Pour la réplication de CloudMirror, vous pouvez utiliser les informations d'identification suivantes :
 
 *** Clé d'accès : ID de clé d'accès et clé d'accès secrète
 *** CAP (C2S Access Portal) : URL d'informations d'identification temporaires, certificats de serveur et de client, clés client et phrase de passe de clé privée de client facultative.
+
+
+--
+.Terminaux Amazon SNS
+--
+Pour les terminaux Amazon SNS, vous pouvez utiliser les informations d'identification suivantes :
+
+*** Clé d'accès : ID de clé d'accès et clé d'accès secrète
 
 
 --
@@ -136,9 +143,9 @@ NOTE: Vous ne pouvez pas modifier l'URN d'un noeud final après sa création.
 +
 [role="tabbed-block"]
 ====
-.Terminaux d'intégration de la recherche AWS
+.Rechercher les terminaux d'intégration
 --
-Entrez ou téléchargez les informations d'identification d'un terminal d'intégration de recherche AWS.
+Entrez ou téléchargez les informations d'identification d'un point final d'intégration de recherche.
 
 Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
 
@@ -176,25 +183,11 @@ Utilise un nom d'utilisateur et un mot de passe pour authentifier les connexions
 ** Mot de passe
 
 
-
-
- a| 
-CAP (portail d'accès C2S)
- a| 
-Utilise des certificats et des clés pour authentifier les connexions à la destination.
- a| 
-** URL des informations d'identification temporaires
-** Certificat autorité de certification du serveur (téléchargement de fichiers PEM)
-** Certificat client (téléchargement de fichier PEM)
-** Clé privée client (téléchargement de fichiers PEM, format crypté OpenSSL ou format de clé privée non crypté)
-** Phrase de passe de clé privée du client (facultatif)
-
-
 |===
 --
-.Réplication CloudMirror ou terminaux Amazon SNS
+.Terminaux de réplication CloudMirror
 --
-Entrez ou téléchargez les informations d'identification pour une réplication CloudMirror ou un terminal SNS Amazon.
+Entrez ou téléchargez les informations d'identification d'un point final de réplication CloudMirror.
 
 Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
 
@@ -233,6 +226,37 @@ Utilise des certificats et des clés pour authentifier les connexions à la dest
 ** Certificat client (téléchargement de fichier PEM)
 ** Clé privée client (téléchargement de fichiers PEM, format crypté OpenSSL ou format de clé privée non crypté)
 ** Phrase de passe de clé privée du client (facultatif)
+
+
+|===
+--
+.Terminaux Amazon SNS
+--
+Saisissez ou téléchargez les informations d'identification d'un terminal Amazon SNS.
+
+Les informations d'identification que vous fournissez doivent disposer d'autorisations d'écriture pour la ressource de destination.
+
+[cols="1a,2a,2a"]
+|===
+| Type d'authentification | Description | Informations d'identification 
+
+
+ a| 
+Anonyme
+ a| 
+Fournit un accès anonyme à la destination. Fonctionne uniquement pour les terminaux dont la sécurité est désactivée.
+ a| 
+Pas d'authentification.
+
+
+
+ a| 
+Clé d'accès
+ a| 
+Utilise des identifiants de style AWS pour authentifier les connexions avec la destination.
+ a| 
+** ID de clé d'accès
+** Clé d'accès secrète
 
 
 |===

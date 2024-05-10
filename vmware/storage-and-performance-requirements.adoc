@@ -25,7 +25,7 @@ Tous les nœuds StorageGRID nécessitent que le lecteur du système d'exploitati
 
 == Ainsi que les machines virtuelles qui utilisent le stockage NetApp ONTAP
 
-Si vous déployez un nœud StorageGRID en tant que machine virtuelle avec un stockage affecté à un système NetApp ONTAP, vous avez confirmé que cette FabricPool règle n'est pas activée pour le volume. Par exemple, si un nœud StorageGRID s'exécute en tant que machine virtuelle sur un hôte VMware, assurez-vous que le volume de sauvegarde du datastore pour le nœud ne dispose pas d'une stratégie de hiérarchisation FabricPool activée. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.
+Si vous déployez un nœud StorageGRID en tant que machine virtuelle avec un stockage affecté à un système NetApp ONTAP, vous avez confirmé que cette FabricPool règle n'est pas activée pour le volume. Par exemple, si un nœud StorageGRID s'exécute en tant que machine virtuelle sur un hôte VMware, assurez-vous que la règle de hiérarchisation FabricPool n'est pas activée pour le volume qui sauvegarde le datastore du nœud. La désactivation du Tiering FabricPool pour les volumes utilisés avec des nœuds StorageGRID simplifie la résolution des problèmes et les opérations de stockage.
 
 
 NOTE: N'utilisez jamais FabricPool pour transférer automatiquement toutes les données liées à StorageGRID vers StorageGRID. Le Tiering des données StorageGRID vers StorageGRID augmente la complexité opérationnelle et la résolution des problèmes.
@@ -84,6 +84,8 @@ Taille de la LUN testée maximale : 39 To.
  a| 
 Nœud de stockage (métadonnées uniquement)
  a| 
+LUN DE 100 GO POUR OS
+
 1 LUN
 
 Taille minimale par LUN : 4 To

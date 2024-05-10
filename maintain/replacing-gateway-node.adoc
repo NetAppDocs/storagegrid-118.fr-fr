@@ -35,7 +35,7 @@ link:all-node-types-replacing-linux-node.html["Remplacer un noeud Linux"]
 
 
  a| 
-Appareils de services SG100 et SG1000
+Appliances de services
  a| 
 link:replacing-failed-node-with-services-appliance.html["Remplacer une appliance de services"]
 

@@ -28,7 +28,7 @@ Exécutez des contrôles préalables et mettez à niveau le nœud d'administrati
  a| 
 Les précontrôles de mise à niveau sont exécutés et le nœud d'administration principal est arrêté, mis à niveau et redémarré.
  a| 
-De 30 minutes à 1 heure, avec les nœuds d'appliance SG100 et SG1000 nécessitant le plus de temps.
+de 30 minutes à 1 heure, avec les nœuds d'appliance de services qui demandent le plus de temps.
 
 Les erreurs de vérification préalable non résolues augmentent ce temps.
  a| 

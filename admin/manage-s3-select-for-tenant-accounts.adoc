@@ -57,7 +57,7 @@ La requête SelectObjectContent doit être envoyée à un link:configuring-load-
 
 Les nœuds d'administration et de passerelle utilisés par le noeud final doivent être l'un des suivants :
 
-* Nœud d'appliance SG100 ou SG1000
+* Nœud d'appliance de services
 * Nœud logiciel basé sur VMware
 * Nœud bare Metal exécutant un noyau avec cgroup v2 activé
 

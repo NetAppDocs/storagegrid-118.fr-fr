@@ -22,7 +22,7 @@ NOTE: La prise en charge des applications du client Swift a été obsolète et s
 * Vous avez passé en revue le link:managing-load-balancing.html["considérations relatives à l'équilibrage de charge"].
 * Si vous avez précédemment mappé à nouveau un port que vous souhaitez utiliser pour le noeud final de l'équilibreur de charge, vous avez link:../maintain/removing-port-remaps.html["retirez le schéma de câblage des ports - effectué"].
 * Vous avez créé tous les groupes à haute disponibilité (HA) que vous prévoyez d'utiliser. Les groupes HAUTE DISPONIBILITÉ sont recommandés, mais pas obligatoires. Voir link:managing-high-availability-groups.html["Gérez les groupes haute disponibilité"].
-* Si le point final de l'équilibreur de charge est utilisé par link:../admin/manage-s3-select-for-tenant-accounts.html["Locataires S3 pour S3 Select"], Il ne doit pas utiliser les adresses IP ou FQDN de tout noeud bare-Metal. Seuls les appliances SG100 ou SG1000 et les nœuds logiciels VMware sont autorisés pour les terminaux d'équilibrage de charge utilisés pour S3 Select.
+* Si le point final de l'équilibreur de charge est utilisé par link:../admin/manage-s3-select-for-tenant-accounts.html["Locataires S3 pour S3 Select"], Il ne doit pas utiliser les adresses IP ou FQDN de tout noeud bare-Metal. Seules les appliances de services et les nœuds logiciels basés sur VMware sont autorisés pour les terminaux d'équilibrage de charge utilisés pour S3 Select.
 * Vous avez configuré toutes les interfaces VLAN que vous prévoyez d'utiliser. Voir link:configure-vlan-interfaces.html["Configurez les interfaces VLAN"].
 * Si vous créez un noeud final HTTPS (recommandé), vous disposez des informations relatives au certificat de serveur.
 +

@@ -24,6 +24,6 @@ Vous disposez des informations suivantes sur le nœud défaillant :
 Effectuez cette procédure uniquement si vous récupérez un noeud défaillant hébergé sur VMware ou Linux et que vous le remplacez par un noeud hébergé sur une appliance de services.
 
 .Étapes
-. Suivez les instructions d'installation d'un nouvel appareil de services SG100 ou SG1000. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Démarrage rapide pour l'installation du matériel"^].
+. Suivez les instructions d'installation d'une nouvelle appliance de services. Voir https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Démarrage rapide pour l'installation du matériel"^].
 . Lorsqu'un nom de nœud est demandé, utilisez le nom du nœud correspondant à l'échec.
 

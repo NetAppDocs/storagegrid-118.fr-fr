@@ -30,7 +30,7 @@ NOTE: Bien que le service StorageGRID Load Balancer soit le mécanisme d'équili
 
 == De combien de nœuds d'équilibrage de charge ai-je besoin ?
 
-Dans le cadre des meilleures pratiques générales, chaque site de votre système StorageGRID doit inclure au moins deux nœuds avec le service Load Balancer. Par exemple, un site peut inclure deux nœuds de passerelle ou un nœud d'administration et un nœud de passerelle. S'assurer que l'infrastructure de mise en réseau, matérielle ou de virtualisation est adéquate pour chaque nœud d'équilibrage de charge, que vous utilisiez des appliances de services SG100 ou SG1000, des nœuds bare Metal ou des nœuds basés sur des machines virtuelles.
+Dans le cadre des meilleures pratiques générales, chaque site de votre système StorageGRID doit inclure au moins deux nœuds avec le service Load Balancer. Par exemple, un site peut inclure deux nœuds de passerelle ou un nœud d'administration et un nœud de passerelle. Assurez-vous qu'il existe une infrastructure réseau, matérielle ou de virtualisation adéquate pour chaque nœud d'équilibrage de charge, que vous utilisiez des appliances de services, des nœuds bare Metal ou des nœuds basés sur des machines virtuelles.
 
 
 

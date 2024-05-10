@@ -70,6 +70,8 @@ Le tableau fournit un résumé détaillé des éléments pris en charge pour cha
 
  a| 
 Requêtes
+
+(OBTENIR et GETNEXT)
  a| 
 Requêtes MIB en lecture seule
  a| 
@@ -92,6 +94,8 @@ Utilisateur USM (User Security Model)
 
  a| 
 Notifications
+
+(PIÈGE et INFORMATION)
  a| 
 Traps uniquement
  a| 

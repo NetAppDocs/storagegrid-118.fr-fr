@@ -49,6 +49,7 @@ Pendant la mise à niveau de StorageGRID 11.8 :
 * Les appliances SG100 et SG1000 sont automatiquement mises à niveau vers la version 3B12.EC du firmware du BIOS et la version 4.73.07 du firmware du BMC.
 * Le système SGF6112 est automatiquement mis à niveau vers la version 3A10.QD du micrologiciel du BIOS et la version 3.15.07 du micrologiciel du contrôleur BMC.
 * SGF6112 est converti du mode d'amorçage hérité au mode d'amorçage UEFI avec l'amorçage sécurisé activé.
+* Les appliances SG110 et SG1100 ont été fournies avec un micrologiciel BIOS compatible StorageGRID 11.8.
 
 
 
