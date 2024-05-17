@@ -24,10 +24,3 @@ Le conteneur et les segments ne sont pas nécessairement stockés sur le même n
 Chaque segment est traité indépendamment par le système StorageGRID et contribue au nombre d'attributs tels que les objets gérés et les objets stockés. Par exemple, si un objet stocké dans le système StorageGRID est divisé en deux segments, la valeur des objets gérés augmente de trois après la fin de l'acquisition, comme suit :
 
 `segment container + segment 1 + segment 2 = three stored objects`
-
-Vous pouvez améliorer les performances lors de la manipulation d'objets volumineux en vous assurant que :
-
-* Chaque passerelle et nœud de stockage dispose d'une bande passante réseau suffisante pour le débit requis. Par exemple, configurez des réseaux Grid et client distincts sur des interfaces Ethernet 10 Gbits/s.
-* Suffisamment de nœuds de passerelle et de stockage sont déployés pour le débit requis.
-* Chaque nœud de stockage offre des performances d'E/S de disque suffisantes pour le débit requis.
-

@@ -31,9 +31,9 @@ Les conditions et notes suivantes s'appliquent à toutes les opérations de tél
 
 
 * Toutes les opérations de téléchargement partitionné prennent en charge StorageGRID link:consistency-controls.html["valeurs de cohérence"].
+* Lorsqu'un objet est ingéré à l'aide d'un téléchargement partitionné, le link:../admin/what-object-segmentation-is.html["Seuil de segmentation d'objet (1 Gio)"] n'est pas appliqué.
 * Si nécessaire, vous pouvez utiliser link:using-server-side-encryption.html["chiffrement côté serveur"] avec téléchargements partitionnés. Pour utiliser SSE (chiffrement côté serveur avec clés gérées par StorageGRID), vous avez accès au `x-amz-server-side-encryption` En-tête de la demande CreateMultipartUpload uniquement. Pour utiliser SSE-C (chiffrement côté serveur avec des clés fournies par le client), vous devez spécifier les trois mêmes en-têtes de requête de clé de chiffrement dans la demande CreateMultipartUpload et dans chaque demande UploadPart suivante.
-
-
++
 [cols="2a,3a"]
 |===
 | Fonctionnement | Mise en place 
@@ -89,3 +89,4 @@ UploadPartCopy
 Voir link:upload-part-copy.html["UploadPartCopy"]
 
 |===
+
