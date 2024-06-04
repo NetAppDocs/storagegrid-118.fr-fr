@@ -66,6 +66,13 @@ Pour l'appliance, cette commande arrête le contrôleur, mais l'appliance est to
 +
 [role="tabbed-block"]
 ====
+.SG6160
+--
+.. Mettez le contrôleur de stockage SG6100-CN hors tension.
+.. Attendez que le voyant d'alimentation bleu du contrôleur de stockage SG6100-CN s'éteigne.
+
+
+--
 .SGF6112
 --
 .. Mettez l'appareil hors tension.

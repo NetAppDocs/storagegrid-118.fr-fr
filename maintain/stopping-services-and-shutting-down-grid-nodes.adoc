@@ -74,6 +74,12 @@ Pour l'appliance, cette commande arrête le contrôleur de calcul, mais l'applia
 ... Attendez que le voyant d'alimentation bleu s'éteigne.
 
 
+** Pour l'appliance SG6160
++
+... Mettez le contrôleur de stockage SG6100-CN hors tension.
+... Attendez que le voyant d'alimentation bleu du contrôleur de stockage SG6100-CN s'éteigne.
+
+
 ** Pour l'appareil SG6000
 +
 ... Attendez que la LED verte cache actif située à l'arrière des contrôleurs de stockage s'éteigne.
@@ -101,7 +107,7 @@ La grille StorageGRID est maintenant arrêtée.
 
 
 .Informations associées
-https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112"^]
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112 et SG6160"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositifs de stockage SG6000"^]
 

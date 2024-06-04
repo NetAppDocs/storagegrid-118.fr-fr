@@ -90,6 +90,13 @@ Pour l'appliance, cette commande arrête le contrôleur de calcul, mais l'applia
 
 
 --
+.SG6160
+--
+.. Mettez le contrôleur de stockage SG6100-CN hors tension.
+.. Attendez que le voyant d'alimentation bleu du contrôleur de stockage SG6100-CN s'éteigne.
+
+
+--
 .SGF6112
 --
 .. Mettez l'appareil hors tension.
@@ -156,7 +163,7 @@ Vous pouvez mettre ces nœuds sous tension dans n'importe quel ordre.
 
 
 .Informations associées
-* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112 et SG6160"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Appliances de services SG110 et SG1100"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appareils de services SG100 et SG1000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositifs de stockage SG6000"^]

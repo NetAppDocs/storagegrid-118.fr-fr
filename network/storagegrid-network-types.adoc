@@ -100,6 +100,7 @@ Pour plus de détails sur le mappage de ports virtuels ou physiques aux interfac
 
 
 .Nœuds d'appliance
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Appliance de stockage SG6160"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Appliance de stockage SGF6112"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6000.html["Dispositif de stockage SG6000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg5700.html["Appliance de stockage SG5700"^]

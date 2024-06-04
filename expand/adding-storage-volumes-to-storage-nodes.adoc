@@ -17,7 +17,7 @@ Vous pouvez étendre la capacité de stockage des nœuds de stockage disposant d
 Avant d'ajouter des volumes de stockage, vérifiez la link:guidelines-for-adding-object-capacity.html["instructions d'ajout de capacité d'objet"] Vous devez ainsi savoir où ajouter des volumes afin de répondre aux exigences de la règle ILM.
 
 
-NOTE: Ces instructions s'appliquent uniquement aux nœuds de stockage basés sur logiciel. Voir https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Ajoutez un tiroir d'extension à SG6060 déployé"^] Apprenez à ajouter des volumes de stockage à SG6060 en installant des tiroirs d'extension. Les autres nœuds de stockage de l'appliance ne peuvent pas être étendus.
+NOTE: Ces instructions s'appliquent uniquement aux nœuds de stockage basés sur logiciel. Voir https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Ajoutez un tiroir d'extension à SG6060 déployé"^] ou https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Ajout du tiroir d'extension au SG6160 déployé"^] Pour apprendre à ajouter des volumes de stockage aux SG6060 et SG6160 en installant des tiroirs d'extension. Les autres nœuds de stockage de l'appliance ne peuvent pas être étendus.
 
 .Description de la tâche
 Le stockage sous-jacent d'un nœud de stockage est divisé en volumes de stockage. Les volumes de stockage sont des périphériques de stockage basés sur des blocs formatés par le système StorageGRID et montés pour stocker des objets. Chaque nœud de stockage peut prendre en charge jusqu'à 16 volumes de stockage, appelés _object stores_ dans Grid Manager.

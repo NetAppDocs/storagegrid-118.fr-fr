@@ -266,7 +266,7 @@ Identificateur numérique du tiroir de stockage.
 *** 1 : second tiroir d'extension
 
 
-*Remarque :* les étagères d'extension s'appliquent uniquement au SG6060.
+*Remarque :* les étagères d'extension s'appliquent uniquement aux SG6060 et SG6160.
 
 
 

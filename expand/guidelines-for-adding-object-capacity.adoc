@@ -23,6 +23,7 @@ Avant d'ajouter des volumes de stockage à des nœuds de stockage existants, con
 * L'ajout de volumes de stockage ne permet pas d'augmenter la capacité de métadonnées du système, car les métadonnées d'objet sont stockées uniquement sur le volume 0.
 * Chaque nœud de stockage logiciel peut prendre en charge un maximum de 16 volumes de stockage. Si vous avez besoin d'ajouter de la capacité, vous devez ajouter des nœuds de stockage.
 * Vous pouvez ajouter un ou deux tiroirs d'extension à chaque appliance SG6060. Chaque tiroir d'extension ajoute 16 volumes de stockage. Avec les deux tiroirs d'extension installés, le SG6060 peut prendre en charge un total de 48 volumes de stockage.
+* Vous pouvez ajouter un ou deux tiroirs d'extension à chaque appliance SG6160. Chaque tiroir d'extension ajoute 60 volumes de stockage. Une fois les deux tiroirs d'extension installés, le SG6160 peut prendre en charge un total de 180 volumes de stockage.
 * Vous ne pouvez pas ajouter de volumes de stockage à une autre appliance de stockage.
 * Vous ne pouvez pas augmenter la taille d'un volume de stockage existant.
 * Vous ne pouvez pas ajouter de volumes de stockage à un nœud de stockage en même temps que vous effectuez une mise à niveau du système, une opération de restauration ou une autre extension.
@@ -31,6 +32,7 @@ Avant d'ajouter des volumes de stockage à des nœuds de stockage existants, con
 Une fois que vous avez décidé d'ajouter des volumes de stockage et que vous avez déterminé les nœuds de stockage à étendre pour répondre à la règle ILM, suivez les instructions relatives à votre type de nœud de stockage :
 
 * Pour ajouter une ou deux tiroirs d'extension à une appliance de stockage SG6060, accédez à https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Ajoutez un tiroir d'extension à SG6060 déployé"^].
+* Pour ajouter un ou deux tiroirs d'extension à une appliance de stockage SG6160, rendez-vous sur le site https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Ajout du tiroir d'extension au SG6160 déployé"^]
 * Pour un nœud logiciel, suivez les instructions de la section
 link:adding-storage-volumes-to-storage-nodes.html["Ajout de volumes de stockage aux nœuds de stockage"].
 

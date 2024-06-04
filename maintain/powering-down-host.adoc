@@ -52,6 +52,13 @@ Pour l'appliance, cette commande arrête le contrôleur, mais l'appliance est to
 +
 [role="tabbed-block"]
 ====
+.SG6160
+--
+.. Mettez le contrôleur de stockage SG6100-CN hors tension.
+.. Attendez que le voyant d'alimentation bleu du contrôleur de stockage SG6100-CN s'éteigne.
+
+
+--
 .SGF6112
 --
 .. Mettez l'appareil hors tension.
@@ -98,7 +105,7 @@ Cette LED s'allume lorsque les données en cache doivent être écrites sur les 
 
 
 .Informations associées
-https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112"^]
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliances de stockage SGF6112 et SG6160"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositifs de stockage SG6000"^]
 
