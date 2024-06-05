@@ -114,6 +114,18 @@ Cette LED s'allume lorsque les données en cache doivent être écrites sur les 
 
 
 --
+.SG5800
+--
+.. Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
++
+Cette LED s'allume lorsque les données en cache doivent être écrites sur les disques. Vous devez attendre que ce voyant s'éteigne avant de mettre le système hors tension.
+
+.. Dans la page d'accueil de SANtricity System Manager, sélectionnez *Afficher les opérations en cours*.
+.. Vérifiez que toutes les opérations ont été effectuées avant de passer à l'étape suivante.
+.. Mettez les deux boutons marche/arrêt sur le tiroir contrôleur et attendez que toutes les LED du tiroir contrôleur s'éteignent.
+
+
+--
 .SG5700
 --
 .. Attendez que la LED verte cache actif située à l'arrière du contrôleur de stockage s'éteigne.
@@ -167,5 +179,6 @@ Vous pouvez mettre ces nœuds sous tension dans n'importe quel ordre.
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Appliances de services SG110 et SG1100"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appareils de services SG100 et SG1000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Dispositifs de stockage SG6000"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["Systèmes de stockage SG5800"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["Appliances de stockage SG5700"^]
 
