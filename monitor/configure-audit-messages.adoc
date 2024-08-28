@@ -601,7 +601,7 @@ TIP: *Les nœuds locaux uniquement* et *le serveur syslog externe* fournissent g
 
 
  a| 
-Nœuds locaux uniquement
+Nœuds locaux uniquement (par défaut)
  a| 
 Les messages d'audit, les journaux d'événements de sécurité et les journaux d'applications ne sont pas envoyés aux nœuds d'administration. Ils sont enregistrés uniquement sur les nœuds qui les ont générés (« le nœud local »). Les informations d'audit générées sur chaque nœud local sont stockées dans `/var/local/log/localaudit.log`
 

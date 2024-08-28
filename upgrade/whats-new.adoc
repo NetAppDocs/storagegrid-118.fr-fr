@@ -42,6 +42,12 @@ Améliorations du SGF6112:: Prise en charge de StorageGRID 11.8 et de la version
 == Configurez et gérez
 
 Cohérence par défaut dans toute la grille:: Vous pouvez modifier le link:../s3/consistency-controls.html["cohérence par défaut à l'échelle de la grille"] À l'aide du Gestionnaire de grille ou du noeud final GRID-config du link:../admin/using-grid-management-api.html["API privée de gestion du grid"]. La nouvelle valeur par défaut sera appliquée aux compartiments créés après la modification.
+Destinations d'audit par défaut:: Les nouvelles installations de StorageGRID 11.8 sont par défaut des destinations d'audit de nœud local. Auparavant, les messages d'audit étaient envoyés au journal d'audit (`/var/local/log/audit.log`) sur les nœuds d'administration uniquement.
++
+--
+Pour plus d'informations sur la modification des destinations des journaux d'audit, reportez-vous link:../monitor/configure-audit-messages.html#Select-audit-information-destinations["Sélectionnez les destinations des informations d'audit"]à la section .
+
+--
 Balises de règles ILM:: Permet de contrôler les règles ILM au niveau du compartiment à l'aide de balises de compartiment. Plusieurs règles ILM actives et inactives peuvent exister en même temps. Voir link:../ilm/ilm-policy-overview.html["Règles ILM:présentation"].
 Les terminaux Kafka:: Prise en charge des terminaux Kafka pour link:../tenant/understanding-notifications-for-buckets.html["notifications d'événement de compartiment"].
 L'équilibreur de charge pour le trafic des interfaces de gestion:: Créez des terminaux d'équilibrage de la charge pour gérer le workload d'interface de gestion sur les nœuds d'administration. Voir link:../admin/managing-load-balancing.html["considérations relatives à l'équilibrage de charge"]. À ce titre, vous pouvez désormais utiliser les ports Grid Manager et tenant Manager 443, 8443 et 9443 lors de la création de terminaux d'équilibreur de charge HTTPS pour l'accès client S3 ou Swift.
