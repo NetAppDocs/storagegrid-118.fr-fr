@@ -80,7 +80,7 @@ Vous pouvez désactiver à tout moment l'envoi automatique de packages AutoSuppo
 
 == Désactivez la fonction AutoSupport déclenchée par un événement
 
-Par défaut, le système StorageGRID est configuré pour envoyer un pack AutoSupport au support technique toutes les heures, ou lorsqu'une alerte importante ou tout autre événement système important se produit.
+Par défaut, le système StorageGRID est configuré pour envoyer un package AutoSupport au support technique toutes les heures.
 
 Vous pouvez désactiver les AutoSupport déclenchées par un événement à tout moment.
 

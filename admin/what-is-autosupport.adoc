@@ -64,7 +64,7 @@ AutoSupport taille compressée +
 AutoSupport décompressé taille +
 Temps total de collecte (ms)
  a| 
-Fichier d'historique AutoSupport
+Fichier d'historique AutoSupport.
 
 
 
@@ -158,6 +158,29 @@ Fichier d'état des tâches de grille (procédures de maintenance). Fournit des 
 
 
  a| 
+GRID.JSON
+ a| 
+Grid + révision + version du logiciel + Description + Licence + mots de passe + DNS + NTP + sites + nœuds
+ a| 
+Informations de grille.
+
+
+
+ a| 
+ILM-CONFIGURATION.XML
+ a| 
+ID d'attribut +
+Nom d'attribut +
+Valeur +
+Index +
+ID de table +
+Nom de la table
+ a| 
+Liste des attributs des configurations ILM.
+
+
+
+ a| 
 ILM-STATUS.XML
  a| 
 Nœud +
@@ -178,7 +201,7 @@ ILM.XML
  a| 
 XML brut ILM
  a| 
-Fichier de règles actif ILM. Contient des informations détaillées sur les règles ILM actives, telles que l'ID de pool de stockage, le comportement d'ingestion, les filtres, les règles et la description.
+Fichier de règles actif ILM. Contient des informations détaillées sur les règles ILM actives, telles que l'ID de pool de stockage, le comportement d'ingestion, les filtres, les règles et la description. Contient également le XML de la politique ILM par défaut.
 
 
 

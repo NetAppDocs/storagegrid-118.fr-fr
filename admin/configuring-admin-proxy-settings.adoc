@@ -38,7 +38,7 @@ Laissez ces champs vides si votre serveur proxy ne requiert pas de nom d'utilisa
 
 . Sélectionnez l'une des options suivantes :
 +
-** Si vous souhaitez sécuriser la connexion au proxy d'administration, sélectionnez *vérifier le certificat*. Téléchargez un paquet CA pour vérifier l'authenticité des certificats SSL présentés par le serveur proxy d'administration.
+** Si vous souhaitez sécuriser la connexion au proxy d'administration, sélectionnez *vérifier le certificat proxy*. Téléchargez un paquet CA pour vérifier l'authenticité des certificats SSL présentés par le serveur proxy d'administration.
 +
 
 CAUTION: AutoSupport On Demand, E-Series AutoSupport via StorageGRID et la détermination du chemin de mise à jour sur la page mise à niveau StorageGRID ne fonctionneront pas si un certificat proxy est vérifié.
@@ -46,7 +46,7 @@ CAUTION: AutoSupport On Demand, E-Series AutoSupport via StorageGRID et la déte
 +
 Une fois le paquet CA téléchargé, ses métadonnées s'affichent.
 
-** Si vous ne souhaitez pas valider les certificats lors de la communication avec le serveur proxy d'administration, sélectionnez *ne pas vérifier le certificat*.
+** Si vous ne souhaitez pas valider les certificats lors de la communication avec le serveur proxy d'administration, sélectionnez *ne pas vérifier le certificat proxy*.
 
 
 . Sélectionnez *Enregistrer*.
