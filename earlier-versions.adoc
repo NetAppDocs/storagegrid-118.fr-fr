@@ -16,6 +16,7 @@ summary: 'Vous pouvez trouver la documentation pour d"autres versions du logicie
 [role="lead"]
 Vous trouverez de la documentation pour d'autres versions du logiciel NetApp StorageGRID ici :
 
+* https://docs.netapp.com/us-en/storagegrid/index.html["Documentation StorageGRID 11.9"^]
 * https://docs.netapp.com/us-en/storagegrid-117/index.html["Documentation StorageGRID 11.7"^]
 * https://docs.netapp.com/us-en/storagegrid-116/index.html["Documentation StorageGRID 11.6"^]
 * https://docs.netapp.com/us-en/storagegrid-115/index.html["Documentation sur StorageGRID 11.5"^]
