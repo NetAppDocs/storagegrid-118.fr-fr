@@ -53,8 +53,6 @@ Les résultats de la recherche de métadonnées d'objet s'affichent. Cette page 
 ** Pour les copies d'objet dans Cloud Storage Pool, l'emplacement de l'objet, notamment le nom du compartiment externe et l'identifiant unique de l'objet.
 ** Pour les objets segmentés et les objets multisegments, une liste de segments d'objet, y compris les identificateurs de segments et la taille des données. Pour les objets de plus de 100 segments, seuls les 100 premiers segments sont affichés.
 ** Toutes les métadonnées d'objet dans le format de stockage interne non traité. Ces métadonnées brutes incluent les métadonnées du système interne qui ne sont pas garanties de la version à la version.
-
-
 +
 L'exemple suivant présente les résultats de la recherche de métadonnées d'objet pour un objet de test S3 stocké sous forme de deux copies répliquées.
 
@@ -64,6 +62,8 @@ NOTE: La capture d'écran suivante en est un exemple. Vos résultats varient en 
 
 +
 image::../media/object_lookup_results.png[Résultats de la recherche d'objets]
+
+
 
 . Vérifiez que l'objet est stocké à l'emplacement ou aux emplacements appropriés et qu'il s'agit du type de copie correct.
 +

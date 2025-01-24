@@ -34,7 +34,7 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 .. Entrez `cd /var/local/log`
 .. Identifiez les locataires qui utilisent des objets de plus de 5 Gio.
 +
-... Entrez `zgrep SPUT * | egrep "CSIZ\(UI64\):[0-9]*[5-9][0-9]{9}"`
+... Entrée `zgrep SPUT * | egrep "CSIZ\(UI64\):([5-9]|[1-9][0-9]+)[0-9]{9}"`
 ... Pour chaque message d'audit dans les résultats, consultez `S3AI` Pour déterminer l'ID de compte de locataire. Utilisez les autres champs du message pour déterminer l'adresse IP utilisée par le client, le compartiment et l'objet :
 +
 [cols="1a,2a"]
