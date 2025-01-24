@@ -45,7 +45,7 @@ Le chiffrement de disque ne s'applique pas aux disques gérés par SANtricity. S
  a| 
 Sécurité des disques dans SANtricity System Manager
  a| 
-Si la fonctionnalité Drive Security est activée pour une appliance de stockage SG5700 ou SG6000, vous pouvez utiliser https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity System Manager"^] pour créer et gérer la clé de sécurité. La clé est requise pour accéder aux données sur les disques sécurisés.
+Si la fonction de sécurité des lecteurs est activée pour votre appliance StorageGRID, vous pouvez utiliser https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity System Manager"^] pour créer et gérer la clé de sécurité. La clé est requise pour accéder aux données sur les disques sécurisés.
  a| 
 Dispositifs de stockage équipés de disques Full Disk Encryption (FDE) ou de disques à autocryptage. Toutes les données des disques sécurisés sont protégées contre les pertes ou suppressions physiques du data Center. Utilisation avec certaines appliances de stockage ou avec des appliances de services impossible.
 
