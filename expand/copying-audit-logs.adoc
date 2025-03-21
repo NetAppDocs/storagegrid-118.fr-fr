@@ -86,7 +86,9 @@ Lorsque vous êtes connecté en tant que root, l'invite passe de `$` à `#`.
 
 . Mettez à jour les paramètres utilisateur et groupe des fichiers journaux d'audit :
 +
-`cd /var/local/log` +
+`cd /var/local/log`
+
++
 `chown ams-user:bycast *`
 
 . Déconnexion du serveur :

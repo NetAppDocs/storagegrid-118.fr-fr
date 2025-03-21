@@ -184,7 +184,7 @@ Une bannière verte indique que votre configuration a été enregistrée.
 Vous pouvez également configurer un serveur syslog externe pour enregistrer les journaux d'audit, les journaux d'application et les journaux d'événements de sécurité dans un emplacement en dehors de votre grille.
 
 
-NOTE: Si vous ne souhaitez pas utiliser de serveur syslog externe, ignorez cette étape et passez à l' <<Select-audit-information-destinations,Sélectionnez les destinations des informations d'audit>>.
+NOTE: Si vous ne souhaitez pas utiliser de serveur syslog externe, ignorez cette étape et passez à <<select-audit-information-destinations,Sélectionnez les destinations des informations d'audit>>l' .
 
 
 TIP: Si les options de configuration disponibles dans cette procédure ne sont pas suffisamment flexibles pour répondre à vos besoins, des options de configuration supplémentaires peuvent être appliquées à l'aide du `audit-destinations` Les terminaux, qui se trouvent dans la section API privée de link:../admin/using-grid-management-api.html["API de gestion du grid"]. Par exemple, vous pouvez utiliser l'API si vous souhaitez utiliser différents serveurs syslog pour différents groupes de nœuds.
@@ -585,9 +585,15 @@ NOTE: Les informations d'audit StorageGRID ne sont pas envoyées au serveur sysl
 
 Vous pouvez spécifier l'emplacement des journaux d'audit, les journaux d'événements de sécurité et link:../monitor/storagegrid-software-logs.html["Journaux du logiciel StorageGRID"] sont envoyés.
 
+[NOTE]
+====
+StorageGRID utilise par défaut les destinations d'audit de nœud local et stocke les informations d'audit dans `/var/local/log/localaudit.log`.
 
-NOTE: Certaines destinations ne sont disponibles que si vous avez configuré un serveur syslog externe.
+Lors de l'utilisation de `/var/local/log/localaudit.log`, les entrées du journal d'audit Grid Manager et tenant Manager peuvent être envoyées à un nœud de stockage. Vous pouvez trouver le nœud qui contient les entrées les plus récentes à l'aide de la `run-each-node --parallel "zgrep MGAU /var/local/log/localaudit.log | tail"` commande.
 
+Certaines destinations ne sont disponibles que si vous avez configuré un serveur syslog externe.
+
+====
 .Étapes
 . Sur la page serveur d'audit et syslog, sélectionnez la destination des informations d'audit.
 +
@@ -603,7 +609,7 @@ TIP: *Les nœuds locaux uniquement* et *le serveur syslog externe* fournissent g
  a| 
 Nœuds locaux uniquement (par défaut)
  a| 
-Les messages d'audit, les journaux d'événements de sécurité et les journaux d'applications ne sont pas envoyés aux nœuds d'administration. Ils sont enregistrés uniquement sur les nœuds qui les ont générés (« le nœud local »). Les informations d'audit générées sur chaque nœud local sont stockées dans `/var/local/log/localaudit.log`
+Les messages d'audit, les journaux d'événements de sécurité et les journaux d'applications ne sont pas envoyés aux nœuds d'administration. Ils sont enregistrés uniquement sur les nœuds qui les ont générés (« le nœud local »). Les informations d'audit générées sur chaque nœud local sont stockées dans `/var/local/log/localaudit.log`.
 
 *Remarque* : StorageGRID supprime périodiquement les journaux locaux dans une rotation pour libérer de l'espace. Lorsque le fichier journal d'un nœud atteint 1 Go, le fichier existant est enregistré et un nouveau fichier journal est démarré. La limite de rotation du journal est de 21 fichiers. Lorsque la 22e version du fichier journal est créée, le fichier journal le plus ancien est supprimé. En moyenne, environ 20 Go de données de journalisation sont stockés sur chaque nœud.
 
@@ -612,21 +618,25 @@ Les messages d'audit, les journaux d'événements de sécurité et les journaux 
  a| 
 Nœuds d'administration/nœuds locaux
  a| 
-Les messages d'audit sont envoyés au journal d'audit (`/var/local/log/audit.log`) Sur les nœuds d'administration, les journaux d'événements de sécurité et les journaux d'applications sont stockés sur les nœuds qui les ont générés.
+Les messages d'audit sont envoyés au journal d'audit sur les nœuds d'administration, et les journaux d'événements de sécurité et d'applications sont stockés sur les nœuds qui les ont générés. Les informations d'audit sont stockées dans les fichiers suivants :
+
+** Nœuds d'administration (primaire et non primaire) : `/var/local/audit/export/audit.log`
+** Tous les nœuds : le `/var/local/log/localaudit.log` fichier est généralement vide ou manquant. Il peut contenir des informations secondaires, telles qu'une copie supplémentaire de certains messages.
+
 
 
 
  a| 
 Serveur syslog externe
  a| 
-Les informations d'audit sont envoyées à un serveur syslog externe et enregistrées sur les nœuds locaux. Le type d'information envoyée dépend de la façon dont vous avez configuré le serveur syslog externe. Cette option n'est activée qu'après avoir configuré un serveur syslog externe.
+Les informations d'audit sont envoyées à un serveur syslog externe et enregistrées sur les nœuds locaux (`/var/local/log/localaudit.log`). Le type d'information envoyée dépend de la façon dont vous avez configuré le serveur syslog externe. Cette option n'est activée qu'après avoir configuré un serveur syslog externe.
 
 
 
  a| 
 Nœud d'administration et serveur syslog externe
  a| 
-Les messages d'audit sont envoyés au journal d'audit (`/var/local/log/audit.log`) Sur les nœuds d'administration, et les informations d'audit sont envoyées au serveur syslog externe et enregistrées sur le nœud local. Le type d'information envoyée dépend de la façon dont vous avez configuré le serveur syslog externe. Cette option n'est activée qu'après avoir configuré un serveur syslog externe.
+Les messages d'audit sont envoyés au journal d'audit (`/var/local/audit/export/audit.log`) sur les nœuds d'administration, et les informations d'audit sont envoyées au serveur syslog externe et enregistrées sur le nœud local (`/var/local/log/localaudit.log`. Le type d'information envoyée dépend de la façon dont vous avez configuré le serveur syslog externe. Cette option n'est activée qu'après avoir configuré un serveur syslog externe.
 
 |===
 . Sélectionnez *Enregistrer*.
