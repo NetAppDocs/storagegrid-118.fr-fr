@@ -62,23 +62,7 @@ Après avoir enregistré votre configuration, tous les ports externes du nœud d
 
 
 
-=== Exemple 2 : limiter l'accès au gestionnaire de grille et au gestionnaire de locataires
-
-Supposons que vous souhaitiez limiter l'accès au gestionnaire de grille et au gestionnaire de locataires (ports prédéfinis) pour des raisons de sécurité. Vous pouvez utiliser les étapes générales suivantes :
-
-. Utilisez le bouton bascule de l'onglet gérer l'accès externe pour bloquer le port 443.
-. Utilisez la bascule de l'onglet gérer l'accès externe pour autoriser l'accès au port 8443.
-. Utilisez la bascule de l'onglet gérer l'accès externe pour autoriser l'accès au port 9443.
-
-
-Une fois la configuration enregistrée, les hôtes ne pourront pas accéder au port 443, mais ils pourront toujours accéder au Grid Manager via le port 8443 et le tenant Manager via le port 9443.
-
-
-NOTE: Les ports 443, 8443 et 9443 sont les ports prédéfinis pour Grid Manager et tenant Manager. Vous pouvez basculer n'importe quel port pour limiter l'accès à un gestionnaire de grille ou un gestionnaire de tenant spécifique.
-
-
-
-=== Exemple 3 : verrouiller les ports sensibles
+=== Exemple 2 : Verrouiller les ports sensibles
 
 Supposons que vous souhaitez verrouiller les ports sensibles et le service sur ce port (par exemple, SSH sur le port 22). Vous pouvez utiliser les étapes générales suivantes :
 
@@ -93,7 +77,7 @@ Après avoir enregistré votre configuration, le port 22 et le service SSH seron
 
 
 
-=== Exemple 4 : désactiver l'accès aux services inutilisés
+=== Exemple 3 : Désactiver l’accès aux services inutilisés
 
 Au niveau du réseau, vous pouvez désactiver certains services que vous n'avez pas l'intention d'utiliser. Par exemple, si vous ne souhaitez pas fournir l'accès Swift, vous devez effectuer les étapes générales suivantes :
 
