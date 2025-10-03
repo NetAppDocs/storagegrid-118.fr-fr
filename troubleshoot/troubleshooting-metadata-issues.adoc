@@ -191,11 +191,18 @@ Une alarme Total Events (SMTT) est déclenchée lorsque la base de données Cass
 Si une erreur de mémoire insuffisante se produit pour la base de données Cassandra, un vidage de mémoire est créé, une alarme Total Events (SMTT) est déclenchée et le nombre d'erreurs de mémoire de Cassandra est incrémenté d'un.
 
 .Étapes
-. Pour afficher l'événement, sélectionnez *SUPPORT* > *Outils* > *topologie de grille* > *Configuration*.
+. Voir l'événement :
++
+.. Sélectionnez *SUPPORT* > *Outils* > *topologie de grille*.
+.. Développez le site, puis sélectionnez *_grid_node_*.
+.. Sélectionnez *SSM*, puis sélectionnez *Événements* > *Configuration*.
+
+
 . Vérifiez que le nombre d'erreurs de mémoire du tas Cassandra est égal ou supérieur à 1.
 +
 C'est possible link:../monitor/running-diagnostics.html["exécuter les diagnostics"] pour obtenir des informations supplémentaires sur l'état actuel de votre grille.
 
+. Connectez-vous au nœud sélectionné en tant qu'« admin » à l'aide de SSH et passez à l'utilisateur root local.
 . Accédez à `/var/local/core/`, comprimer le `Cassandra.hprof` dossier et envoyez-le au support technique.
 . Faire une sauvegarde du `Cassandra.hprof` et supprimez-le de la `/var/local/core/ directory`.
 +
