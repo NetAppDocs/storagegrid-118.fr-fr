@@ -476,7 +476,9 @@ Tous les nœuds
  a| 
 Tous les nœuds
  a| 
-Fournit le service DNS multidiffusion (mDNS) utilisé pour les modifications d'IP de grille complète et pour la découverte du nœud d'administration principal pendant l'installation, l'extension et la récupération.
+Fournit le service DNS multicast (mDNS) utilisé pour les changements d'adresse IP sur l'ensemble du réseau et pour la découverte du nœud d'administration principal lors de l'installation, de l'extension et de la récupération.
+
+*Remarque* : La configuration de ce port est facultative.
 
 
 
