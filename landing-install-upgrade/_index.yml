@@ -1,5 +1,16 @@
 ---
 indexpage:
+  title: Installez, mettez à niveau et correctif StorageGRID
+  summary: Un système StorageGRID se compose de nœuds matériels et logiciels individuels.
+    Vous devez d'abord installer le matériel pour chaque nœud d'appliance et configurer
+    chaque hôte Linux ou VMware. Vous installez ensuite le logiciel StorageGRID sur
+    chaque appliance ou hôte logiciel et connectez les nœuds à un grid.
+  keywords: storagegrid system, appliance hardware, software, install, vmware, red
+    gat, ubuntu, debian, automate
+  lead: Un système StorageGRID se compose de nœuds matériels et logiciels individuels.
+    Vous devez d'abord installer le matériel pour chaque nœud d'appliance et configurer
+    chaque hôte Linux ou VMware. Vous installez ensuite le logiciel StorageGRID sur
+    chaque appliance ou hôte logiciel et connectez les nœuds à un grid.
   tiles:
   - title: Démarrage rapide
     links:

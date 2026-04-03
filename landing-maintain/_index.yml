@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Maintenance d'un système StorageGRID
+  summary: Vous pouvez ajouter des nœuds ou des sites pour augmenter la capacité ou
+    les fonctionnalités de votre système. Vous pouvez également exécuter diverses
+    procédures de maintenance pour effectuer une reprise après incident ou maintenir
+    votre système StorageGRID à jour et performant.
+  keywords: storagegrid system, maintenance, capacity, grid, remove, maintain, decommission
+  lead: Vous pouvez ajouter des nœuds ou des sites pour augmenter la capacité ou les
+    fonctionnalités de votre système. Vous pouvez également exécuter diverses procédures
+    de maintenance pour effectuer une reprise après incident ou maintenir votre système
+    StorageGRID à jour et performant.
   tiles:
   - title: Commencez
     links:

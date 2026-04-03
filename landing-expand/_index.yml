@@ -1,5 +1,11 @@
 ---
 indexpage:
+  title: Développez une grille
+  summary: Vous pouvez augmenter la capacité ou les fonctionnalités de votre système
+    StorageGRID sans interrompre les opérations système.
+  keywords: storagegrid system, capacity, grid, capabilities, operations, expansion
+  lead: Vous pouvez augmenter la capacité ou les fonctionnalités de votre système
+    StorageGRID sans interrompre les opérations système.
   tiles:
   - title: Commencez
     links:

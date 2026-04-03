@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Utilisez les locataires et clients StorageGRID
+  summary: Une fois la configuration initiale terminée, les comptes de locataires
+    StorageGRID peuvent créer des compartiments et utiliser les applications client
+    S3 pour ingérer, récupérer et supprimer des objets.
+  keywords: applications, tenant, ingest, storagegrid systems, monitor, api, management
+  lead: Une fois la configuration initiale terminée, les comptes de locataires StorageGRID
+    peuvent créer des compartiments et utiliser les applications client S3 pour ingérer,
+    récupérer et supprimer des objets.
   tiles:
   - title: En savoir plus sur les locataires
     links:

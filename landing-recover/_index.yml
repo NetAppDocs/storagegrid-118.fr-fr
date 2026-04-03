@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Récupérer ou remplacer des nœuds
+  summary: En cas de défaillance d'un nœud de grille, vous pouvez le restaurer en
+    remplaçant le serveur physique ou virtuel défaillant, en réinstallant le logiciel
+    StorageGRID et en restaurant les données récupérables.
+  keywords: recover, replace, warnings, grid, node, storagegrid systems
+  lead: En cas de défaillance d'un nœud de grille, vous pouvez le restaurer en remplaçant
+    le serveur physique ou virtuel défaillant, en réinstallant le logiciel StorageGRID
+    et en restaurant les données récupérables.
   tiles:
   - title: Commencez
     links:

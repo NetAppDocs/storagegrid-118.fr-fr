@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Surveillance et dépannage d'un système StorageGRID
+  summary: Lorsque votre système est opérationnel, vous devez surveiller régulièrement
+    ses activités et résoudre les problèmes éventuels. Vous pouvez également configurer
+    un serveur syslog externe, utiliser la surveillance SNMP ou collecter des données
+    supplémentaires.
+  keywords: monitor, troubleshoot, storagegrid system, dashboard, audit, message
+  lead: Lorsque votre système est opérationnel, vous devez surveiller régulièrement
+    ses activités et résoudre les problèmes éventuels. Vous pouvez également configurer
+    un serveur syslog externe, utiliser la surveillance SNMP ou collecter des données
+    supplémentaires.
   tiles:
   - title: Surveillez votre système
     links:

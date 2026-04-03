@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Configuration et gestion d'un système StorageGRID
+  summary: Les tâches de configuration que vous devez effectuer pour un nouveau système
+    StorageGRID dépendent de la manière dont vous utiliserez votre grille. Vous configurez
+    au moins l'accès au système, utilisez les assistants FabricPool et S3 et gérez
+    les divers paramètres de stockage et de sécurité.
+  keywords: storagegrid system, configure, manage, security, settings, admin, group
+  lead: Les tâches de configuration que vous devez effectuer pour un nouveau système
+    StorageGRID dépendent de la manière dont vous utiliserez votre grille. Vous configurez
+    au moins l'accès au système, utilisez les assistants FabricPool et S3 et gérez
+    les divers paramètres de stockage et de sécurité.
   tiles:
   - title: Commencez
     links:
