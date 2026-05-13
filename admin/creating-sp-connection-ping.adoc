@@ -19,8 +19,7 @@ Vous utilisez PingFederate pour créer une connexion de fournisseur de services 
 * Vous disposez de l'ID de connexion * SP* pour chaque noeud d'administration de votre système. Ces valeurs sont disponibles dans le tableau des détails des nœuds d'administration de la page d'ouverture de session unique StorageGRID.
 * Vous avez téléchargé les métadonnées *SAML* pour chaque noeud d'administration de votre système.
 * Vous avez l'expérience de la création de connexions SP dans PingFederate Server.
-* Vous avez le
-https://docs.pingidentity.com/bundle/pingfederate-103/page/kfj1564002962494.html["Guide de référence de l'administrateur"^] Pour PingFederate Server. La documentation PingFederate fournit des instructions détaillées étape par étape et des explications.
+* Vous disposez du https://docs.pingidentity.com/pingfederate/latest/administrators_reference_guide/pf_administrators_reference_guide.html["Guide de référence de l'administrateur"^] pour le serveur PingFederate. La documentation PingFederate fournit des instructions détaillées étape par étape et des explications.
 * Vous avez le link:admin-group-permissions.html["Autorisation d'administrateur"] Pour PingFederate Server.
 
 

@@ -31,7 +31,7 @@ Serveurs pour nœuds grid:: Identifier un ensemble de serveurs (physiques, virtu
 NOTE: Si votre installation StorageGRID n'utilise pas de nœuds de stockage (matériels) StorageGRID, vous devez utiliser un stockage RAID matériel avec un cache d'écriture protégé par batterie (BBWC). StorageGRID ne prend pas en charge l'utilisation de réseaux de stockage virtuels (VSAN), de RAID logiciel ou aucune protection RAID.
 
 --
-Migration des nœuds (si nécessaire):: Prenez connaissance du link:node-container-migration-requirements.html["conditions requises pour la migration des nœuds"], si vous souhaitez effectuer une maintenance planifiée sur des hôtes physiques sans interruption de service.
+Migration des nœuds (si nécessaire):: Comprenez bien ceci link:../swnodes/node-container-migration-requirements.html["conditions requises pour la migration des nœuds"], si vous souhaitez effectuer une maintenance planifiée sur des hôtes physiques sans aucune interruption de service.
 Informations associées:: https://imt.netapp.com/matrix/#welcome["Matrice d'interopérabilité NetApp"^]
 
 

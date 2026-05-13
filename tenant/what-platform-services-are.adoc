@@ -81,7 +81,7 @@ Réplication CloudMirror
 
  a| 
 * link:configuring-cloudmirror-replication.html["Réplication CloudMirror"]
-* link:../s3/operations-on-buckets.htmll["Opérations sur les compartiments"]
+* link:../s3/operations-on-buckets.html["Opérations sur les compartiments"]
 
 
 
@@ -94,7 +94,7 @@ Notifications
 
  a| 
 * link:configuring-event-notifications.html["Notifications"]
-* link:../s3/s3/operations-on-buckets.html["Opérations sur les compartiments"]
+* link:../s3/operations-on-buckets.html["Opérations sur les compartiments"]
 
 
 
